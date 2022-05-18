@@ -3,23 +3,31 @@ import { projectAuth } from '../firebase/config'
 
 const error = ref(null)
 
-const login = async (email, password) => {
-
-    error.value = null;
+const signup = async (email, password, displayName) => {
+    error.value = null
 
     try{
-        const res = await projectAuth.signInWithEmailAndPassword(email, password)
-        error.value = null
-        console.log(res)
-        return res
+
+      const response =   await projectAuth.createUserWithEmailAndPassword(email, password);
+        if(!response){
+            throw new Error('Could not Sign up!');
+        }
+        await response.user.updateProfile({ displayName });
+        error.value = null;
+        return response
     }catch(err){
-        console.log(err.value)
-        error.value = 'Incorrect login credentials'
+
+        console.log(err.message);
+        error.value = err.message;
+
     }
 
-}
-const useLogin = () => {
-    return { error, login }
+
+
 }
 
-export default useLogin
+const useSignup = () => {
+    return { error, signup }
+}
+
+export default useSignup

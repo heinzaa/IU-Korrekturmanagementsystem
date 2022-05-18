@@ -18,7 +18,7 @@ export default {
        const displyName = ref('');
        const email = ref('');
        const password = ref('');
-      const handleSubmit = async() => {
+       const handleSubmit = async() => {
         await signup(email.value, password.value, displyName.value);
          if(!error.value){
               context.emit('SignUp');
