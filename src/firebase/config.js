@@ -1,7 +1,14 @@
 // Import the functions you need from the SDKs you need
 
-import firebase from "firebase/app";
-import 'firebase/firestore';
+//import { initializeApp } from "@firebase/app";
+
+import firebase from "firebase";
+
+//import "firebase/firestore";
+//import 'firebase/auth';
+
+// Import the functions you need from the SDKs you need
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -9,6 +16,7 @@ import 'firebase/firestore';
 const firebaseConfig = {
   apiKey: "AIzaSyBY8bWe3TYSa4Q-mzetqGFiB9SETtNwBLM",
   authDomain: "korrekturmanagementsyste-b8cd9.firebaseapp.com",
+  databaseURL: "https://korrekturmanagementsyste-b8cd9-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "korrekturmanagementsyste-b8cd9",
   storageBucket: "korrekturmanagementsyste-b8cd9.appspot.com",
   messagingSenderId: "672718022970",
@@ -16,10 +24,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
-// init firestore  
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-const projectFirestore = firebase.firestore();
+const db = firebaseApp.firestore();
 
-export { projectFirestore }
+
+export { firebaseApp, db }
