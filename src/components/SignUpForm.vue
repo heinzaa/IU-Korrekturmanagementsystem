@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit">
-      <input type="text" required placeholder="display name" v-model="displyName" />
+      <input type="text" required placeholder="display name" v-model="displayName" />
       <input type="email" required placeholder="email" v-model="email" />
       <input type="password" required placeholder="password" v-model="password" />
       <div class="error"> {{error}}</div>
@@ -15,16 +15,26 @@ export default {
    setup(props, context){ 
        const { error, signup } = useSignup()
        // refs
-       const displyName = ref('');
+       const displayName = ref('');
        const email = ref('');
        const password = ref('');
-       const handleSubmit = async() => {
-        await signup(email.value, password.value, displyName.value);
+       let regex = new RegExp('[a-z0-9]+@iubh-fernstudium.de')
+    let mail = email.toLowerCase();
+
+        if(!regex.test(mail)){
+            console.log('wrong pattern');
+            return;
+        }
+        else{
+        const handleSubmit = async() => {
+        await signup(email.value, password.value, displayName.value);
          if(!error.value){
               context.emit('SignUp');
           }
       }
-       return {displyName, email, password, handleSubmit, error}
+        
+       return {displayName, email, password, handleSubmit, error}
+        }
    }
 }
 </script>
