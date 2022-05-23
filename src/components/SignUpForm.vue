@@ -4,7 +4,7 @@
       <input type="email" required placeholder="email" v-model="email" />
       <input type="password" required placeholder="password" v-model="password" />
       <div class="error"> {{error}}</div>
-      <button id="login">Sign up </button>
+      <button id="login-btn">Sign up </button>
   </form>
 </template>
 
@@ -12,35 +12,32 @@
 import { ref } from '@vue/reactivity'
 import useSignup from '../composables/useSignup'
 export default {
+
    setup(props, context){ 
+
        const { error, signup } = useSignup()
        // refs
-       const displayName = ref('');
-       const email = ref('');
-       const password = ref('');
-       let regex = new RegExp('[a-z0-9]+@iubh-fernstudium.de')
-    let mail = email.toLowerCase();
+        const displayName = ref('');
+        const email = ref('');
+        const password = ref('');
 
-        if(!regex.test(mail)){
-            console.log('wrong pattern');
-            return;
-        }
-        else{
-        const handleSubmit = async() => {
-        await signup(email.value, password.value, displayName.value);
-         if(!error.value){
+            const handleSubmit = async() => {
+                await signup(email.value, password.value, displayName.value);
+            
+            if(!error.value){
               context.emit('SignUp');
-          }
-      }
-        
-       return {displayName, email, password, handleSubmit, error}
+            }
         }
+        
+        
+        
+        return {displayName, email, password, handleSubmit, error}
    }
 }
 </script>
 
 <style>
- #login {
+ #login-btn {
         cursor: pointer;
     }
 </style>

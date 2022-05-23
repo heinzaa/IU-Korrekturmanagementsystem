@@ -1,6 +1,6 @@
 <template>
   <div class="Dashboard">
-      Eingeloggt
+      Dashboard
    
   </div>
 </template>

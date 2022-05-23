@@ -4,30 +4,19 @@
     <div v-if="showLogin">
         <h2>Login</h2>
         <LoginForm @login="enterDashboard" />
-        
-       <!-- <span @click="showResetPassword = false ">Forgot password?</span> -->
-        <p>No account yet? <span @click="showLogin = false ">Signup</span></p>
-        
+        <p>Passwort <span @click="showResetPasswordForm"> vergessen</span>?</p>    
+        <p>No account yet? <span @click="showSignUpForm">Signup</span></p>        
     </div>
-
-      <!--<div v-else-if="showResetPassword">
-          <h2>Reset password</h2>
-          <ResetPasswordForm />
-           <p>No account yet? <span @click="showLogin = false">Signup</span></p>
-
-        </div> -->
-
-
-    <div v-else>
+    <div v-else-if="showResetPassword">
+        <h2>Passwort zurücksetzen</h2>
+            <ResetPasswordForm />
+            <p>Already registered?<span @click="showLoginForm">Login</span></p>
+    </div>
+    <div v-else-if="showSignUp">
         <h2>Sign up</h2>
-      <SignUpForm @SignUp="enterDashboard"/> 
-        <p>Already registered? <span @click="showLogin = true">Login</span></p>
-
-       
-    </div> 
-
-  
-      
+      <SignUpForm @SignUp="enterVerification"/> 
+        <p>Already registered?<span @click="showLoginForm">Login</span></p>
+    </div>  
   </div>
 </template>
 
@@ -41,14 +30,45 @@ export default {
     components: { SignUpForm, LoginForm, ResetPasswordForm },
     setup(){
         const showLogin = ref(true);
-        const showResetPassword = ref(true)
-        const router = useRouter()
+        const showResetPassword = ref(false);
+        const showSignUp = ref(false); 
+
+
+
+
+        const router = useRouter();
+
+        const showLoginForm = () => {
+            showLogin.value = true;
+            showResetPassword.value = false;
+            showSignUp.value = false;
+        };
+        const showResetPasswordForm = () => {
+            showLogin.value = false;
+            showResetPassword.value = true;
+            showSignUp.value = false;
+        };
+        const showSignUpForm = () => {
+            console.log("hallo");
+            showLogin.value = false;
+            showResetPassword.value = false;
+            showSignUp.value = true;
+
+        };
         
-        const enterDashboard = () => { 
-            router.push({ name: 'Dashboard'})
+
+        const enterVerification = () => { 
+            router.push({ name: 'Verification'})
         } 
-        return { showResetPassword, showLogin, enterDashboard }
-    }
+        
+        const enterDashboard = () => {
+            router.push({ name: 'Dashboard' })
+        }
+
+        //return { showResetPassword, showLogin, enterDashboard }
+        return {  showLogin, showResetPassword, showSignUp, showLoginForm, showResetPasswordForm, showSignUpForm,  enterVerification, enterDashboard }
+    },
+   
 }
 </script>
 
