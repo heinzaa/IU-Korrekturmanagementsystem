@@ -1,7 +1,7 @@
 <template>
     <!--
     <form @submit.prevent="handleSubmit">      
-        <input type="email" required placeholder="email" v-model="email" />
+        <input type="email"  placeholder="email" v-model="email" />
         <input type="password" required placeholder="password" v-model="password" />
         <div class="error">{{error}}</div>
         <button id="login">Log in </button>
@@ -12,14 +12,14 @@
         <form @submit.prevent="handleSubmit">
             <div class="error mb-2">{{error}}</div>
             <div class="form-floating mb-2">
-                <input type="email" class="form-control" id="floatingEmail" placeholder="mein.name@iubh-fernstudium.com" v-model="email">
+                <input type="email" required class="form-control" id="floatingEmail" placeholder="mein.name@iubh-fernstudium.com" v-model="email">
                 <label for="floatingEmail">IU E-Mail-Adresse</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Passwort" v-model="password">
+                <input type="password" required class="form-control" id="floatingPassword" placeholder="Passwort" v-model="password">
                 <label for="floatingPassword">Passwort</label>
             </div>
-            <button id="login" class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
         </form>
     </div>
 </template>
@@ -45,7 +45,4 @@ export default {
 </script>
 
 <style>
-    #login {
-        cursor: pointer;
-    }
 </style>
