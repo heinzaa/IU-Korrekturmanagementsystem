@@ -10,10 +10,10 @@ const resetPassword = async (email) => {
     try{
         const response = await projectAuth.sendPasswordResetEmail(email, { url:"http://localhost:8081" })
         console.log(response);
-        return response
+        return response;
     }catch(err){
-        console.log(err.value)
-        error.value = 'Incorrect email'
+        console.log(err.value);
+        error.value = 'Incorrect email';
     }
 
 }
