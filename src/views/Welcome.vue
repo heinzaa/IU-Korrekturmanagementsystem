@@ -18,7 +18,7 @@
                 <SignUpForm @SignUp="enterVerification" />
                 <p>Bereits registriert? ➜ <span @click="showLoginForm">Login</span></p>
             </div>
-        </div>
+        </div>       
         <TemplateFooter />
     </div>
 </template>

@@ -3,10 +3,12 @@ import { projectAuth } from '../firebase/config'
 
 const error = ref(null)
 const email = ref(null);
+const isPending = ref(false);
 
 const signup = async (email, password, displayName) => {
 
     error.value = null;
+    isPending.value = true;
   
 
     let regex_student = new RegExp('[a-z0-9]+@iubh-fernstudium.de')
@@ -14,13 +16,7 @@ const signup = async (email, password, displayName) => {
    
     
     
-    
-   /* if(!regex_student.test(email)){
-        console.log(email)
-        console.log(regex_tutor.test(email))
-        error.value = "Falsches Pattern";
-        return  error;
-    }; */
+ 
 
     try{
 
@@ -29,7 +25,7 @@ const signup = async (email, password, displayName) => {
 
         // Route to return to -> domain name
         await response.user.sendEmailVerification({
-            url: "http://localhost:8081/Dashboard"
+            url: "http://localhost:8080/Dashboard"
         });
         
       if(!response){
@@ -38,11 +34,13 @@ const signup = async (email, password, displayName) => {
        
        // await response.user.updateProfile({ displayName });
         error.value = null;
+        isPending.value = false;
         return response
     }catch(err){
 
         console.log(err.message);
         error.value = err.message;
+        isPending.value = false;
 
     }
 
@@ -51,7 +49,7 @@ const signup = async (email, password, displayName) => {
 }
 
 const useSignup = () => {
-    return { error, signup }
+    return { error, signup, isPending }
 }
 
 export default useSignup

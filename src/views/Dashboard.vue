@@ -92,6 +92,7 @@
                 </table>
             </div>
         </div>
+         <b-icon-arrow-up></b-icon-arrow-up>
         <TemplateFooter />
     </div>
 </template>
