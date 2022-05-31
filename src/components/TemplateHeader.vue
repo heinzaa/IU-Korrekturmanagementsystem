@@ -43,7 +43,6 @@
 import { ref } from '@vue/reactivity';
 import useLogout from '../composables/useLogout';
 import { useRouter } from 'vue-router';
-import VerificationVue from '@/views/Verification.vue';
 export default {
 
    setup(props, context){ 
