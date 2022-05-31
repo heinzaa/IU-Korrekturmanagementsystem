@@ -28,6 +28,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Impressum</a>
                     </li>
+                    <li class="nav-item" @click="logoutUser">
+                        <a href="#" class="btn btn-info btn-sm">
+                        <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -35,7 +40,35 @@
 </template>
 
 <script>
+import { ref } from '@vue/reactivity';
+import useLogout from '../composables/useLogout';
+import { useRouter } from 'vue-router';
+import VerificationVue from '@/views/Verification.vue';
+export default {
+
+   setup(props, context){ 
+
+       const { error, logout } = useLogout();
+       const router = useRouter();
+        
+        const logoutUser = async () => {
+            await logout();
+            console.log('user logged out');
+            router.push({ name: 'Welcome' })
+        }
+        
+        
+        return { error, logoutUser}
+   }
+}
+
+
 </script>
 
-<style>
+<style scoped>
+.btn-group-sm>.btn, .btn-sm {
+    padding: 0.5rem;
+    font-size: .875rem;
+    border-radius: 0.2rem;
+}
 </style>
