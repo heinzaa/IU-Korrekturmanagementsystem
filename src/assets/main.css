@@ -36,11 +36,13 @@ button {
 
 #header {
     background: #152536;
+    margin-bottom: 20px;
 }
 
 #footer {
     text-align: center;
     background: #e9ecef;
+    margin-top: 20px;
 }
 #footer img {
     height:80px;
