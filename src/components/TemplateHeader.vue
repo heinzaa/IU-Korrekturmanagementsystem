@@ -28,7 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Impressum</a>
                     </li>
-                    <li class="nav-item" @click="logoutUser">
+                    <li v-if="user" class="nav-item" @click="logoutUser" >
                         <a href="#" class="btn btn-info btn-sm">
                         <span class="glyphicon glyphicon-log-out"></span> Log out
                         </a>
@@ -42,11 +42,14 @@
 <script>
 import { ref } from '@vue/reactivity';
 import useLogout from '../composables/useLogout';
+import getUser from '../composables/getUser';
 import { useRouter } from 'vue-router';
+
 export default {
 
    setup(props, context){ 
 
+       const { user } = getUser();
        const { error, logout } = useLogout();
        const router = useRouter();
         
@@ -57,7 +60,7 @@ export default {
         }
         
         
-        return { error, logoutUser}
+        return { error, logoutUser, user}
    }
 }
 
