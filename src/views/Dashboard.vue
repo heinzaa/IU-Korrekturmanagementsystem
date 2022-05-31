@@ -3,96 +3,9 @@
         <TemplateHeader />
         <div class="dashboard container">
             <h1>Willkommen im Dashboard</h1>
-
-            <div id="status-panel">
-                <div>
-                    <strong class="rounded-pill bg-danger">2</strong>
-                    <span>Offen</span>
-                </div>
-                <div>
-                    <strong class="rounded-pill bg-warning">1</strong>
-                    <span>In Arbeit</span>
-                </div>
-                <div>
-                    <strong class="rounded-pill bg-success">3</strong>
-                    <span>Erledigt</span>
-                </div>
-                <div>
-                    <strong class="rounded-pill bg-info">1</strong>
-                    <span>Abgelehnt</span>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-hover table-tickets">
-                    <thead>
-                        <tr>
-                            <th scope="col">Status/Datum</th>
-                            <th scope="col">Titel</th>
-                            <th scope="col">Kurs</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="cursor-pointer">
-                            <td>
-                                <span class="badge bg-danger">Offen</span>
-                                22.05.2022
-                            </td>
-                            <td>Veraltete Methoden im Video</td>
-                            <td>BMAR02</td>
-                        </tr>
-                        <tr class="cursor-pointer">
-                            <td>
-                                <span class="badge bg-danger">Offen</span>
-                                22.05.2022
-                            </td>
-                            <td>Veraltete Methoden im Video</td>
-                            <td>BMAR02</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="badge bg-warning">In Arbeit</span>
-                                12.05.2022
-                            </td>
-                            <td>Ton ist abgeschnitten</td>
-                            <td>IMT102</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="badge bg-success">Erledigt</span>
-                                09.05.2022
-                            </td>
-                            <td>Error-Meldung im IU Reader 123...</td>
-                            <td>BFIN02</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="badge bg-success">Erledigt</span>
-                                09.05.2022
-                            </td>
-                            <td>Error-Meldung im IU Reader 123...</td>
-                            <td>BFIN02</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="badge bg-success">Erledigt</span>
-                                09.05.2022
-                            </td>
-                            <td>Error-Meldung im IU Reader 123...</td>
-                            <td>BFIN02</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="badge bg-info">Abgelehnt</span>
-                                07.03.2022
-                            </td>
-                            <td>Dein Bein isch verdreht!</td>
-                            <td>ISEF01</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <DashboardTutor />
         </div>
-         <b-icon-arrow-up></b-icon-arrow-up>
+         
         <TemplateFooter />
     </div>
 </template>
@@ -100,8 +13,9 @@
 <script>
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
+import DashboardTutor from "../components/DashboardTutor.vue"
 export default {
-    components: { TemplateHeader, TemplateFooter },
+    components: { TemplateHeader, TemplateFooter, DashboardTutor },
 };
 </script>
 
