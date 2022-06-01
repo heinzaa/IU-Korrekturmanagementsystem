@@ -30,7 +30,7 @@
                     </li>
                     <li v-if="user" class="nav-item" @click="logoutUser" >
                         <a href="#" class="btn btn-primary btn-sm">
-                        <span class="glyphicon glyphicon-log-out"></span> Log out
+                        <span> <img class="logout-svg" src="../assets/logout.svg" /> </span>Log out
                         </a>
                     </li>
                 </ul>
@@ -72,5 +72,10 @@ export default {
     padding: 0.5rem;
     font-size: .875rem;
     border-radius: 0.2rem;
+}
+.logout-svg{
+    height: 1rem;   
+    filter: invert(100%);
+    margin-right: 0.5rem;
 }
 </style>

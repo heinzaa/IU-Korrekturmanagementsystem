@@ -14,7 +14,7 @@
     </div>
     <hr>
     <!-- Medium auswählen -->
-
+  <p>Bitte Medium wählen!</p>
     <div class="form-check">
       <input
         class="form-check-input"
@@ -200,7 +200,7 @@
     <hr>
     <!-- Priorität des Fehlers wählen --> 
     <div class="form-group">
-      <p>Priorität des Fehlers auswählen</p>
+      <p>Fehlerkategorien</p>
       <div class="form-check form-check-inline">
         <input
           class="form-check-input"
@@ -209,7 +209,7 @@
           id="inlineRadioNiedrig"
           value="Niedrig"
         />
-        <label class="form-check-label" for="inlineRadioNiedrig">Niedrig</label>
+        <label class="form-check-label" for="inlineRadioNiedrig">Verbesserung</label>
       </div>
       <div class="form-check form-check-inline">
         <input
@@ -219,7 +219,7 @@
           id="inlineRadioMittel"
           value="Mittel"
         />
-        <label class="form-check-label" for="inlineRadioMittel">Mittel</label>
+        <label class="form-check-label" for="inlineRadioMittel">Inhaltlicher Fehler</label>
       </div>
       <div class="form-check form-check-inline">
         <input
@@ -245,7 +245,7 @@
 
     <!-- Textfeld Sonstige Bemerkungen -->
     <div class="form-group">
-      <label for="textarea-bemerkungen">Example textarea</label>
+      <label for="textarea-bemerkungen">Zusätzliche Bemerkungen</label>
       <textarea
         class="form-control"
         id="textarea-bemerkungen"
