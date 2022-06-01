@@ -29,7 +29,7 @@
                         <a class="nav-link" href="#">Impressum</a>
                     </li>
                     <li v-if="user" class="nav-item" @click="logoutUser" >
-                        <a href="#" class="btn btn-info btn-sm">
+                        <a href="#" class="btn btn-primary btn-sm">
                         <span class="glyphicon glyphicon-log-out"></span> Log out
                         </a>
                     </li>
