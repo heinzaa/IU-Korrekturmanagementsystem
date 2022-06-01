@@ -7,7 +7,7 @@
                 <LoginForm @login="enterDashboard" />
                 <p>Passwort <span @click="showResetPasswordForm">vergessen</span>?</p>
                 <p>Noch kein Konto? ➜ <span @click="showSignUpForm">Registrierung</span></p>
-                <CorrectionForm />
+                <!-- <CorrectionForm /> -->
             </div>
             <div v-else-if="showResetPassword">
                 <h2>Passwort zurücksetzen</h2>
