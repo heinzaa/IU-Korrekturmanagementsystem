@@ -1,7 +1,7 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
-    match /anhaenge{ticketId}/{files=**} {
+    match /anhaenge/{ticketId}/{files=**} {
       allow read, create: if request.auth!=null;
     }
   }
