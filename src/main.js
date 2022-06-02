@@ -4,7 +4,7 @@ import router from './router'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
-import {projectAuth} from '../.firebase/config'
+import { projectAuth } from './firebase/config';
 
 import './assets/main.css'
 
