@@ -41,12 +41,12 @@ const routes = [
   },
   {
     path: '/imprint',
-    name: 'PageImprint',
+    name: 'Impressum',
     component: PageImprint
   },
   {
     path: '/privacy',
-    name: 'PagePrivacy',
+    name: 'Datenschutz',
     component: PagePrivacy
   },
 ]
@@ -54,6 +54,11 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = to.name;
+  next();
 })
 
 
