@@ -1,40 +1,33 @@
 <template>
-  <div id="VerificationPopUp">
-      <div>
-         <h1> Verfiziere deine Email</h1> 
-            <p>Du musst deine Email verfizieren, um deine Registrierung abzuschließen</p>
-            <img src="../assets/mail-verification.svg" width="200"/>
-            <br>
-        <small>
-            Eine Email mit Verfizierungslink wurde an ihre {{email}} gesendet. Bitte bestätigen Sie diese.
-        </small>
-        <br>
-
-        <button type="button" @click="toLogin" class="btn btn-primary">Zum Login</button>
-        
-      </div>
+    <div class="container" id="VerificationPopUp">
+        <div>
+            <h1>Verfiziere deine E-Mail</h1>
+            <img src="../assets/mail-verification.svg" width="200" />
+            <br />
+            <p>
+                Du musst deine E-Mail-Adresse verfizieren, um deine
+                Registrierung abzuschließen. Dazu haben wir eine E-Mail mit
+                Verfizierungslink an Deine E-Mail-Adresse {{ email }} gesendet.
+                Bitte bestätigen Sie diese.
+            </p>
+            <button type="button" @click="toLogin" class="btn btn-primary">
+                Zum Login
+            </button>
+        </div>
     </div>
 </template>
 
 <script>
-
 export default {
- setup(props, context){
-       
-   
+    setup(props, context) {
+        const toLogin = () => {
+            context.emit("toLoginComponent");
+        };
 
-      const toLogin = () => {
-          context.emit('toLoginComponent');
-      }
-       
-     return { toLogin }
-    
-}    
-}
-
-
+        return { toLogin };
+    },
+};
 </script>
 
 <style>
-
 </style>

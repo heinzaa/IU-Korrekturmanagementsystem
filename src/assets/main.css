@@ -36,16 +36,19 @@ button {
 
 #header {
     background: #152536;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    padding: 20px 0;
 }
 
 #footer {
     text-align: center;
     background: #e9ecef;
-    margin-top: 20px;
+    margin-top: 30px;
+    padding: 20px 0 0;
 }
+
 #footer img {
-    height:80px;
+    height: 80px;
 }
 
 #logo {
@@ -58,4 +61,8 @@ button {
     max-width: 330px;
     padding: 15px;
     margin: auto;
+}
+
+.content-small {
+    max-width: 720px;
 }

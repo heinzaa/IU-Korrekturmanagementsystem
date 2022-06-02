@@ -14,19 +14,19 @@ const login = async (email, password) => {
 
     try {
 
-        
+
         // prüfen ob User verified
 
 
         const res = await projectAuth.signInWithEmailAndPassword(email, password);
 
-        if(res.user.emailVerified){           
-        error.value = null;
-        isPending.value = false;
-        return res;
+        if (res.user.emailVerified) {
+            error.value = null;
+            isPending.value = false;
+            return res;
         }
-        else{
-            error.value = 'Sie müssen ihre E-Mail Adresse verfizieren.'
+        else {
+            error.value = 'Du musst zuerst Deine E-Mail-Adresse verfizieren.'
             isPending.value = false;
         }
     } catch (err) {

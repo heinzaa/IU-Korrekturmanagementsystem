@@ -1,7 +1,8 @@
 <template>
     <div id="footer">
         <div class="container">
-            <img src="/iu-logo.svg" alt="Logo IU">
+            <div style="font-size:0.7rem;">Dies ist ein privates Studentenprojekt der IU Internationelen&nbsp;Hochschule</div>
+            <img src="/iu-logo.svg" alt="Logo IU" />
         </div>
     </div>
 </template>

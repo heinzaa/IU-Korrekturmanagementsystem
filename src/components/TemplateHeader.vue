@@ -6,30 +6,27 @@
                 class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarsExample07"
-                aria-controls="navbarsExample07"
+                data-bs-target="#mainmenu"
+                aria-controls="mainmenu"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse navbar-right" id="navbarsExample07">
+            <div class="collapse navbar-collapse navbar-right" id="mainmenu">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                    <li class="nav-item" @click="toHome">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Mein Konto / Registrierung</a>
+                    <li class="nav-item" @click="toPrivacy">
+                        <a id="navLinkPrivacy" class="nav-link" href="/privacy">Datenschutz</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Datenschutz</a>
+                    <li class="nav-item" @click="toImprint">
+                        <a id="navLinkImprint" class="nav-link" href="/imprint">Impressum</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Impressum</a>
-                    </li>
-                    <li v-if="user" class="nav-item" @click="logoutUser" >
-                        <a href="#" class="btn btn-primary btn-sm">
+                    <li v-if="user" class="nav-item" @click="logoutUser">
+                        <a href="#" class="btn btn-secondary btn-sm">
                         <span> <img class="logout-svg" src="../assets/logout.svg" /> </span>Log out
                         </a>
                     </li>
@@ -40,31 +37,30 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
 import useLogout from '../composables/useLogout';
 import getUser from '../composables/getUser';
 import { useRouter } from 'vue-router';
 
 export default {
+    setup(props, context){
 
-   setup(props, context){ 
-
-       const { user } = getUser();
-       const { error, logout } = useLogout();
-       const router = useRouter();
+        const { user } = getUser();
+        const { error, logout } = useLogout();
+        const router = useRouter();
         
         const logoutUser = async () => {
             await logout();
             console.log('user logged out');
             router.push({ name: 'Welcome' })
         }
+
+        const toPrivacy = () => {
+            //this.addClass
+        }
         
-        
-        return { error, logoutUser, user}
+        return { error, logoutUser, user }
    }
 }
-
-
 </script>
 
 <style scoped>

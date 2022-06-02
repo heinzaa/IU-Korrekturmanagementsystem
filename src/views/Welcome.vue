@@ -1,21 +1,21 @@
 <template>
     <div id="template">
         <TemplateHeader />
-        <div class="welcome">
+        <div class="welcome container">
             <div v-if="showLogin">
-                <h2>Login</h2>
+                <h1>Login</h1>
                 <LoginForm @login="enterDashboard" />
                 <p>Passwort <span @click="showResetPasswordForm">vergessen</span>?</p>
                 <p>Noch kein Konto? ➜ <span @click="showSignUpForm">Registrierung</span></p>
                 <!-- <CorrectionForm /> -->
             </div>
             <div v-else-if="showResetPassword">
-                <h2>Passwort zurücksetzen</h2>
+                <h1>Passwort zurücksetzen</h1>
                 <ResetPasswordForm />
                 <p>Bereits registriert? ➜ <span @click="showLoginForm">Login</span></p>
             </div>
             <div v-else-if="showSignUp">
-                <h2>Registrierung</h2>
+                <h1>Registrierung</h1>
                 <SignUpForm @SignUp="enterVerificationPopUp" />
                 <p>Bereits registriert? ➜ <span @click="showLoginForm">Login</span></p>
             </div>
@@ -98,7 +98,6 @@ export default {
 <style>
 .welcome {
     text-align: center;
-    padding: 20px 0;
 }
 .welcome span {
     font-weight: bold;

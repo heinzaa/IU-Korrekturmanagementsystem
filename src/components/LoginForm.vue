@@ -1,18 +1,9 @@
 <template>
-    <!--
-    <form @submit.prevent="handleSubmit">      
-        <input type="email"  placeholder="email" v-model="email" />
-        <input type="password" required placeholder="password" v-model="password" />
-        <div class="error">{{error}}</div>
-        <button id="login">Log in </button>
-    </form>
-    -->
-
     <div class="form-signin">
         <form @submit.prevent="handleSubmit">
-            <div class="error mb-2">{{error}}</div>            
+            <div class="error mb-2">{{error}}</div>
+            <!--<b-icon-eye></b-icon-eye>-->
             <div class="form-floating mb-2">
-                <!--<b-icon-eye></b-icon-eye> <b-icon- icon name -->
                 <input type="email" required class="form-control" id="floatingEmail" placeholder="mein.name@iubh-fernstudium.com" v-model="email">
                 <label for="floatingEmail">IU E-Mail-Adresse</label>
             </div>            
