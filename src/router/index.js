@@ -4,7 +4,20 @@ import PageImprint from '../views/PageImprint.vue';
 import PagePrivacy from '../views/PagePrivacy.vue';
 import Dashboard from '../views/Dashboard.vue';
 import Verification from '../views/Verification.vue';
-import firebase from 'firebase';
+
+import { projectAuth } from '../firebase/config'; 
+
+
+const requireAuth = (to, from, next) =>{
+  let user = projectAuth.currentUser;
+  if(!user){
+    next({ name: 'Welcome'})
+  }
+  else{
+    next();
+  }
+}
+
 
 
 
@@ -23,9 +36,8 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
-    //meta: 
-    //  requiresAuth: true
-    //
+    beforeEnter: requireAuth
+    
   },
   {
     path: '/imprint',
@@ -44,14 +56,5 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const isAuthenticated = firebase.auth().currentUser;
-
-  if (requiresAuth && !isAuthenticated)
-    next("/dashboard");
-  else
-    next();
-})
 
 export default router
