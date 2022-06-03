@@ -16,8 +16,11 @@
 
             <div class="collapse navbar-collapse navbar-right" id="mainmenu">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item" @click="toHome">
+                    <li v-if="!user" class="nav-item" @click="toHome">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li v-if="user" class="nav-item" @click="toHome">
+                        <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item" @click="toPrivacy">
                         <a id="navLinkPrivacy" class="nav-link" href="/privacy">Datenschutz</a>
@@ -25,10 +28,17 @@
                     <li class="nav-item" @click="toImprint">
                         <a id="navLinkImprint" class="nav-link" href="/imprint">Impressum</a>
                     </li>
-                    <li v-if="user" class="nav-item" @click="logoutUser">
-                        <a href="#" class="btn btn-secondary btn-sm">
-                        <span> <img class="logout-svg" src="../assets/logout.svg" /> </span>Log out
+                    <li v-if="user" class="nav-item dropdown">
+                        <!-- Mein Konto Menü -->
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;Mein&nbsp;Konto
                         </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#"><b-icon-plus-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-plus-circle>&nbsp;&nbsp;Meldung erstellen</a></li>
+                            <li><a class="dropdown-item" href="#"><b-icon-bug style="font-size:1.4em; margin-top:-0.1em;"></b-icon-bug>&nbsp;&nbsp;Meine Meldungen</a></li>
+                            <li><a class="dropdown-item" href="#"><b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;Mein&nbsp;Konto</a></li>
+                            <li><a class="dropdown-item" href="#" @click="logoutUser"><b-icon-box-arrow-right style="font-size:1.4em; margin-top:-0.1em;"></b-icon-box-arrow-right>&nbsp;&nbsp;Logout</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
