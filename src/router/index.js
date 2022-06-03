@@ -3,7 +3,6 @@ import Welcome from '../views/Welcome.vue';
 import PageImprint from '../views/PageImprint.vue';
 import PagePrivacy from '../views/PagePrivacy.vue';
 import Dashboard from '../views/Dashboard.vue';
-import Verification from '../views/Verification.vue';
 
 import { projectAuth } from '../firebase/config'; 
 
@@ -26,11 +25,6 @@ const routes = [
     path: '/',
     name: 'Welcome',
     component: Welcome
-  },
-  {
-    path: '/verification',
-    name: 'Verification',
-    component: Verification
   },
   {
     path: '/dashboard',
