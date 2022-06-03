@@ -1,9 +1,12 @@
 <template>
     <div id="template">
         <TemplateHeader />
-        <div class="welcome container">
+        <div class="welcome container content-small content-center">
             <div v-if="showLogin">
-                <h1>Login</h1>
+                <h1>Korrektur&shy;management&shy;system</h1>
+                <p>Die Nutzung des Korrekturmanagementsystems ist ausschließlich für private Zwecke und berechtigte Personen der IU gestattet.</p>
+                <p>&nbsp;</p>
+                <h2>Login</h2>
                 <LoginForm @login="enterDashboard" />
                 <p>Passwort <span @click="showResetPasswordForm">vergessen</span>?</p>
                 <p>Noch kein Konto? ➜ <span @click="showSignUpForm">Registrierung</span></p>
@@ -11,11 +14,14 @@
             </div>
             <div v-else-if="showResetPassword">
                 <h1>Passwort zurücksetzen</h1>
+                <p>Bitte gib die E-Mail-Adresse zu deinem Profil ein.
+                    Wir senden dir dann einen Link, mit dem du ein neues Kennwort festlegen kannst.</p>
                 <ResetPasswordForm />
                 <p>Bereits registriert? ➜ <span @click="showLoginForm">Login</span></p>
             </div>
             <div v-else-if="showSignUp">
                 <h1>Registrierung</h1>
+                <p>Für die Registrierung eines neuen Kontos ist die Zugehörigkeit zur Hochschule erforderlich. Hierzu wird die E-Mail-Adresse der IU benötigt.</p>
                 <SignUpForm @SignUp="enterVerificationPopUp" />
                 <p>Bereits registriert? ➜ <span @click="showLoginForm">Login</span></p>
             </div>

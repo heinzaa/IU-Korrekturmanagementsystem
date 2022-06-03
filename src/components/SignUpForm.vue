@@ -4,11 +4,11 @@
             <div class="error mb-2">{{error}}</div>
             <div class="form-floating mb-2">
                 <input type="text" required class="form-control" id="floatingEmail" placeholder="Max" v-model="displayName">
-                <label for="floatingEmail">Mein Name</label>
+                <label for="floatingEmail">Name</label>
             </div>
             <div class="form-floating mb-2">
-                <input type="email" required class="form-control" id="floatingEmail" placeholder="mein.name@iubh-fernstudium.com" v-model="email">
-                <label for="floatingEmail">Meine IU E-Mail-Adresse</label>
+                <input type="email" required class="form-control" id="floatingEmail" placeholder="mein.name@iubh-fernstudium.de" v-model="email">
+                <label for="floatingEmail">IU E-Mail-Adresse</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="password" required class="form-control" id="floatingPassword" placeholder="Passwort" v-model="password">

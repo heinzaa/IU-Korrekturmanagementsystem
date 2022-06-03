@@ -3,15 +3,6 @@ body {
     color: #333;
 }
 
-/*.container {
-    width: 90%;
-    max-width: 960px;
-    margin: 0 auto;
-    border-radius: 20px;
-    box-shadow: 2px 4px 6px rgba(28, 6, 49, 0.1);
-    background: white;
-}*/
-
 .error {
     color: #ff3f80;
 }
@@ -36,14 +27,14 @@ button {
 
 #header {
     background: #152536;
-    margin-bottom: 30px;
-    padding: 20px 0;
+    margin-bottom: 50px;
+    padding: 10px 0;
 }
 
 #footer {
     text-align: center;
     background: #e9ecef;
-    margin-top: 30px;
+    margin-top: 50px;
     padding: 20px 0 0;
 }
 
@@ -54,6 +45,7 @@ button {
 #logo {
     display: inline-block;
     text-decoration: none;
+    padding:10px 0;
 }
 
 .form-signin {
@@ -63,6 +55,17 @@ button {
     margin: auto;
 }
 
+.container {
+    margin-top: 0;
+    margin-bottom: auto;
+}
+
+.content-center {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .content-small {
     max-width: 720px;
 }
+
