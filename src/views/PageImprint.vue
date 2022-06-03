@@ -13,7 +13,7 @@
                 Schmack, <br />Anna Schulz, <br />Michael Vorndran
                 <br />
                 <br />E-Mail Kontakt:
-                <br /><a href="mail@korrekturmanagement.de">mail@korrekturmanagement.de</a>
+                <br /><a href="mailto:mail@korrekturmanagement.de">mail@korrekturmanagement.de</a>
             </p>
         </div>
         <TemplateFooter />
