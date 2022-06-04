@@ -3,6 +3,7 @@ import Welcome from '../views/Welcome.vue';
 import PageImprint from '../views/PageImprint.vue';
 import PagePrivacy from '../views/PagePrivacy.vue';
 import Dashboard from '../views/Dashboard.vue';
+import UserAccount from '../views/UserAccount.vue';
 
 import { projectAuth } from '../firebase/config'; 
 
@@ -42,6 +43,11 @@ const routes = [
     path: '/privacy',
     name: 'Datenschutz',
     component: PagePrivacy
+  },
+  {
+    path: '/userdata',
+    name: 'Mein Konto',
+    component: UserAccount
   },
 ]
 
