@@ -4,16 +4,17 @@ import PageImprint from '../views/PageImprint.vue';
 import PagePrivacy from '../views/PagePrivacy.vue';
 import Dashboard from '../views/Dashboard.vue';
 import UserAccount from '../views/UserAccount.vue';
+import CreateTicket from '../views/CreateTicket.vue';
 
-import { projectAuth } from '../firebase/config'; 
+import { projectAuth } from '../firebase/config';
 
 
-const requireAuth = (to, from, next) =>{
+const requireAuth = (to, from, next) => {
   let user = projectAuth.currentUser;
-  if(!user){
-    next({ name: 'Welcome'})
+  if (!user) {
+    next({ name: 'Welcome' })
   }
-  else{
+  else {
     next();
   }
 }
@@ -32,7 +33,7 @@ const routes = [
     name: 'Dashboard',
     component: Dashboard,
     beforeEnter: requireAuth
-    
+
   },
   {
     path: '/imprint',
@@ -48,6 +49,11 @@ const routes = [
     path: '/userdata',
     name: 'Mein Konto',
     component: UserAccount
+  },
+  {
+    path: '/createticket',
+    name: 'Neue Meldung erstellen',
+    component: CreateTicket
   },
 ]
 

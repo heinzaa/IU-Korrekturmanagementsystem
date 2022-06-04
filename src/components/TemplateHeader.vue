@@ -34,9 +34,9 @@
                             <b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;Mein&nbsp;Konto
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownAccount">
-                            <li><a class="dropdown-item" href="#"><b-icon-plus-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-plus-circle>&nbsp;&nbsp;Meldung erstellen</a></li>
-                            <li><a class="dropdown-item" href="#"><b-icon-bug style="font-size:1.4em; margin-top:-0.1em;"></b-icon-bug>&nbsp;&nbsp;Meine Meldungen</a></li>
-                            <li><a class="dropdown-item" href="userdata"><b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;Mein&nbsp;Konto</a></li>
+                            <li><a class="dropdown-item" href="/createticket"><b-icon-plus-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-plus-circle>&nbsp;&nbsp;Meldung erstellen</a></li>
+                            <li><a class="dropdown-item" href="/dashboard"><b-icon-bug style="font-size:1.4em; margin-top:-0.1em;"></b-icon-bug>&nbsp;&nbsp;Meine Meldungen</a></li>
+                            <li><a class="dropdown-item" href="/userdata"><b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;Mein&nbsp;Konto</a></li>
                             <li><a class="dropdown-item" href="#" @click="logoutUser"><b-icon-box-arrow-right style="font-size:1.4em; margin-top:-0.1em;"></b-icon-box-arrow-right>&nbsp;&nbsp;Logout</a></li>
                         </ul>
                     </li>

@@ -269,7 +269,8 @@ export default {};
 #correction-form {
   padding: 1.5rem 1.5rem 1.5rem 1.5rem;
   width: 90%;
-  max-width: 960px;
+  max-width: 100%;
+  overflow: auto;
   border: 3px solid black;
   margin: 80px auto;
   border-radius: 20px;

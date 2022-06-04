@@ -10,7 +10,6 @@
                 <LoginForm @login="enterDashboard" />
                 <p>Passwort <span @click="showResetPasswordForm">vergessen</span>?</p>
                 <p>Noch kein Konto? ➜ <span @click="showSignUpForm">Registrierung</span></p>
-                <!-- <CorrectionForm /> -->
             </div>
             <div v-else-if="showResetPassword">
                 <h1>Passwort zurücksetzen</h1>
@@ -40,11 +39,10 @@ import SignUpForm from "../components/SignUpForm.vue";
 import LoginForm from "../components/LoginForm.vue";
 import VerficationPopUp from "../components/VerificationPopUp.vue"
 import ResetPasswordForm from "../components/ResetPasswordForm.vue";
-import CorrectionForm from "../components/CorrectionForm.vue";
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 export default {
-    components: { TemplateHeader, TemplateFooter, SignUpForm, LoginForm, ResetPasswordForm, VerficationPopUp, CorrectionForm },
+    components: { TemplateHeader, TemplateFooter, SignUpForm, LoginForm, ResetPasswordForm, VerficationPopUp },
     setup() {
         const showLogin = ref(true);
         const showResetPassword = ref(false);

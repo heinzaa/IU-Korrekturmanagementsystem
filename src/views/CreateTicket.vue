@@ -1,0 +1,138 @@
+<template>
+    <div id="template">
+        <TemplateHeader />
+        <div class="container content-small">
+            <h1>Neue Meldung erstellen</h1>
+            <hr />
+            <p>Bitte fülle das Formular möglichst detailliert aus, damit der gefundene Fehler bzw. die vorgeschlagene Verbesserung effizient angenommen und umgesetzt werden kann.</p>
+            <p>&nbsp;</p>
+            
+            <form method="post" action="" onsubmit="alert('Formulardaten prüfen/senden...'); return false;">
+                <div class="error mb-3">{{error}}</div>
+                
+                <div class="mb-4">
+                    <label for="issueTitle">Titel (Überschrift):</label>
+                    <input type="text" class="form-control" name="issueLocal" id="issueTitle" required>
+                </div>
+                <div class="mb-4">
+                    <label for="issueCourse">Kurs:</label>
+                    <select name="issueCourse" class="form-select" id="issueCourse" required>
+                        <option value="" selected></option>
+                        <option value="1">BBWL01 - Betriebswirtschaftslehre (Einführung)</option>
+                        <option value="1">BBWL02 - Betriebswirtschaftslehre (Vertiefung)</option>
+                        <option value="1">DLBWIEWI - Einführung in die Wirtschaftsinformatik</option>
+                        <option value="1">IMT1 - Mathematik Grundlagen 1</option>
+                        <option value="1">IMT2 - Mathematik 2</option>
+                        <option value="1">IREN - Requirements Engineering</option>
+                        <option value="1">DLBIITR - IT-Recht</option>
+                        <option value="">...</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="issueIssueType">Kategorie, Art der Meldung:</label>
+                    <select name="issueIssueType" class="form-select" id="issueIssueType">
+                        <option value="" selected></option>
+                        <option value="1">⛔ Fataler Fehler (Nutzungsprobleme)</option>
+                        <option value="1">🔴 Technischer Fehler</option>
+                        <option value="1">⭕ Inhaltlicher/fachlicher Fehler</option>
+                        <option value="1">🟡 Darstellungsfehler</option>
+                        <option value="1">🟡 Rechtschreibfehler</option>
+                        <option value="1">🟢 Verbesserungsvorschlag, Idee, Anregung</option>
+                    </select>
+                </div>
+                <div class="mb-4" id="mediaList">
+                    <p><label>Betroffenen Medien:</label></p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="media" id="mediaApp" value="Learn App/IU Reader">
+                        <label class="form-check-label" for="mediaApp">Learn App/IU Reader</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="media" id="mediaPdf" value="Skript-PDF">
+                        <label class="form-check-label" for="mediaPdf">Skript <span class="form-text">(PDF)</span></label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="media" id="mediaPrint" value="Skript-Druck">
+                        <label class="form-check-label" for="mediaPrint">Skript <span class="form-text">(Druck)</span></label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="media" id="mediaVideo" value="Video">
+                        <label class="form-check-label" for="mediaVideo">Video <span class="form-text">(Vodcast, Shortcast)</span></label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="media" id="mediaAudio" value="Audio">
+                        <label class="form-check-label" for="mediaAudio">Audio <span class="form-text">(Podcast)</span></label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="media" id="mediaTest" value="Online-Test">
+                        <label class="form-check-label" for="mediaTest">Online-Test <span class="form-text">(MyCampus)</span></label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="media" id="mediaRepetitorium" value="Repetitorium">
+                        <label class="form-check-label" for="mediaRepetitorium">Repetitorium</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="media" id="mediaMusterklausur" value="Musterklausur">
+                        <label class="form-check-label" for="mediaMusterklausur">Musterklausur</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="media" id="mediaSonstiges" value="Sonstiges">
+                        <label class="form-check-label" for="mediaSonstiges">Sonstiges <span class="form-text">(bitte u. ausführen)</span></label>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="issueLocal">Medien-Lokalisierung:</label>
+                    <input type="text" class="form-control" name="issueLocal" id="issueLocal">
+                    <div class="form-text">Z.B. Seitennr., Zeit in Minuten, Version, Dateiname, Frage-Nr., etc.</div>
+                </div>
+                <div class="mb-4">
+                    <label for="issueDescription">Beschreibe deine Meldung:</label>
+                    <textarea required class="form-control" name="issueDescription" id="issueDescription" style="min-height:200px; max-height:70vh;"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="issueFile">Upload von Dateien (optional):</label>
+                    <input type="file" class="form-control" name="issueFile" id="issueFile" accept="image/png, image/jpeg, .pdf, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                    <div class="form-text">Erlaubte Dateiformate: Bilder (jpg, jpeg, png), PDF und MS Word. <br>Dateigröße: max. 5 MB</div>
+                </div>
+                <div class="mt-4">
+                    <button class="btn btn-lg btn-primary" type="submit">Meldung einreichen</button>
+                </div>
+            </form>
+        </div>
+        <CorrectionForm />
+        <TemplateFooter />
+    </div>
+</template>
+
+<script>
+import TemplateHeader from "../components/TemplateHeader.vue";
+import TemplateFooter from "../components/TemplateFooter.vue";
+import CorrectionForm from "../components/CorrectionForm.vue";
+import { useRouter } from "vue-router";
+export default {
+    components: {
+        TemplateHeader,
+        TemplateFooter,
+        CorrectionForm
+    },
+    mounted(){
+        document.querySelector('#mainmenu li a').classList.remove('active');
+        document.getElementById('navbarDropdownAccount').classList.add('active');
+    },
+    setup() {
+    
+    },
+};
+</script>
+
+<style>
+#mediaList .form-check-inline {
+    min-width:31%;
+}
+
+@media screen and (max-width: 767px) {
+    #mediaList .form-check-inline {
+        width:auto;
+        display:block;
+    }
+}
+</style>
