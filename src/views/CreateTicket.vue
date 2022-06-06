@@ -7,17 +7,17 @@
             <p>Bitte fülle das Formular möglichst detailliert aus, damit der gefundene Fehler bzw. die vorgeschlagene Verbesserung effizient angenommen und umgesetzt werden kann.</p>
             <p>&nbsp;</p>
             
-            <form method="post" action="" onsubmit="alert('Formulardaten prüfen/senden...'); return false;">
+            <form  @submit.prevent="handleSubmit" action="" >
                 <div class="error mb-3">{{error}}</div>
                 
                 <div class="mb-4">
                     <label for="issueTitle">Titel (Überschrift):</label>
-                    <input type="text" class="form-control" name="issueLocal" id="issueTitle" required>
+                    <input type="text" class="form-control" v-model="title"  name="issueLocal" id="issueTitle" required>
                 </div>
                 <div class="mb-4">
                     <label for="issueCourse">Kurs:</label>
-                    <select name="issueCourse" class="form-select" id="issueCourse" required>
-                        <option value="" selected></option>
+                    <select name="issueCourse" v-model="course" class="form-select" id="issueCourse" required>
+                        <option value="" disabled>Kurs wählen</option>
                         <option value="1">BBWL01 - Betriebswirtschaftslehre (Einführung)</option>
                         <option value="1">BBWL02 - Betriebswirtschaftslehre (Vertiefung)</option>
                         <option value="1">DLBWIEWI - Einführung in die Wirtschaftsinformatik</option>
@@ -30,8 +30,8 @@
                 </div>
                 <div class="mb-4">
                     <label for="issueIssueType">Kategorie, Art der Meldung:</label>
-                    <select name="issueIssueType" class="form-select" id="issueIssueType">
-                        <option value="" selected></option>
+                    <select name="issueIssueType" v-model="category" class="form-select" id="issueIssueType">
+                        <option value="" disabled>Selektiere die Kategorie</option>
                         <option value="1">⛔ Fataler Fehler (Nutzungsprobleme)</option>
                         <option value="1">🔴 Technischer Fehler</option>
                         <option value="1">⭕ Inhaltlicher/fachlicher Fehler</option>
@@ -43,39 +43,39 @@
                 <div class="mb-4" id="mediaList">
                     <p><label>Betroffenen Medien:</label></p>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" id="mediaApp" value="Learn App/IU Reader">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaApp" value="Learn App/IU Reader">
                         <label class="form-check-label" for="mediaApp">Learn App/IU Reader</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" id="mediaPdf" value="Skript-PDF">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaPdf" value="Skript-PDF">
                         <label class="form-check-label" for="mediaPdf">Skript <span class="form-text">(PDF)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" id="mediaPrint" value="Skript-Druck">
+                        <input class="form-check-input" type="checkbox" name="media"  v-model="medium" id="mediaPrint" value="Skript-Druck">
                         <label class="form-check-label" for="mediaPrint">Skript <span class="form-text">(Druck)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" id="mediaVideo" value="Video">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaVideo" value="Video">
                         <label class="form-check-label" for="mediaVideo">Video <span class="form-text">(Vodcast, Shortcast)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" id="mediaAudio" value="Audio">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaAudio" value="Audio">
                         <label class="form-check-label" for="mediaAudio">Audio <span class="form-text">(Podcast)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" id="mediaTest" value="Online-Test">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaTest" value="Online-Test">
                         <label class="form-check-label" for="mediaTest">Online-Test <span class="form-text">(MyCampus)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" id="mediaRepetitorium" value="Repetitorium">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaRepetitorium" value="Repetitorium">
                         <label class="form-check-label" for="mediaRepetitorium">Repetitorium</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" id="mediaMusterklausur" value="Musterklausur">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaMusterklausur" value="Musterklausur">
                         <label class="form-check-label" for="mediaMusterklausur">Musterklausur</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" id="mediaSonstiges" value="Sonstiges">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaSonstiges" value="Sonstiges">
                         <label class="form-check-label" for="mediaSonstiges">Sonstiges <span class="form-text">(bitte u. ausführen)</span></label>
                     </div>
                 </div>
@@ -86,11 +86,11 @@
                 </div>
                 <div class="mb-4">
                     <label for="issueDescription">Beschreibe deine Meldung:</label>
-                    <textarea required class="form-control" name="issueDescription" id="issueDescription" style="min-height:200px; max-height:70vh;"></textarea>
+                    <textarea required class="form-control" v-model="issueDescription" name="issueDescription" id="issueDescription" style="min-height:200px; max-height:70vh;"></textarea>
                 </div>
                 <div class="mb-4">
                     <label for="issueFile">Upload von Dateien (optional):</label>
-                    <input type="file" class="form-control" name="issueFile" id="issueFile" accept="image/png, image/jpeg, .pdf, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                    <input type="file" class="form-control" @change="handleChange" name="issueFile" id="issueFile" accept="image/png, image/jpeg, .pdf, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
                     <div class="form-text">Erlaubte Dateiformate: Bilder (jpg, jpeg, png), PDF und MS Word. <br>Dateigröße: max. 5 MB</div>
                 </div>
                 <div class="mt-4">
@@ -107,7 +107,9 @@
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import CorrectionForm from "../components/CorrectionForm.vue";
+import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
+import useStorage from "../composables/useStorage" 
 export default {
     components: {
         TemplateHeader,
@@ -118,7 +120,49 @@ export default {
         document.querySelector('#mainmenu li a').classList.remove('active');
         document.getElementById('navbarDropdownAccount').classList.add('active');
     },
-    setup() {
+    setup(props, context) {
+
+        const { filePath, url, uploadImage } = useStorage();
+
+        
+        
+        // Referenzen für die eingaben 
+        const title = ref(null);
+        const course = ref(null);
+        const category = ref(null);
+        const medium = ref([]);
+        const localisation = ref('');
+        const issueDescription = ref('');
+        const file = ref(null);
+        const fileError = ref(null);
+
+
+        const handleSubmit = async () => {
+            if (file.value){
+                await uploadImage(file.value);
+                console.log('Hallo submit')
+                console.log('image uploaded, url: ', url.value);
+            }
+        }
+
+        const types = ['image/png', 'image/jpeg', 'application/pdf'];
+
+        const handleChange = (e) => {
+            const selected = e.target.files[0];
+            console.log(selected);
+
+            if(selected && types.includes(selected.type)){
+                console.log("hallo Change")
+                file.value = selected;
+                fileError.value = null;
+            }
+        }
+
+
+
+        return { handleSubmit, handleChange };
+
+
     
     },
 };
