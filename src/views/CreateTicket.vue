@@ -81,7 +81,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="issueLocal">Medien-Lokalisierung:</label>
-                    <input type="text" class="form-control" name="issueLocal" id="issueLocal">
+                    <input type="text" v-model="localisation" class="form-control" name="issueLocal" id="issueLocal">
                     <div class="form-text">Z.B. Seitennr., Zeit in Minuten, Version, Dateiname, Frage-Nr., etc.</div>
                 </div>
                 <div class="mb-4">
@@ -94,7 +94,8 @@
                     <div class="form-text">Erlaubte Dateiformate: Bilder (jpg, jpeg, png), PDF und MS Word. <br>Dateigröße: max. 5 MB</div>
                 </div>
                 <div class="mt-4">
-                    <button class="btn btn-lg btn-primary" type="submit">Meldung einreichen</button>
+                    <button v-if="!isPending" class="btn btn-lg btn-primary" type="submit">Meldung einreichen</button>
+                    <button v-else disabled class="btn btn-lg btn-primary" type="submit">Ticket wird erstellt...</button>
                 </div>
             </form>
         </div>
@@ -109,7 +110,10 @@ import TemplateFooter from "../components/TemplateFooter.vue";
 import CorrectionForm from "../components/CorrectionForm.vue";
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
+import getUser from '../composables/getUser'
 import useStorage from "../composables/useStorage" 
+import useCollection from "../composables/useCollection";
+import { timestamp } from "../firebase/config"
 export default {
     components: {
         TemplateHeader,
@@ -123,25 +127,42 @@ export default {
     setup(props, context) {
 
         const { filePath, url, uploadImage } = useStorage();
-
-        
+        const { error, addDoc } = useCollection('tickets')
+        const { user } = getUser();
         
         // Referenzen für die eingaben 
         const title = ref(null);
         const course = ref(null);
         const category = ref(null);
-        const medium = ref([]);
+        const arrMedium = ref([]);
         const localisation = ref('');
         const issueDescription = ref('');
         const file = ref(null);
         const fileError = ref(null);
+        const isPending = ref(false);
 
 
         const handleSubmit = async () => {
             if (file.value){
+                isPending.value = true;
                 await uploadImage(file.value);
-                console.log('Hallo submit')
-                console.log('image uploaded, url: ', url.value);
+                await addDoc({
+                    title: title.value,
+                    course: course.value,
+                    category: category.value,
+                    medium: arrMedium.value.push('PDF'),
+                    localisation: localisation.value,
+                    description: issueDescription.value,
+                    author:  user.value.uid,
+                    userName: user.value.displayName,
+                    fileUrl: url.value,
+                    filePath: filePath.value,
+                    createdAt: timestamp(),
+                })
+                isPending.value = false;
+                if(!error.value){
+                    console.log('ticket added');
+                }
             }
         }
 
@@ -160,7 +181,7 @@ export default {
 
 
 
-        return { handleSubmit, handleChange };
+        return { title, course, category, arrMedium, localisation, issueDescription, fileError, handleSubmit, handleChange, isPending };
 
 
     

@@ -2,10 +2,11 @@
 
 //import { initializeApp } from "@firebase/app";
 
-import firebase from "firebase";
+import firebase from "firebase/app";
+import 'firebase/firestore'
+import 'firebase/auth'
+import 'firebase/storage'
 
-//import "firebase/firestore";
-//import 'firebase/auth';
 
 // Import the functions you need from the SDKs you need
 
@@ -25,12 +26,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+//const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-const projectAuth = firebaseApp.auth()
-const projectFirestore = firebaseApp.firestore()
-const projectStorage = firebaseApp.storage()
-//const timestamp = firebaseApp.firestore.FieldValue.serverTimestamp
+firebase.initializeApp(firebaseConfig);
+
+const projectAuth = firebase.auth()
+const projectFirestore = firebase.firestore()
+const projectStorage = firebase.storage()
+const timestamp = firebase.firestore.FieldValue.serverTimestamp
 
 
-export { projectAuth, projectFirestore, projectStorage }
+export { projectAuth, projectFirestore, projectStorage, timestamp }
