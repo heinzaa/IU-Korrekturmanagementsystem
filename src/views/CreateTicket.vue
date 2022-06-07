@@ -35,11 +35,11 @@
                     <label for="issueIssueType">Kategorie, Art der Meldung:</label>
                     <select name="issueIssueType" v-model="category" class="form-select" id="issueIssueType">
                         <option value="" disabled>Selektiere die Kategorie</option>
-                        <option value="1">⛔ Fataler Fehler (Nutzungsprobleme)</option>
-                        <option value="1">🔴 Technischer Fehler</option>
-                        <option value="1">⭕ Inhaltlicher/fachlicher Fehler</option>
-                        <option value="1">🟡 Darstellungsfehler</option>
-                        <option value="1">🟡 Rechtschreibfehler</option>
+                        <option value="Fataler Fehler (Nutzungsprobleme)">⛔ Fataler Fehler (Nutzungsprobleme)</option>
+                        <option value="Technischer Fehler">🔴 Technischer Fehler</option>
+                        <option value="4">⭕ Inhaltlicher/fachlicher Fehler</option>
+                        <option value="3">🟡 Darstellungsfehler</option>
+                        <option value="2">🟡 Rechtschreibfehler</option>
                         <option value="1">🟢 Verbesserungsvorschlag, Idee, Anregung</option>
                     </select>
                 </div>
@@ -102,7 +102,7 @@
                 </div>
             </form>
         </div>
-        <CorrectionForm />
+        
         <TemplateFooter />
     </div>
 </template>
@@ -110,7 +110,6 @@
 <script>
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
-import CorrectionForm from "../components/CorrectionForm.vue";
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 import getUser from '../composables/getUser'
@@ -122,8 +121,12 @@ export default {
     components: {
         TemplateHeader,
         TemplateFooter,
-        CorrectionForm
     },
+
+    getTutorForCourse(){
+
+    },
+
     mounted(){
         document.querySelector('#mainmenu li a').classList.remove('active');
         document.getElementById('navbarDropdownAccount').classList.add('active');
@@ -139,13 +142,9 @@ export default {
 
     setup(props, context) {
 
-        const { filePath, url, uploadImage } = useStorage();
+        const { filePath, url, uploadFile } = useStorage();
         const { error, addDoc } = useCollection('tickets')
         const { user } = getUser();
-
-       
-
-        
         
         // Referenzen für die eingaben 
         const title = ref(null);
@@ -157,6 +156,7 @@ export default {
         const file = ref(null);
         const fileError = ref(null);
         const isPending = ref(false);
+        const status = ref('Offen');
 
         const getTutor = (val) =>{
         return "Marc";
@@ -165,7 +165,7 @@ export default {
         const handleSubmit = async () => {
             if (file.value){
                 isPending.value = true;
-                await uploadImage(file.value);
+                await uploadFile(file.value);
                 await addDoc({
                     title: title.value,
                     course: course.value,
@@ -176,6 +176,7 @@ export default {
                     author:  user.value.uid,
                     userName: user.value.displayName,
                     fileUrl: url.value,
+                    status: status.value,
                     filePath: filePath.value,
                     tutor: getTutor(course.value),
                     createdAt: timestamp(),

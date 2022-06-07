@@ -12,7 +12,7 @@ const useStorage = () => {
 
 
     // Wher to store in storage
-    const uploadImage = async (file) => {
+    const uploadFile = async (file) => {
         filePath.value = `anhaenge/ticket-${user.value.uid}/${file.name}`;
         const storageRef = projectStorage.ref(filePath.value);
 
@@ -29,7 +29,7 @@ const useStorage = () => {
     }
 
 
-    return { url, filePath, error, uploadImage }
+    return { url, filePath, error, uploadFile }
 }
 
 export default useStorage
