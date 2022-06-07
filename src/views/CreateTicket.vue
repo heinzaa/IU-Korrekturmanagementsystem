@@ -5,6 +5,7 @@
             <h1>Neue Meldung erstellen</h1>
             <hr />
             <p>Bitte fülle das Formular möglichst detailliert aus, damit der gefundene Fehler bzw. die vorgeschlagene Verbesserung effizient angenommen und umgesetzt werden kann.</p>
+            <p>Alle Felder sind Pflichtangaben, außer als optional gekennzeichnete Felder.</p>
             <p>&nbsp;</p>
             
             <form  @submit.prevent="handleSubmit" action="" >
