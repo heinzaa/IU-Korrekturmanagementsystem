@@ -17,15 +17,18 @@
                 <div class="mb-4">
                     <label for="issueCourse">Kurs:</label>
                     <select name="issueCourse" v-model="course" class="form-select" id="issueCourse" required>
-                        <option value="" disabled>Kurs wählen</option>
-                        <option value="1">BBWL01 - Betriebswirtschaftslehre (Einführung)</option>
+                        <option v-for="item in courseList" :value="item" :key="item.id">
+                        {{ item.course }}
+                        </option>
+
+                     <!--   <option value="1">BBWL01 - Betriebswirtschaftslehre (Einführung)</option>
                         <option value="1">BBWL02 - Betriebswirtschaftslehre (Vertiefung)</option>
                         <option value="1">DLBWIEWI - Einführung in die Wirtschaftsinformatik</option>
                         <option value="1">IMT1 - Mathematik Grundlagen 1</option>
                         <option value="1">IMT2 - Mathematik 2</option>
                         <option value="1">IREN - Requirements Engineering</option>
                         <option value="1">DLBIITR - IT-Recht</option>
-                        <option value="">...</option>
+                        <option value="">...</option> -->
                     </select>
                 </div>
                 <div class="mb-4">
@@ -113,7 +116,8 @@ import { useRouter } from "vue-router";
 import getUser from '../composables/getUser'
 import useStorage from "../composables/useStorage" 
 import useCollection from "../composables/useCollection";
-import { timestamp } from "../firebase/config"
+import { timestamp } from "../firebase/config";
+import tutor_course from "../assets/tutor_course.json";
 export default {
     components: {
         TemplateHeader,
@@ -124,11 +128,24 @@ export default {
         document.querySelector('#mainmenu li a').classList.remove('active');
         document.getElementById('navbarDropdownAccount').classList.add('active');
     },
+    data() {
+    return {
+      courseList: tutor_course,
+    };
+  },
+
+    
+
+
     setup(props, context) {
 
         const { filePath, url, uploadImage } = useStorage();
         const { error, addDoc } = useCollection('tickets')
         const { user } = getUser();
+
+       
+
+        
         
         // Referenzen für die eingaben 
         const title = ref(null);
@@ -141,6 +158,9 @@ export default {
         const fileError = ref(null);
         const isPending = ref(false);
 
+        const getTutor = (val) =>{
+        return "Marc";
+        }
 
         const handleSubmit = async () => {
             if (file.value){
@@ -157,6 +177,7 @@ export default {
                     userName: user.value.displayName,
                     fileUrl: url.value,
                     filePath: filePath.value,
+                    tutor: getTutor(course.value),
                     createdAt: timestamp(),
                 })
                 isPending.value = false;
@@ -181,7 +202,7 @@ export default {
 
 
 
-        return { title, course, category, arrMedium, localisation, issueDescription, fileError, handleSubmit, handleChange, isPending };
+        return { title, course, category, arrMedium, localisation, issueDescription, fileError, handleSubmit, handleChange, isPending, getTutor };
 
 
     

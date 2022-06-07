@@ -1,0 +1,21 @@
+[{
+    "id": 1,
+    "course": "BWL 1",
+    "tutor": "Marc Heintz"
+}, {
+    "id": 2,
+    "course": "BWL 2",
+    "tutor": "Reini Nägler"
+}, {
+    "id": 3,
+    "course": "Wirtschaftsinformatik",
+    "tutor": "Marc Heintz"
+}, {
+    "id": 4,
+    "course": "Requirements Engineering",
+    "tutor": "Reini Nägler"
+}, {
+    "id": 5,
+    "course": "Marketing",
+    "tutor": "Marc Heintz"
+}]
