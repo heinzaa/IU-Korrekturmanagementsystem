@@ -10,7 +10,7 @@
                 <div class="error mb-2">{{error}}</div>
                 <div class="form-floating mb-2">
                     <input type="text" required class="form-control" id="floatingEmail" value="Max" readonly>
-                    <label for="floatingEmail">Name</label>
+                    <label for="floatingEmail">Vorname</label>
                 </div>
                 <div class="form-floating mb-2">
                     <input type="email" required class="form-control" id="floatingEmail" value="mein.name@iubh-fernstudium.de" readonly>
