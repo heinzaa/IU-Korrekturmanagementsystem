@@ -32,7 +32,7 @@ const signup = async (email, password, displayName) => {
             throw new Error('Could not Sign up!');
         }
        
-       // await response.user.updateProfile({ displayName });
+        await response.user.updateProfile({ displayName });
         error.value = null;
         isPending.value = false;
         return response
