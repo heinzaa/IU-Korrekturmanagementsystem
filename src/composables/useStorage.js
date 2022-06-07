@@ -13,7 +13,7 @@ const useStorage = () => {
 
     // Wher to store in storage
     const uploadFile = async (file) => {
-        filePath.value = `anhaenge/ticket-${user.value.uid}/${file.name}`;
+        filePath.value = `anhaenge/user-${user.value.uid}/${file.name}`;
         const storageRef = projectStorage.ref(filePath.value);
 
         try{
