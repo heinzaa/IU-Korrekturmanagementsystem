@@ -3,6 +3,7 @@ import { projectAuth } from '../firebase/config'
 
 const error = ref(null)
 
+
 const updatePassword = async (newPassword) => {
 
     error.value = null;
