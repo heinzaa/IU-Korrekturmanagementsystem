@@ -52,7 +52,7 @@ const routes = [
   },
   {
     path: '/createticket',
-    name: 'Neue Meldung erstellen',
+    name: 'Neues Ticket erstellen',
     component: CreateTicket
   },
 ]
