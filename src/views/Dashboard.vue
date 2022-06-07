@@ -2,7 +2,7 @@
     <div id="template">
         <TemplateHeader />
         <div class="dashboard container">
-            <h1>Willkommen im Dashboard</h1>
+            <h1>Willkommen im Dashboard - {{ user.displayName }}</h1>
             <DashboardTutor />
         </div>
          
@@ -13,9 +13,17 @@
 <script>
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
-import DashboardTutor from "../components/DashboardTutor.vue"
+import DashboardTutor from "../components/DashboardTutor.vue";
+import getUser from '../composables/getUser'
+   
 export default {
     components: { TemplateHeader, TemplateFooter, DashboardTutor },
+
+    setup(){
+        const { user } = getUser();
+
+        return { user }
+    }
 };
 </script>
 
