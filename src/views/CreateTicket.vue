@@ -18,68 +18,57 @@
                 <div class="mb-4">
                     <label for="issueCourse">Kurs:</label>
                     <select name="issueCourse" v-model="course" class="form-select" id="issueCourse" required>
+                        <option  value="" disabled>Kurs auswählen</option>
                         <option v-for="item in courseList" :value="item" :key="item.id">
                         {{ item.course }}
                         </option>
-
-                     <!--   <option value="1">BBWL01 - Betriebswirtschaftslehre (Einführung)</option>
-                        <option value="1">BBWL02 - Betriebswirtschaftslehre (Vertiefung)</option>
-                        <option value="1">DLBWIEWI - Einführung in die Wirtschaftsinformatik</option>
-                        <option value="1">IMT1 - Mathematik Grundlagen 1</option>
-                        <option value="1">IMT2 - Mathematik 2</option>
-                        <option value="1">IREN - Requirements Engineering</option>
-                        <option value="1">DLBIITR - IT-Recht</option>
-                        <option value="">...</option> -->
                     </select>
                 </div>
                 <div class="mb-4">
                     <label for="issueIssueType">Kategorie, Art der Meldung:</label>
                     <select name="issueIssueType" v-model="category" class="form-select" id="issueIssueType">
-                        <option value="" disabled>Selektiere die Kategorie</option>
-                        <option value="Fataler Fehler (Nutzungsprobleme)">⛔ Fataler Fehler (Nutzungsprobleme)</option>
-                        <option value="Technischer Fehler">🔴 Technischer Fehler</option>
-                        <option value="4">⭕ Inhaltlicher/fachlicher Fehler</option>
-                        <option value="3">🟡 Darstellungsfehler</option>
-                        <option value="2">🟡 Rechtschreibfehler</option>
-                        <option value="1">🟢 Verbesserungsvorschlag, Idee, Anregung</option>
+                        <option value="" disabled>Kategorie auswählen</option>
+                        <option v-for="item in categoryList" :value="item.categoryText" :key="item.id">
+                        {{ item.categoryText }}
+                        </option>
                     </select>
                 </div>
                 <div class="mb-4" id="mediaList">
                     <p><label>Betroffenen Medien:</label></p>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaApp" value="Learn App/IU Reader">
+                        <input class="form-check-input" type="checkbox" name="media[]" v-model="arrMedium" id="mediaApp" value="Learn App/IU Reader">
                         <label class="form-check-label" for="mediaApp">Learn App/IU Reader</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaPdf" value="Skript-PDF">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="arrMedium" id="mediaPdf" value="Skript-PDF">
                         <label class="form-check-label" for="mediaPdf">Skript <span class="form-text">(PDF)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media"  v-model="medium" id="mediaPrint" value="Skript-Druck">
+                        <input class="form-check-input" type="checkbox" name="media"  v-model="arrMedium" id="mediaPrint" value="Skript-Druck">
                         <label class="form-check-label" for="mediaPrint">Skript <span class="form-text">(Druck)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaVideo" value="Video">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="arrMedium" id="mediaVideo" value="Video">
                         <label class="form-check-label" for="mediaVideo">Video <span class="form-text">(Vodcast, Shortcast)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaAudio" value="Audio">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="arrMedium" id="mediaAudio" value="Audio">
                         <label class="form-check-label" for="mediaAudio">Audio <span class="form-text">(Podcast)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaTest" value="Online-Test">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="arrMedium" id="mediaTest" value="Online-Test">
                         <label class="form-check-label" for="mediaTest">Online-Test <span class="form-text">(MyCampus)</span></label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaRepetitorium" value="Repetitorium">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="arrMedium" id="mediaRepetitorium" value="Repetitorium">
                         <label class="form-check-label" for="mediaRepetitorium">Repetitorium</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaMusterklausur" value="Musterklausur">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="arrMedium" id="mediaMusterklausur" value="Musterklausur">
                         <label class="form-check-label" for="mediaMusterklausur">Musterklausur</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="media" v-model="medium" id="mediaSonstiges" value="Sonstiges">
+                        <input class="form-check-input" type="checkbox" name="media" v-model="arrMedium" id="mediaSonstiges" value="Sonstiges">
                         <label class="form-check-label" for="mediaSonstiges">Sonstiges <span class="form-text">(bitte u. ausführen)</span></label>
                     </div>
                 </div>
@@ -94,8 +83,8 @@
                 </div>
                 <div class="mb-4">
                     <label for="issueFile">Upload von Dateien (optional):</label>
-                    <input type="file" class="form-control" @change="handleChange" name="issueFile" id="issueFile" accept="image/png, image/jpeg, .pdf, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                    <div class="form-text">Erlaubte Dateiformate: Bilder (jpg, jpeg, png), PDF und MS Word. <br>Dateigröße: max. 5 MB</div>
+                    <input type="file" class="form-control" @change="handleChange" name="issueFile" id="issueFile" accept="image/png, image/jpeg, .pdf, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .mp4">
+                    <div class="form-text">Erlaubte Dateiformate: Bilder (jpg, jpeg, png), PDF, MP4-Video und MS Word. <br>Dateigröße: max. 5 MB</div>
                 </div>
                 <div class="mt-4">
                     <button v-if="!isPending" class="btn btn-lg btn-primary" type="submit">Meldung einreichen</button>
@@ -118,6 +107,7 @@ import useStorage from "../composables/useStorage"
 import useCollection from "../composables/useCollection";
 import { timestamp } from "../firebase/config";
 import tutor_course from "../assets/tutor_course.json";
+import ticket_category from "../assets/ticket_category.json";
 export default {
     components: {
         TemplateHeader,
@@ -135,6 +125,7 @@ export default {
     data() {
     return {
       courseList: tutor_course,
+      categoryList: ticket_category
     };
   },
 
@@ -171,7 +162,7 @@ export default {
                     title: title.value,
                     course: course.value,
                     category: category.value,
-                    medium: arrMedium.value.push('PDF'),
+                    medium: arrMedium.value,
                     localisation: localisation.value,
                     description: issueDescription.value,
                     author:  user.value.uid,
