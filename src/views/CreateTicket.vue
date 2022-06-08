@@ -2,7 +2,7 @@
     <div id="template">
         <TemplateHeader />
         <div class="container content-small">
-            <h1>Neue Meldung erstellen</h1>
+            <h1>Neues Ticket erstellen</h1>
             <hr />
             <p>Bitte fülle das Formular möglichst detailliert aus, damit der gefundene Fehler bzw. die vorgeschlagene Verbesserung effizient angenommen und umgesetzt werden kann.</p>
             <p>Alle Felder sind Pflichtangaben, außer als optional gekennzeichnete Felder.</p>
@@ -78,7 +78,7 @@
                     <div class="form-text">Z.B. Seitennr., Zeit in Minuten, Version, Dateiname, Frage-Nr., etc.</div>
                 </div>
                 <div class="mb-4">
-                    <label for="issueDescription">Beschreibe deine Meldung:</label>
+                    <label for="issueDescription">Beschreibe deine Ticketmeldung:</label>
                     <textarea required class="form-control" v-model="issueDescription" name="issueDescription" id="issueDescription" style="min-height:200px; max-height:70vh;"></textarea>
                 </div>
                 <div class="mb-4">
@@ -87,7 +87,7 @@
                     <div class="form-text">Erlaubte Dateiformate: Bilder (jpg, jpeg, png), PDF, MP4-Video und MS Word. <br>Dateigröße: max. 5 MB</div>
                 </div>
                 <div class="mt-4">
-                    <button v-if="!isPending" class="btn btn-lg btn-primary" type="submit">Meldung einreichen</button>
+                    <button v-if="!isPending" class="btn btn-lg btn-primary" type="submit">Ticket einreichen</button>
                     <button v-else disabled class="btn btn-lg btn-primary" type="submit">Ticket wird erstellt...</button>
                 </div>
             </form>
