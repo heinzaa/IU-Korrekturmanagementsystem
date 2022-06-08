@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "priorityTitle": "Niedrig"
+    },
+    {
+        "id": 2,
+        "priorityTitle": "Mittel"
+    },
+    {
+        "id": 3,
+        "priorityTitle": "Hoch"
+    }
+]

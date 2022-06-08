@@ -1,21 +1,26 @@
-[{
-    "id": 1,
-    "categoryText": "🟢 Verbesserungsvorschlag, Idee, Anregung"    
-}, {
-    "id": 2,
-    "categoryText": "🟡 Rechtschreibfehler" 
-}, {
-    "id": 3,
-    "categoryText": "🟠 Darstellungsfehler" 
-
-}, {
-    "id": 4,
-    "categoryText": "⭕ Inhaltlicher/fachlicher Fehler" 
-}, {
-    "id": 5,
-    "categoryText": "🔴 Technischer Fehler" 
-},
-{
-    "id": 6,
-    "categoryText": "⛔ Fataler Fehler (Nutzungsprobleme)" 
-}]
+[
+    {
+        "id": 1,
+        "categoryText": "🟢 Verbesserungsvorschlag, Idee, Anregung"
+    },
+    {
+        "id": 2,
+        "categoryText": "🟡 Rechtschreibfehler"
+    },
+    {
+        "id": 3,
+        "categoryText": "🟠 Darstellungsfehler"
+    },
+    {
+        "id": 4,
+        "categoryText": "⭕ Inhaltlicher/fachlicher Fehler"
+    },
+    {
+        "id": 5,
+        "categoryText": "🔴 Technischer Fehler"
+    },
+    {
+        "id": 6,
+        "categoryText": "⛔ Fataler Fehler (Nutzungsprobleme)"
+    }
+]
