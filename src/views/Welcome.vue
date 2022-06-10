@@ -1,6 +1,6 @@
 <template>
     <div id="template">
-        <TemplateHeader />
+        <TemplateHeaderStudent />
         <div class="welcome container content-small content-center">
             <div v-if="showLogin">
                 <h1>Korrektur&shy;management&shy;system</h1>
@@ -10,6 +10,7 @@
                 <LoginForm @login="enterDashboard" />
                 <p>Passwort <span @click="showResetPasswordForm">vergessen</span>?</p>
                 <p>Noch kein Konto? ➜ <span @click="showSignUpForm">Registrierung</span></p>
+                <p>Mitarbeiter <span @click="showLoginTutorForm">Login</span></p>
             </div>
             <div v-else-if="showResetPassword">
                 <h1>Passwort zurücksetzen</h1>
@@ -24,6 +25,12 @@
                 <SignUpForm @SignUp="enterVerificationPopUp" />
                 <p>Bereits registriert? ➜ <span @click="showLoginForm">Login</span></p>
             </div>
+            <div v-else-if="showLoginTutor">
+                <h1>Mitarbeiteranmeldung</h1>
+                <LoginFormTutor @loginTutor="enterDashboardTutor" />
+                <p>Passwort <span @click="showResetPasswordForm">vergessen</span>?</p>
+
+            </div>
             <div v-else-if="showVerificationPopUp">
                 <VerficationPopUp @toLoginComponent="showLoginForm" />
             </div>
@@ -33,22 +40,25 @@
 </template>
 
 <script>
-import TemplateHeader from "../components/TemplateHeader.vue";
+import TemplateHeaderStudent from "../components/TemplateHeaderStudent.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import SignUpForm from "../components/SignUpForm.vue";
 import LoginForm from "../components/LoginForm.vue";
+import LoginFormTutor from "../components/LoginFormTutor.vue";
 import VerficationPopUp from "../components/VerificationPopUp.vue"
 import ResetPasswordForm from "../components/ResetPasswordForm.vue";
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 export default {
-    components: { TemplateHeader, TemplateFooter, SignUpForm, LoginForm, ResetPasswordForm, VerficationPopUp },
+    components: { TemplateHeaderStudent, TemplateFooter, SignUpForm, LoginForm, LoginFormTutor, ResetPasswordForm, VerficationPopUp },
     setup() {
         const showLogin = ref(true);
         const showResetPassword = ref(false);
         const showSignUp = ref(false);
         const showVerificationPopUp = ref(false);
+        const showLoginTutor = ref(false);
 
+        
         const router = useRouter();
 
         const showLoginForm = () => {
@@ -56,31 +66,48 @@ export default {
             showResetPassword.value = false;
             showSignUp.value = false;
             showVerificationPopUp.value = false;
+            showLoginTutor.value = false;
         };
         const showResetPasswordForm = () => {
             showLogin.value = false;
             showResetPassword.value = true;
             showSignUp.value = false;
             showVerificationPopUp.value = false;
+            showLoginTutor.value = false;
         };
         const showSignUpForm = () => {
             showLogin.value = false;
             showResetPassword.value = false;
             showVerificationPopUp.value = false;
             showSignUp.value = true;
+            showLoginTutor.value = false;
         };
 
-       
+        const showLoginTutorForm = () => {
+            showLogin.value = false;
+            showResetPassword.value = false;
+            showVerificationPopUp.value = false;
+            showSignUp.value = false;
+            showLoginTutor.value = true;
+        };
+      
 
         const enterDashboard = () => {
-            router.push({ name: "Dashboard" });
+           
+            router.push('/dashboardStudent')
         };
+
+       const enterDashboardTutor = () => {
+           debugger;
+           router.push('dashboardTutor');
+       };
 
         const enterVerificationPopUp = () => {
             showLogin.value = false;
             showResetPassword.value = false;
             showSignUp.value = false;
             showVerificationPopUp.value = true;
+            showLoginTutor.value = false;
         }
 
         //return { showResetPassword, showLogin, enterDashboard }
@@ -94,6 +121,9 @@ export default {
             showVerificationPopUp,
             enterVerificationPopUp,
             enterDashboard,
+            showLoginTutor,
+            showLoginTutorForm,
+            enterDashboardTutor
         };
     },
 };
