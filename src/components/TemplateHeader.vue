@@ -1,7 +1,7 @@
 <template>
     <nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
         <div class="container">
-            <a id="logo" class="navbar-brand" href="/" title="Korrekturmanagementsystem"><img src="/kms-logo.svg" alt=""></a>
+            <a v-if="userLoggedIn" id="logo" class="navbar-brand" href="/dashboard" title="Korrekturmanagementsystem"><img src="/kms-logo.svg" alt=""></a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -50,13 +50,18 @@
 import useLogout from '../composables/useLogout';
 import getUser from '../composables/getUser';
 import { useRouter } from 'vue-router';
+import { ref } from "vue";
 
 export default {
     setup(props, context){
 
+        
         const { user } = getUser();
         const { error, logout } = useLogout();
         const router = useRouter();
+
+        const userLoggedIn = ref(user);
+        
         
         const logoutUser = async () => {
             await logout();
@@ -64,11 +69,11 @@ export default {
             router.push({ name: 'Welcome' })
         }
 
-        const toPrivacy = () => {
-            //this.addClass
-        }
         
-        return { error, logoutUser, user }
+
+       
+        
+        return { error, logoutUser, user, userLoggedIn }
    }
 }
 </script>

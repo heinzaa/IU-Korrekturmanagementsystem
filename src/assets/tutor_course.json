@@ -24,4 +24,11 @@
     "course": "Marketing",
     "tutor": "Marc Heintz",
     "email": "marc.heintz@iubh-fernstudium.de"
+
+}, {
+    "id": 6,
+    "course": "Jura",
+    "tutor": "Marc Heintz",
+    "email": "marc.heintz@iubh-fernstudium.de"
+
 }]

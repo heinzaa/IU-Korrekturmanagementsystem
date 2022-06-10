@@ -19,6 +19,7 @@ const signup = async (email, password, displayName) => {
     const { user } = getUser();
 
     try{           
+
        
         const response =   await projectAuth
         .createUserWithEmailAndPassword(email, password);   
