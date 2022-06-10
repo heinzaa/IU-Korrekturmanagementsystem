@@ -14,12 +14,14 @@
 import TemplateHeaderStudent from "../components/TemplateHeaderStudent.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import DashboardTutor from "../components/DashboardTutor.vue";
-import getUser from '../composables/getUser'
+import getUser from '../composables/getUser';
+import getCollection from '../composables/getCollection'
    
 export default {
     components: { TemplateHeaderStudent, TemplateFooter, DashboardTutor },
 
     setup(){
+        const { documents: tickets } = getCollection('playlists');
         const { user } = getUser();
 
         return { user }

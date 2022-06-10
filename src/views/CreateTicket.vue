@@ -165,7 +165,7 @@ export default {
     components: {
         TemplateHeaderStudent,
         TemplateFooter,
-        TicketModel,
+       
     },
     getTutorForCourse() {},
     mounted() {

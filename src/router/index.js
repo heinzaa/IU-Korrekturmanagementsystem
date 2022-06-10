@@ -6,6 +6,7 @@ import DashboardStudentView from '../views/DashboardStudentView.vue';
 import UserAccount from '../views/UserAccount.vue';
 import CreateTicket from '../views/CreateTicket.vue';
 import DashboardTutor from '../views/DashboardTutor.vue';
+import allTickets from '../views/allTickets.vue';
 
 import tutor_course from '../assets/tutor_course.json';
 
@@ -78,6 +79,10 @@ const routes = [
     name: 'Dashboard Tutor',
     component: DashboardTutor,
     beforeEnter: userIsTutor,
+},
+    {path: '/tickets',
+    name: 'Ticket',
+    component: allTickets,
 }
 ]
 
