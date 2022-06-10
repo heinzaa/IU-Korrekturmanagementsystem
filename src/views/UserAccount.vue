@@ -1,6 +1,6 @@
 <template>
     <div id="template">
-        <TemplateHeader />
+        <TemplateHeaderStudent />
         <div class="container content-small">
             <h1>Mein Konto</h1>
             <hr />
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import TemplateHeader from "../components/TemplateHeader.vue";
+import TemplateHeaderStudent from "../components/TemplateHeaderStudent.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import { useRouter } from "vue-router";
 import getUser from '../composables/getUser'
@@ -70,7 +70,7 @@ import useUpdatePassword from '../composables/useUpdatePassword';
 
 export default {
     components: {
-        TemplateHeader,
+        TemplateHeaderStudent,
         TemplateFooter
     },
     mounted(){
