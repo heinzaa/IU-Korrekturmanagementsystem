@@ -10,7 +10,7 @@ const useCollection = (collection) => {
     const addDoc = async (doc) => {
         error.value = null;
         isPending.value = true;
-
+        
         try {
             await projectFirestore.collection(collection).add(doc);
             isPending.value = true;

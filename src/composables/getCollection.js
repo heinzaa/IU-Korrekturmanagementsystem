@@ -7,9 +7,11 @@ const getCollection = (collection, query) => {
     const error = ref(null);
 
 
-    let collectionRef = projectFirestore.collection(collection)
-    .where()
-        
+    let collectionRef = projectFirestore.collection(collection);
+
+    if(query){
+        collectionRef = collectionRef.where(...query);
+    }
 
     const unsub = collectionRef.onSnapshot( snap => {
         let results = [];

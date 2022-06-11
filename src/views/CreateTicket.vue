@@ -52,7 +52,7 @@
                             <label class="form-check-label" for="mediaApp">Learn App/IU Reader</label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrLearnApp" id="AppPosition" type="text" placeholder="Position eingeben (Seite, Kapitel)" maxlength="40">
+                            <input class="form-control" v-model="arrLearnAppDescription" id="AppPosition" type="text" placeholder="Position eingeben (Seite, Kapitel)" maxlength="40">
                         </div>
                     </div>
                     <div class="media-input">
@@ -61,7 +61,7 @@
                             <label class="form-check-label" for="mediaPdf">Skript <span class="form-text">(PDF)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrSkriptPDF" type="text" placeholder="Position eingeben (Seite, Kapitel, Version)" maxlength="40">
+                            <input class="form-control" v-model="arrSkriptPDFDescription" type="text" placeholder="Position eingeben (Seite, Kapitel, Version)" maxlength="40">
                         </div>
                     </div>
                     <div class="media-input">
@@ -70,7 +70,7 @@
                             <label class="form-check-label" for="mediaPrint">Skript <span class="form-text">(Druck)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrSkriptDruck" type="text" placeholder="Position eingeben (Seite, Kapitel, Version)" maxlength="40">
+                            <input class="form-control" v-model="arrSkriptDruckDescription" type="text" placeholder="Position eingeben (Seite, Kapitel, Version)" maxlength="40">
                         </div>
                     </div>
                     <div class="media-input">
@@ -79,7 +79,7 @@
                             <label class="form-check-label" for="mediaVideo">Video <span class="form-text">(Vodcast, Tutorium)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrVideo" type="text" placeholder="Position eingeben (Zeit in Minuten, Dateiname)" maxlength="40">
+                            <input class="form-control" v-model="arrVideoDescription" type="text" placeholder="Position eingeben (Zeit in Minuten, Dateiname)" maxlength="40">
                         </div>
                     </div>
                     <div class="media-input">
@@ -88,7 +88,7 @@
                             <label class="form-check-label" for="mediaAudio">Audio <span class="form-text">(Podcast)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrAudio" type="text" placeholder="Position eingeben (Zeit in Minuten, Dateiname)" maxlength="40">
+                            <input class="form-control" v-model="arrAudioDescription" type="text" placeholder="Position eingeben (Zeit in Minuten, Dateiname)" maxlength="40">
                         </div>
                     </div>
                     <div class="media-input">
@@ -97,7 +97,7 @@
                             <label class="form-check-label" for="mediaTest">Online-Test <span class="form-text">(MyCampus)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrOnlineTest" type="text" placeholder="Position eingeben (Kapitel, Frage-Nr.)" maxlength="40">
+                            <input class="form-control" v-model="arrOnlineTestDescription" type="text" placeholder="Position eingeben (Kapitel, Frage-Nr.)" maxlength="40">
                         </div>
                     </div>
                     <div class="media-input">
@@ -106,7 +106,7 @@
                             <label class="form-check-label" for="mediaRepetitorium">Repetitorium</label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrRepetitorium" type="text" placeholder="Position eingeben (Frage-Nr., Seite)" maxlength="40">
+                            <input class="form-control" v-model="arrRepetitoriumDescription" type="text" placeholder="Position eingeben (Frage-Nr., Seite)" maxlength="40">
                         </div>
                     </div>
                     <div class="media-input">
@@ -115,7 +115,7 @@
                             <label class="form-check-label" for="mediaMusterklausur">Musterklausur</label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrMusterklausur" type="text" placeholder="Position eingeben (Klausur-Nr., Frage-Nr., Seite)" maxlength="40">
+                            <input class="form-control" v-model="arrMusterklausurDescription" type="text" placeholder="Position eingeben (Klausur-Nr., Frage-Nr., Seite)" maxlength="40">
                         </div>
                     </div>
                     <div class="media-input">
@@ -124,7 +124,7 @@
                             <label class="form-check-label" for="mediaSonstiges">Sonstiges <span class="form-text">(bitte u. ausführen)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control"  v-model="arrSonstiges" type="text" placeholder="Medium und Position eingeben" maxlength="40">
+                            <input class="form-control"  v-model="arrSonstigesDescription" type="text" placeholder="Medium und Position eingeben" maxlength="40">
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,6 @@ export default {
         TemplateFooter,
        
     },
-    getTutorForCourse() {},
     mounted() {
         document.querySelector("#mainmenu li a").classList.remove("active");
         document
@@ -207,15 +206,32 @@ export default {
 
        
        
-        const arrLearnApp = ref([]);
-        const arrSkriptPDF = ref([]);
-        const arrSkriptDruck = ref([]);
-        const arrVideo = ref([]);
-        const arrAudio = ref([]);
-        const arrOnlineTest = ref([]);
-        const arrRepetitorium = ref([]);
-        const arrMusterklausur = ref([]);
-        const arrSonstiges = ref([]);
+        let arrLearnApp = ref([]);
+        const arrLearnAppDescription = ref('');
+
+        let arrSkriptPDF = ref([]);
+        const arrSkriptPDFDescription = ref('');
+
+        let arrSkriptDruck = ref([]);
+        const arrSkriptDruckDescription = ref('');
+        let arrVideo = ref([]);
+        const arrVideoDescription = ref('');
+
+        let arrAudio = ref([]);
+         const arrAudioDescription = ref('');
+
+        let arrOnlineTest = ref([]);
+        const arrOnlineTestDescription = ref('');
+
+        let arrRepetitorium = ref([]);
+        const arrRepetitoriumDescription = ref('');
+
+        let arrMusterklausur = ref([]);
+        const arrMusterklausurDescription = ref('');
+
+        let arrSonstiges = ref([]);
+        const arrSonstigesDescription = ref('');
+
 
         const issueDescription = ref("");
         const file = ref(null);
@@ -223,7 +239,7 @@ export default {
         const isPending = ref(false);
         const status = ref("Offen");
         const getTutor = (val) => {
-            return "Marc";
+            return val;
         };
         const handleSubmit = async () => {
             if (file.value) {
@@ -231,18 +247,18 @@ export default {
                 await uploadFile(file.value);
                 await addDoc({
                     title: title.value,
-                    course: course.value,
+                    courseInformaton: course.value,
                     category: category.value,
                     priority: priority.value,                    
-                    LearnApp_Fehler: arrLearnApp.value,
-                    PDF_Skript_Fehler: arrSkriptPDF.value,
-                    Druckskript_Fehler: arrSkriptDruck.value, 
-                    Video_Fehler: arrVideo.value,
-                    Audio_Fehler: arrAudio.value,
-                    OnlineTest_Fehler: arrOnlineTest.value,
-                    Repetitorium_Fehler: arrRepetitorium.value,
-                    Musterklausur_Fehler: arrMusterklausur.value,
-                    Sonstige_Fehler: arrSonstiges.value,
+                    LearnApp_Fehler: [...arrLearnApp.value, arrLearnAppDescription.value],
+                    PDF_Skript_Fehler: [...arrSkriptPDF.value,arrSkriptPDFDescription.value],
+                    Druckskript_Fehler: [...arrSkriptDruck.value,arrSkriptDruckDescription.value], 
+                    Video_Fehler: [...arrVideo.value, arrVideoDescription.value],
+                    Audio_Fehler: [...arrAudio.value, arrAudioDescription.value],
+                    OnlineTest_Fehler: [...arrOnlineTest.value,arrOnlineTestDescription.value],
+                    Repetitorium_Fehler: [...arrRepetitorium.value,arrRepetitoriumDescription.value],
+                    Musterklausur_Fehler: [...arrMusterklausur.value,arrMusterklausurDescription.value],
+                    Sonstige_Fehler: [...arrSonstiges.value, arrSonstigesDescription.value],
                     description: issueDescription.value,
                     priority: priority.value,
                     author: user.value.uid,
@@ -251,7 +267,6 @@ export default {
                     fileUrl: url.value,
                     status: status.value,
                     filePath: filePath.value,
-                    tutor: getTutor(course.value),
                     createdAt: timestamp(),
                 });
                 isPending.value = false;
@@ -264,6 +279,7 @@ export default {
         const handleChange = (e) => {
             const selected = e.target.files[0];
             console.log(selected);
+           
             if (selected && types.includes(selected.type)) {
                 console.log("hallo Change");
                 file.value = selected;
@@ -276,13 +292,21 @@ export default {
             category,
             priority,           
             arrLearnApp,
+            arrLearnAppDescription,
             arrSkriptPDF,
+            arrSkriptPDFDescription,
             arrSkriptDruck,
+            arrSkriptDruckDescription,
             arrVideo,
+            arrVideoDescription,
             arrAudio,
+            arrAudioDescription,
             arrOnlineTest,
+            arrOnlineTestDescription,
             arrRepetitorium,
+            arrRepetitoriumDescription,
             arrMusterklausur,
+            arrMusterklausurDescription,
             issueDescription,
             arrSonstiges,
             fileError,
