@@ -1,7 +1,7 @@
 <template>
     <div id="template">
         
-        <TemplateHeaderStudent />
+        <TemplateHeader />
         <div class="container content-small">
             <h1>Neues Ticket erstellen</h1>
             <hr />
@@ -149,7 +149,7 @@
 </template>
 
 <script>
-import TemplateHeaderStudent from "../components/TemplateHeaderStudent.vue";
+import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
@@ -163,7 +163,7 @@ import ticket_priority from "../assets/ticket_priority.json";
 
 export default {
     components: {
-        TemplateHeaderStudent,
+        TemplateHeader,
         TemplateFooter,
        
     },

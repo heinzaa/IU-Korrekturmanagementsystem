@@ -2,10 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Welcome from '../views/Welcome.vue';
 import PageImprint from '../views/PageImprint.vue';
 import PagePrivacy from '../views/PagePrivacy.vue';
-import DashboardStudentView from '../views/DashboardStudentView.vue';
+import Dashboard from '../views/Dashboard.vue';
 import UserAccount from '../views/UserAccount.vue';
 import CreateTicket from '../views/CreateTicket.vue';
-import DashboardTutor from '../views/DashboardTutor.vue';
 import allTickets from '../views/allTickets.vue';
 
 import tutor_course from '../assets/tutor_course.json';
@@ -49,9 +48,9 @@ const routes = [
     component: Welcome
   },
   {
-    path: '/dashboardStudent',
-    name: 'Dashboard Student',
-    component: DashboardStudentView,
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
     beforeEnter: requireAuth
   },
   {
@@ -75,15 +74,10 @@ const routes = [
     component: CreateTicket
   },
   {
-    path: '/dashboardTutor',
-    name: 'Dashboard Tutor',
-    component: DashboardTutor,
-    beforeEnter: userIsTutor,
-},
-    {path: '/tickets',
+    path: '/tickets',
     name: 'Ticket',
     component: allTickets,
-}
+  }
 ]
 
 const router = createRouter({

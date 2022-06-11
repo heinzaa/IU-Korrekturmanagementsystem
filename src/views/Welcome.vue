@@ -1,6 +1,6 @@
 <template>
     <div id="template">
-        <TemplateHeaderStudent />
+        <TemplateHeader />
         <div class="welcome container content-small content-center">
             <div v-if="showLogin">
                 <h1>Korrektur&shy;management&shy;system</h1>
@@ -27,7 +27,7 @@
             </div>
             <div v-else-if="showLoginTutor">
                 <h1>Mitarbeiteranmeldung</h1>
-                <LoginFormTutor @loginTutor="enterDashboardTutor" />
+                <LoginFormTutor @loginTutor="enterDashboard" />
                 <p>Passwort <span @click="showResetPasswordForm">vergessen</span>?</p>
 
             </div>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import TemplateHeaderStudent from "../components/TemplateHeaderStudent.vue";
+import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import SignUpForm from "../components/SignUpForm.vue";
 import LoginForm from "../components/LoginForm.vue";
@@ -50,7 +50,7 @@ import ResetPasswordForm from "../components/ResetPasswordForm.vue";
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 export default {
-    components: { TemplateHeaderStudent, TemplateFooter, SignUpForm, LoginForm, LoginFormTutor, ResetPasswordForm, VerficationPopUp },
+    components: { TemplateHeader, TemplateFooter, SignUpForm, LoginForm, LoginFormTutor, ResetPasswordForm, VerficationPopUp },
     setup() {
         const showLogin = ref(true);
         const showResetPassword = ref(false);
@@ -85,7 +85,7 @@ export default {
 
         const showLoginTutorForm = () => {
             showLogin.value = false;
-            showResetPassword.value = false;
+            showResetPassword.value = true;
             showVerificationPopUp.value = false;
             showSignUp.value = false;
             showLoginTutor.value = true;
@@ -94,13 +94,8 @@ export default {
 
         const enterDashboard = () => {
            
-            router.push('/dashboardStudent')
+            router.push('/dashboard')
         };
-
-       const enterDashboardTutor = () => {
-           debugger;
-           router.push('dashboardTutor');
-       };
 
         const enterVerificationPopUp = () => {
             showLogin.value = false;
@@ -122,8 +117,7 @@ export default {
             enterVerificationPopUp,
             enterDashboard,
             showLoginTutor,
-            showLoginTutorForm,
-            enterDashboardTutor
+            showLoginTutorForm
         };
     },
 };
