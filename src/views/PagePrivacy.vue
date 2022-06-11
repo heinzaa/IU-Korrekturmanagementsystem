@@ -1,6 +1,6 @@
 <template>
     <div id="template">
-        <TemplateHeaderStudent />
+        <TemplateHeader />
         <div class="container content-small">
             <h1>Datenschutz&shy;bestimmungen</h1>
             <hr />
@@ -59,12 +59,12 @@
 </template>
 
 <script>
-import TemplateHeaderStudent from "../components/TemplateHeaderStudent.vue";
+import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import { useRouter } from "vue-router";
 export default {
     components: {
-        TemplateHeaderStudent,
+        TemplateHeader,
         TemplateFooter
     },
     mounted(){

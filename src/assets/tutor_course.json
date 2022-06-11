@@ -1,35 +1,62 @@
-[{
-    "id": 1,
-    "course": "BWL 1",
-    "tutor": "Marc Heintz",
-    "email": "heintz.marc1@web.de"
-}, {
-    "id": 2,
-    "course": "BWL 2",
-    "tutor": "Reini Nägler",
-    "email": "marc.heintz@iubh-fernstudium.de"
-}, {
-    "id": 3,
-    "course": "Wirtschaftsinformatik",
-    "tutor": "Marc Heintz",
-    "email": "marc.heintz@iubh-fernstudium.de"
-
-}, {
-    "id": 4,
-    "course": "Requirements Engineering",
-    "tutor": "Reini Nägler",
-    "email": "marc.heintz@iubh-fernstudium.de"
-}, {
-    "id": 5,
-    "course": "Marketing",
-    "tutor": "Marc Heintz",
-    "email": "marc.heintz@iubh-fernstudium.de"
-
-}, {
-    "id": 6,
-    "course": "Jura",
-    "tutor": "Marc Heintz",
-    "email": "marc.heintz@iubh-fernstudium.de"
-
-}]
-
+[
+    {
+        "id": 1,
+        "course": "Einführung in die Wirtschaftsinformatik",
+        "tutor": "Prof. Dr. Maik Günther ",
+        "email": "maik.günther@iubh-fernstudium.de"
+    },
+    {
+        "id": 2,
+        "course": "Betriebswirtschaftslehre",
+        "tutor": "Prof. Dr. Michael Broens",
+        "email": "michael.broens@iubh-fernstudium.de"
+    },
+    {
+        "id": 3,
+        "course": "Requirements Engineering",
+        "tutor": "Prof. Dr. Tobias Brückmann",
+        "email": "tobias.brückmann@iubh-fernstudium.de"
+    },
+    {
+        "id": 4,
+        "course": "IT-Recht",
+        "tutor": "Sven Jakobs",
+        "email": "sven.jakobs@iubh-fernstudium.de"
+    },
+    {
+        "id": 5,
+        "course": "Programmierung von Web-Anwendungsoberflächen",
+        "tutor": "Prof. Dr. Marian Benner-Wickner",
+        "email": "marian.benner-wickner@iubh-fernstudium.de"
+    },
+    {
+        "id": 6,
+        "course": "Programmierung von industriellen Informationssystemen mit Java EE",
+        "tutor": "Prof. Dr. Marian Benner-Wickner",
+        "email": "marian.benner-wickner@iubh-fernstudium.de"
+    },
+    {
+        "id": 7,
+        "course": "IT-Projektmanagement",
+        "tutor": "Prof. Dr. Tobias Brückmann",
+        "email": "tobias.brückmann@iubh-fernstudium.de"
+    },
+    {
+        "id": 8,
+        "course": "Projekt Software Engineering",
+        "tutor": "Prof. Dr. Tobias Brückmann",
+        "email": "tobias.brückmann@iubh-fernstudium.de"
+    },
+    {
+        "id": 100,
+        "course": "Besserwisserkunde 1 mit Reini",
+        "tutor": "Reinhard Nägler",
+        "email": "r@nglr.de"
+    },
+    {
+        "id": 101,
+        "course": "Besserwisserkunde 2 mit Marc",
+        "tutor": "Marc Heintz",
+        "email": "heintz.marc1@web.de"
+    }
+]
