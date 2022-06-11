@@ -6,8 +6,6 @@ const userIsTutor = (to, from, next) => {
 
     const { user } = getUser();
 
-    debugger;
-
     let isTutor = tutor_course.find(item => item.email == user.value.email);
 
     if(isTutor == null){
