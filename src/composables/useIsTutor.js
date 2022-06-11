@@ -8,7 +8,7 @@ const userIsTutor = (to, from, next) => {
     const { user } = getUser();
     let isTutor = ref(false);
 
-    debugger;
+    //debugger;
 
     let oTutor = tutor_course.find(item => item.email == user.value.email);
 
