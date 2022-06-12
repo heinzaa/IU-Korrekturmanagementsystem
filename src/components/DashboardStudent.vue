@@ -31,8 +31,10 @@
                 <tbody v-for="ticket in documents" :key="ticket.id" @click="clickTicket(ticket.id)">
                     <tr class="cursor-pointer">
                         <td>
-                            <span class="badge bg-danger">Offen</span>
-
+                            <span v-if="ticket.status == 'Erledigt'" class="badge bg-success">Erledigt</span>
+                            <span v-if="ticket.status == 'Offen'"  class="badge bg-danger">Offen</span>
+                            <span v-if="ticket.status == 'Abgelehnt'"  class="badge bg-info">Abgelehnt</span>
+                            <span v-if="ticket.status == 'In Arbeit' " class="badge bg-warning">In Arbeit</span>
                              {{ticket.createdAt.toDate().getDate()}}.{{ticket.createdAt.toDate().getMonth()}}.{{ticket.createdAt.toDate().getFullYear()}}
                         </td>
                         <td>{{ticket.title}}</td>
