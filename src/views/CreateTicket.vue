@@ -247,7 +247,7 @@ export default {
                 await uploadFile(file.value);
                 await addDoc({
                     title: title.value,
-                    courseInformaton: course.value,
+                    courseInformation: course.value,
                     category: category.value,
                     priority: priority.value,                    
                     LearnApp_Fehler: [...arrLearnApp.value, arrLearnAppDescription.value],

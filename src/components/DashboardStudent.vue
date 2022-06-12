@@ -28,63 +28,17 @@
                         <th scope="col">Kurs</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody v-for="ticket in documents" :key="ticket.id" @click="clickTicket(ticket.id)">
                     <tr class="cursor-pointer">
                         <td>
                             <span class="badge bg-danger">Offen</span>
-                            22.05.2022
+
+                             {{ticket.createdAt.toDate().getDate()}}.{{ticket.createdAt.toDate().getMonth()}}.{{ticket.createdAt.toDate().getFullYear()}}
                         </td>
-                        <td>Veraltete Methoden im Video</td>
-                        <td>BMAR02</td>
+                        <td>{{ticket.title}}</td>
+                        <td>{{ticket.courseInformation.course}}</td>
                     </tr>
-                    <tr class="cursor-pointer">
-                        <td>
-                            <span class="badge bg-danger">Offen</span>
-                            22.05.2022
-                        </td>
-                        <td>Veraltete Methoden im Video</td>
-                        <td>BMAR02</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-warning">In Arbeit</span>
-                            12.05.2022
-                        </td>
-                        <td>Ton ist abgeschnitten</td>
-                        <td>IMT102</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-success">Erledigt</span>
-                            09.05.2022
-                        </td>
-                        <td>Error-Meldung im IU Reader 123...</td>
-                        <td>BFIN02</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-success">Erledigt</span>
-                            09.05.2022
-                        </td>
-                        <td>Error-Meldung im IU Reader 123...</td>
-                        <td>BFIN02</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-success">Erledigt</span>
-                            09.05.2022
-                        </td>
-                        <td>Error-Meldung im IU Reader 123...</td>
-                        <td>BFIN02</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-info">Abgelehnt</span>
-                            07.03.2022
-                        </td>
-                        <td>Dein Bein isch verdreht!</td>
-                        <td>ISEF01</td>
-                    </tr>
+                   
                 </tbody>
             </table>
         </div>
@@ -92,7 +46,24 @@
 </template>
 
 <script>
-export default {};
+
+import getCollection from '../composables/getCollection' 
+
+export default {
+
+
+
+ setup(){
+        const {error, documents} = getCollection(
+            'tickets',
+           );
+
+           console.log(documents)
+
+        return {error, documents}
+    }
+}
+
 </script>
 
 <style scoped>
