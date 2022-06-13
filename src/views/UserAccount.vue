@@ -52,8 +52,9 @@
 
             <!-- Konto-Löschung -->
             <p style="text-align:center;">
-                <button type="button" class="btn btn-outline-secondary" onclick="alert('Im Prototyp (noch) nicht implementiert.');">Benutzerkonto löschen?</button>
+                <button type="button" class="btn btn-outline-secondary" @click="deleteUserAccount">Benutzerkonto löschen?</button>
             </p>
+            <div v-if="deleteUserError" class="error">{{deletionFailed}}</div>
         </div>
         <TemplateFooter />
     </div>
@@ -65,7 +66,8 @@ import TemplateFooter from "../components/TemplateFooter.vue";
 import { useRouter } from "vue-router";
 import getUser from '../composables/getUser'
 import { ref } from "@vue/reactivity";
-import { projectAuth } from '../firebase/config';
+import useDeleteUser from '../composables/useDeleteUser';
+
 import useUpdatePassword from '../composables/useUpdatePassword';
 
 export default {
@@ -79,7 +81,7 @@ export default {
     },
     setup() {
         
-        
+        const router = useRouter();
         const { error, updatePassword } = useUpdatePassword();
         const { user } = getUser();
         const passwordOld = ref('');
@@ -87,7 +89,18 @@ export default {
         const passwordNewControl = ref('');
         const passwordNewEqualsOld = ref(false);
         const passwordNewEqualsControl = ref(false);   
-        const isPending = ref('');
+        const isPending = ref('');        
+
+        const { deleteUserError, deleteUserHehe, isPendingDeleteUser } =  useDeleteUser();
+
+        
+
+        
+       
+
+        
+        
+
         
 
         
@@ -114,9 +127,16 @@ export default {
 
        }
 
+        const deleteUserAccount = async()  => {
+           
+          await deleteUserHehe();
+          router.push('/');
+
+        }
 
 
-       return { user, passwordOld, passwordNew, passwordNewControl, passwordNewEqualsOld, passwordNewEqualsControl, isPending, changePassword }
+
+       return { user, passwordOld, passwordNew, passwordNewControl, passwordNewEqualsOld, passwordNewEqualsControl, isPending, changePassword, deleteUserAccount , deleteUserError}
 
        
 
