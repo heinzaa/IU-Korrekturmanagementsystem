@@ -28,7 +28,8 @@
                         <th scope="col">Kurs</th>
                     </tr>
                 </thead>
-                <tbody v-for="ticket in documents" :key="ticket.id" @click="clickTicket(ticket.id)">
+                <tbody v-for="ticket in documents" :key="ticket.id" @click="toTicketDetails(ticket.id)">
+                   
                     <tr class="cursor-pointer">
                         <td>
                             <span v-if="ticket.status == 'Erledigt'" class="badge bg-success">Erledigt</span>
@@ -39,7 +40,8 @@
                         </td>
                         <td>{{ticket.title}}</td>
                         <td>{{ticket.courseInformation.course}}</td>
-                    </tr>                   
+                    </tr>   
+                               
                 </tbody>
             </table>
         </div>
@@ -49,7 +51,8 @@
 <script>
 
 import getCollection from '../composables/getCollection' 
-
+import getUser from '../composables/getUser'
+import { useRouter } from 'vue-router';
 export default {
 
 
@@ -57,16 +60,22 @@ export default {
  setup(){
 
         
-
+        const { user } = getUser();
+        const router = useRouter();
 
         const {error, documents} = getCollection(
             'tickets',
-
-           );
+            ['author', '==', user.value.uid ]
+           )
 
            console.log(documents)
 
-        return {error, documents}
+        const toTicketDetails = (ticketID) => {
+            router.push({ name: 'TicketDetails', params: { id: ticketID } })
+        }
+       
+
+        return {error, documents, toTicketDetails}
     }
 }
 
