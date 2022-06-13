@@ -202,7 +202,7 @@ export default {
         const title = ref(null);
         const course = ref(null);
         const category = ref(null);
-        const priority = ref('');
+        const priority = ref('Niedrig');
 
        
        
