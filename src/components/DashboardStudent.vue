@@ -35,12 +35,11 @@
                             <span v-if="ticket.status == 'Offen'"  class="badge bg-danger">Offen</span>
                             <span v-if="ticket.status == 'Abgelehnt'"  class="badge bg-info">Abgelehnt</span>
                             <span v-if="ticket.status == 'In Arbeit' " class="badge bg-warning">In Arbeit</span>
-                             {{ticket.createdAt.toDate().getDate()}}.{{ticket.createdAt.toDate().getMonth()}}.{{ticket.createdAt.toDate().getFullYear()}}
+                             {{ticket.createdAt.toDate().getDate()}}.{{ticket.createdAt.toDate().getMonth()+1}}.{{ticket.createdAt.toDate().getFullYear()}}
                         </td>
                         <td>{{ticket.title}}</td>
                         <td>{{ticket.courseInformation.course}}</td>
-                    </tr>
-                   
+                    </tr>                   
                 </tbody>
             </table>
         </div>
@@ -56,8 +55,13 @@ export default {
 
 
  setup(){
+
+        
+
+
         const {error, documents} = getCollection(
             'tickets',
+
            );
 
            console.log(documents)
