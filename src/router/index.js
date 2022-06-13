@@ -6,6 +6,7 @@ import Dashboard from '../views/Dashboard.vue';
 import UserAccount from '../views/UserAccount.vue';
 import CreateTicket from '../views/CreateTicket.vue';
 import allTickets from '../views/allTickets.vue';
+import TicketDetails from '../views/TicketDetails.vue';
 
 import tutor_course from '../assets/tutor_course.json';
 
@@ -77,6 +78,13 @@ const routes = [
     path: '/tickets',
     name: 'Ticket',
     component: allTickets,
+  },
+  {
+    path: '/ticket/:id',
+    name: 'TicketDetails',
+    component: TicketDetails,
+    beforeEnter: requireAuth,
+    props: true,
   }
 ]
 
