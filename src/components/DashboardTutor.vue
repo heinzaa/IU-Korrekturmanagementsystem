@@ -18,11 +18,10 @@
                     <span>Abgelehnt</span>
                 </div>
     </div>
-            <div class="table-responsive">
+         <div class="table-responsive">
                 <table class="table table-hover table-tickets">
                     <thead>
-                        <tr>
-                            <th scope="col">Count </th>
+                        <tr>                           
                             <th scope="col">Status/Datum</th>
                             <th scope="col">Titel</th>
                             <th scope="col">Kurs</th>
