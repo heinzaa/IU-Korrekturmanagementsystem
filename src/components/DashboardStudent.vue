@@ -5,48 +5,52 @@
             <a href="/createticket" class="btn btn-primary"><b-icon-plus-circle style="margin-top:-0.1em;"></b-icon-plus-circle>&nbsp; Ticket erstellen</a>
         </div>
         
-        <div id="status-panel">
-            <div>
-                <strong class="rounded-pill bg-danger">2</strong>
-                <span>Offen</span>
-            </div>
-            <div>
-                <strong class="rounded-pill bg-warning">1</strong>
-                <span>In Arbeit</span>
-            </div>
-            <div>
-                <strong class="rounded-pill bg-success">3</strong>
-                <span>Erledigt</span>
-            </div>
-            <div>
-                <strong class="rounded-pill bg-info">1</strong>
-                <span>Abgelehnt</span>
-            </div>
+        <div v-if="!documents" style="margin:1em 0; text-align:center;">
+            Es existieren noch keine erstellten Tickets.
         </div>
-
-        <div class="table-responsive">            
-            <table class="table table-hover table-tickets">
-                <thead>
-                    <tr>
-                        <th scope="col">Datum</th>
-                        <th scope="col">Titel</th>
-                        <th scope="col">Kurs</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="ticket in documents" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer">
-                        <td>
-                            <span v-if="ticket.status == 'Erledigt'" class="badge bg-success">Erledigt</span>
-                            <span v-if="ticket.status == 'Offen'"  class="badge bg-danger">Offen</span>
-                            <span v-if="ticket.status == 'Abgelehnt'"  class="badge bg-info">Abgelehnt</span>
-                            <span v-if="ticket.status == 'In Arbeit' " class="badge bg-warning">In Arbeit</span>
-                             {{ticket.createdAt.toDate().getDate()}}.{{ticket.createdAt.toDate().getMonth()+1}}.{{ticket.createdAt.toDate().getFullYear()}}
-                        </td>
-                        <td>{{ticket.title}}</td>
-                        <td>{{ticket.courseInformation.course}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div v-else>
+            <div id="status-panel">
+                <div>
+                    <strong class="rounded-pill bg-danger">2</strong>
+                    <span>Offen</span>
+                </div>
+                <div>
+                    <strong class="rounded-pill bg-warning">1</strong>
+                    <span>In Arbeit</span>
+                </div>
+                <div>
+                    <strong class="rounded-pill bg-success">3</strong>
+                    <span>Erledigt</span>
+                </div>
+                <div>
+                    <strong class="rounded-pill bg-info">1</strong>
+                    <span>Abgelehnt</span>
+                </div>
+            </div>
+            <div class="table-responsive">            
+                <table class="table table-hover table-tickets">
+                    <thead>
+                        <tr>
+                            <th scope="col">Datum</th>
+                            <th scope="col">Titel</th>
+                            <th scope="col">Kurs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="ticket in documents" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer">
+                            <td>
+                                <span v-if="ticket.status == 'Erledigt'" class="badge bg-success">Erledigt</span>
+                                <span v-if="ticket.status == 'Offen'"  class="badge bg-danger">Offen</span>
+                                <span v-if="ticket.status == 'Abgelehnt'"  class="badge bg-info">Abgelehnt</span>
+                                <span v-if="ticket.status == 'In Arbeit' " class="badge bg-warning">In Arbeit</span>
+                                {{ticket.createdAt.toDate().getDate()}}.{{ticket.createdAt.toDate().getMonth()+1}}.{{ticket.createdAt.toDate().getFullYear()}}
+                            </td>
+                            <td>{{ticket.title}}</td>
+                            <td>{{ticket.courseInformation.course}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
