@@ -8,17 +8,21 @@ const userIsTutor = (to, from, next) => {
     const { user } = getUser();
     let isTutor = ref(false);
 
-    //debugger;
+    // Falls eingeloggt
+    if(user.value){
+        //debugger;
 
-    let oTutor = tutor_course.find(item => item.email == user.value.email);
+        let oTutor = tutor_course.find(item => item.email == user.value.email);
 
-    if(oTutor == null){
-        isTutor = false;
+        if(oTutor == null){
+            isTutor = false;
+        }
+        else{
+            isTutor = true;
+        }
+
     }
-    else{
-        isTutor = true;
-    }
-
+    
     return { isTutor };
 
 }
