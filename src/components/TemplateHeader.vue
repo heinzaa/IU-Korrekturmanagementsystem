@@ -78,15 +78,5 @@ export default {
 }
 </script>
 
-<style scoped>
-.btn-group-sm>.btn, .btn-sm {
-    padding: 0.5rem;
-    font-size: .875rem;
-    border-radius: 0.2rem;
-}
-.logout-svg{
-    height: 1rem;   
-    filter: invert(100%);
-    margin-right: 0.5rem;
-}
+<style>
 </style>
