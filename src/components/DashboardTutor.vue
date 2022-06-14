@@ -2,98 +2,79 @@
     <div id="dashboard-tutor">
         <h1>Tutor Dashboard</h1>
         
-        <div id="status-panel">
-            <div>
-                <strong class="rounded-pill bg-danger">2</strong>
-                <span>Offen</span>
-            </div>
-            <div>
-                <strong class="rounded-pill bg-warning">1</strong>
-                <span>In Arbeit</span>
-            </div>
-            <div>
-                <strong class="rounded-pill bg-success">3</strong>
-                <span>Erledigt</span>
-            </div>
-            <div>
-                <strong class="rounded-pill bg-info">1</strong>
-                <span>Abgelehnt</span>
-            </div>
+        <div v-if="!documents" style="margin:1em 0; text-align:center;">
+            Es existieren noch keine erstellten Tickets.
         </div>
-        <div class="table-responsive">
-            <table class="table table-hover table-tickets">
-                <thead>
-                    <tr>                           
-                        <th scope="col">Datum</th>
-                        <th scope="col">Titel</th>
-                        <th scope="col">Kurs</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="cursor-pointer">
-                        <td>
-                            <span class="badge bg-danger">Offen</span>
-                            22.05.2022
-                        </td>
-                        <td>Veraltete Methoden im Video</td>
-                        <td>BMAR02</td>
-                    </tr>
-                    <tr class="cursor-pointer">
-                        <td>
-                            <span class="badge bg-danger">Offen</span>
-                            22.05.2022
-                        </td>
-                        <td>Veraltete Methoden im Video</td>
-                        <td>BMAR02</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-warning">In Arbeit</span>
-                            12.05.2022
-                        </td>
-                        <td>Ton ist abgeschnitten</td>
-                        <td>IMT102</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-success">Erledigt</span>
-                            09.05.2022
-                        </td>
-                        <td>Error-Meldung im IU Reader 123...</td>
-                        <td>BFIN02</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-success">Erledigt</span>
-                            09.05.2022
-                        </td>
-                        <td>Error-Meldung im IU Reader 123...</td>
-                        <td>BFIN02</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-success">Erledigt</span>
-                            09.05.2022
-                        </td>
-                        <td>Error-Meldung im IU Reader 123...</td>
-                        <td>BFIN02</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="badge bg-info">Abgelehnt</span>
-                            07.03.2022
-                        </td>
-                        <td>Dein Bein isch verdreht!</td>
-                        <td>ISEF01</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div v-else>
+            <div id="status-panel">
+                <div>
+                    <strong class="rounded-pill bg-danger">2</strong>
+                    <span>Offen</span>
+                </div>
+                <div>
+                    <strong class="rounded-pill bg-warning">1</strong>
+                    <span>In Arbeit</span>
+                </div>
+                <div>
+                    <strong class="rounded-pill bg-success">3</strong>
+                    <span>Erledigt</span>
+                </div>
+                <div>
+                    <strong class="rounded-pill bg-info">1</strong>
+                    <span>Abgelehnt</span>
+                </div>
+            </div>
+            <small>@ToDo: folgende Liste muss noch auf den eingeloggten User/Tutor eingeschränkt werden.</small>
+            <div class="table-responsive">            
+                <table class="table table-hover table-tickets">
+                    <thead>
+                        <tr>
+                            <th scope="col">Datum</th>
+                            <th scope="col">Titel</th>
+                            <th scope="col">Kurs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="ticket in documents" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer">
+                            <td>
+                                <span v-if="ticket.status == 'Erledigt'" class="badge bg-success">Erledigt</span>
+                                <span v-if="ticket.status == 'Offen'"  class="badge bg-danger">Offen</span>
+                                <span v-if="ticket.status == 'Abgelehnt'"  class="badge bg-info">Abgelehnt</span>
+                                <span v-if="ticket.status == 'In Arbeit' " class="badge bg-warning">In Arbeit</span>
+                                {{ticket.createdAt.toDate().getDate()}}.{{ticket.createdAt.toDate().getMonth()+1}}.{{ticket.createdAt.toDate().getFullYear()}}
+                            </td>
+                            <td>{{ticket.title}}</td>
+                            <td>{{ticket.courseInformation.course}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-export default {};
+
+import getCollection from '../composables/getCollection' 
+import getUser from '../composables/getUser'
+import { useRouter } from 'vue-router';
+export default {
+    setup() {
+        const { user } = getUser();
+        const router = useRouter();
+
+        const { error, documents } = getCollection("tickets");
+
+        console.log(documents);
+
+        const toTicketDetails = (ticketID) => {
+            router.push({ name: "TicketDetails", params: { id: ticketID } });
+        };
+
+        return { error, documents, toTicketDetails };
+    },
+};
+
 </script>
 
 <style>
