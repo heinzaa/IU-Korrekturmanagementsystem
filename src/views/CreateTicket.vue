@@ -1,7 +1,7 @@
 <template>
     <div id="template">
-        
         <TemplateHeader />
+        
         <div class="container content-small">
             <h1>Neues Ticket erstellen</h1>
             <hr />
@@ -142,71 +142,6 @@
                     <button v-else disabled class="btn btn-lg btn-primary" type="submit">Ticket wird erstellt...</button>
                 </div>
             </form>
-
-            <!--  AB HIER TICKET ANSICHT FÜR TUTOR -->
-            <div style="background:#000; padding:1em; margin:2em 0; color:#fff; text-align:center;">
-                - AB HIER TICKET FORMULAR FÜR TUTOR -
-            </div>
-
-            <form action="">
-                <div class="mb-4">
-                    <label class="view">Titel (Überschrift):</label>
-                    <div>Hier steht die Überschrift des Tickets</div>
-                </div>
-                <div class="mb-4">
-                    <label class="view">Kurs:</label>
-                    <div>Mathematik 2</div>
-                </div>
-                <div class="row">
-                    <div class="mb-4 col-md-6">
-                        <label class="view">Kategorie, Art der Meldung:</label>
-                        <div>🟡 Rechtschreibfehler</div>
-                    </div>
-                    <div class="mb-4 col-md-6">
-                        <label class="view">Priorität:</label>
-                        <div>Niedrig</div>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <p><label class="view">Betroffenen Medien:</label></p>
-                    <ul>
-                        <li>
-                            <label>Learn App/IU Reader:</label>
-                            <div>Blabla hier steht irgend was zur Position</div>
-                        </li>
-                        <li>
-                            <label>Skript:</label>
-                            <div>Blabla jhdfskaof jhsdiof ji</div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="mb-4">
-                    <label class="view">Beschreibe deine Ticketmeldung:</label>
-                    <div>Hallo,<br>ich habe alles gefunden um euch einen Fehler zu melden....<br>MfG</div>
-                </div>
-                <div class="mb-4">
-                    <label class="view">Dateien:</label>
-                    <div><i>Keine vorhanden.</i></div>
-                </div>
-
-                <hr>
-                <h3>Bearbeitung durch Tutor</h3>
-
-                <div class="mb-4">
-                    <label for="feedbackComment">Tutor-Feedback:</label>
-                    <textarea class="form-control" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea>
-                </div>
-                <div class="mt-4">
-                    Status ändern:
-                </div>
-                <div class="mt-1">
-                    <button type="button" class="btn btn-warning">In Arbeit</button> &nbsp; 
-                    <button type="button" class="btn btn-success">Erledigt</button> &nbsp; 
-                    <button type="button" class="btn btn-info">Abgelehnt</button>
-                </div>
-                <hr>
-            </form>
-            
         </div>
         
         <TemplateFooter />
@@ -410,10 +345,6 @@ export default {
     #mediaList .form-group {
         margin-left:0;
     }
-}
-
-label.view {
-    color:#999;
 }
 
 </style>
