@@ -35,7 +35,7 @@
                             <span v-if="isTutor">(Tutor)</span>
                             <span v-else>(Student)</span>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownAccount">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAccount">
                             <li><a class="dropdown-item" href="/createticket"><b-icon-plus-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-plus-circle>&nbsp;&nbsp;Ticket erstellen</a></li>
                             <li><a class="dropdown-item" href="/dashboard"><b-icon-bug style="font-size:1.4em; margin-top:-0.1em;"></b-icon-bug>&nbsp;&nbsp;Meine erstellten Tickets</a></li>
                             <li><a class="dropdown-item" href="/userdata"><b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;Mein&nbsp;Konto</a></li>
