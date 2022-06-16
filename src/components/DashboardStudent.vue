@@ -37,16 +37,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="ticket in documents" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer">
-                            <td>
-                                <span v-if="ticket.status == 'Erledigt'" class="badge bg-success">Erledigt</span>
-                                <span v-if="ticket.status == 'Offen'"  class="badge bg-danger">Offen</span>
-                                <span v-if="ticket.status == 'Abgelehnt'"  class="badge bg-info">Abgelehnt</span>
-                                <span v-if="ticket.status == 'In Arbeit' " class="badge bg-warning">In Arbeit</span>
-                                {{ticket.createdAt.toDate().getDate()}}.{{ticket.createdAt.toDate().getMonth()+1}}.{{ticket.createdAt.toDate().getFullYear()}}
+                        <tr v-for="ticket in documents" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer" :data-status="ticket.status">
+                            <td class="ticket-date" data-title="Datum">
+                                <strong v-if="ticket.status == 'Erledigt'" class="ticket-status rounded-pill bg-success" title="Erledigt"></strong>
+                                <strong v-if="ticket.status == 'Offen'" class="ticket-status rounded-pill bg-danger" title="Offen"></strong>
+                                <strong v-if="ticket.status == 'Abgelehnt'" class="ticket-status rounded-pill bg-info" title="Abgelehnt"></strong>
+                                <strong v-if="ticket.status == 'In Arbeit'" class="ticket-status rounded-pill bg-warning" title="In Arbeit"></strong>
+                                {{String(ticket.createdAt.toDate().getDate()).padStart(2,'0')}}.{{String(ticket.createdAt.toDate().getMonth()+1).padStart(2,'0')}}.{{ticket.createdAt.toDate().getFullYear()}}
                             </td>
-                            <td>{{ticket.title}}</td>
-                            <td>{{ticket.courseInformation.course}}</td>
+                            <td class="ticket-title" data-title="Titel">{{ticket.title}}</td>
+                            <td class="ticket-course" data-title="Kurs">{{ticket.courseInformation.course}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -82,73 +82,5 @@ export default {
 </script>
 
 <style>
-.table-tickets .badge {
-    width: 75px;
-}
-.table-tickets tr td {
-    cursor: pointer;
-}
-#status-panel {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
-    margin: 2em 0;
-}
-#status-panel div {
-    position: relative;
-    background: #eee;
-    border: 2px #ddd solid;
-    width: 23%;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 10px 0;
-    text-align: center;
-    cursor: pointer;
-}
-#status-panel div strong {
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    padding-top: 8px;
-    color: #fff;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-#status-panel div span {
-    font-weight: bold;
-}
-#status-panel div:after {
-    display: none;
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -10px;
-    margin-left: -10px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 10px 10px 0 10px;
-    border-color: #152536 transparent transparent transparent;
-}
-#status-panel div:hover {
-    background: #152536;
-    border: 2px #152536 solid;
-    color: #fff;
-}
-#status-panel div:hover:after {
-    display: block;
-}
 
-@media screen and (max-width: 767px) {
-    #status-panel div {
-        width: 47%;
-    }
-    #status-panel div span {
-        display: block;
-        margin-top: 5px;
-    }
-}
 </style>
