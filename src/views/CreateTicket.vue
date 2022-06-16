@@ -195,6 +195,7 @@ export default {
         };
     },
     setup(props, context) {
+        const router = useRouter();
         const { filePath, url, uploadFile } = useStorage();
         const { error, addDoc } = useCollection("tickets");
         const { user } = getUser();
@@ -272,6 +273,7 @@ export default {
                 isPending.value = false;
                 if (!error.value) {
                     console.log("ticket added");
+                    router.push({name: 'Dashboard'});
                 }
             }
         };
