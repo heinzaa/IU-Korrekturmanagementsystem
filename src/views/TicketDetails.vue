@@ -47,7 +47,13 @@
                     </div>
                     <div class="mb-4">
                         <label class="view">Dateien:</label>
-                        <div><a :href="document.fileUrl" target="_blank"><img :src="document.fileUrl" class="img-preview" /></a></div>
+                        <div v-if="document.filePath">
+                            <!-- Vorschau, wenn es ein Bild ist -->
+                            <a :href="document.fileUrl" target="_blank"><img :src="document.fileUrl" class="img-preview" /></a>
+                            <!-- Download-Link -->
+                            <br><a :href="document.fileUrl" target="_blank">{{document.filePath.replace(/^.*[\\\/]/, '')}}</a>
+                        </div>
+                        <div v-else>Keine Datei vorhanden.</div>
                     </div>
 
                     <hr>
@@ -77,18 +83,16 @@
 <script>
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
-import getDocument from '../composables/getDocument'
+import getDocument from "../composables/getDocument";
 export default {
     components: { TemplateHeader, TemplateFooter },
-    props: ['id'],
+    props: ["id"],
 
-    setup(props){
-        const {error, document } = getDocument('tickets', props.id)
-
-        return {error, document}
-    }
-
-}
+    setup(props) {
+        const { error, document } = getDocument("tickets", props.id);
+        return { error, document };
+    },
+};
 </script>
 
 <style>
