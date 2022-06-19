@@ -140,6 +140,8 @@
                 <div class="mt-4">
                     <button v-if="!isPending" class="btn btn-lg btn-primary" type="submit">Ticket einreichen</button>
                     <button v-else disabled class="btn btn-lg btn-primary" type="submit">Ticket wird erstellt...</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-lg btn-outline-secondary" onclick="if(confirm('Alle aktuellen Eingaben gehen verloren.\nMöchtest Du alle Eingaben verwerfen und zum Dashboard wechseln?')) location.href='/dashboard';">Abbrechen</button>
                 </div>
             </form>
         </div>
