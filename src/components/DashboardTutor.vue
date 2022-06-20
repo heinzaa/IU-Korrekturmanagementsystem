@@ -56,7 +56,10 @@
                                 <span v-if="ticket.priority == 'Mittel' " class="">Mittel</span>
                                 <span v-if="ticket.priority == 'Hoch'"  class="text-danger">Hoch</span>
                             </td>
-                            <td class="ticket-title" data-title="Titel">{{ticket.title}}</td>
+                            <td class="ticket-title" data-title="Titel">
+                                <b-icon-paperclip v-if="ticket.filePath" style="color:#999; margin-left:-0.15em;"></b-icon-paperclip>
+                                {{ticket.title}}
+                            </td>
                             <td class="ticket-course" data-title="Kurs">{{ticket.courseInformation.course}}</td>
                         </tr>
                     </tbody>

@@ -45,7 +45,10 @@
                                 <strong v-if="ticket.status == 'In Arbeit'" class="ticket-status rounded-pill bg-warning" title="In Arbeit"></strong>
                                 {{String(ticket.createdAt.toDate().getDate()).padStart(2,'0')}}.{{String(ticket.createdAt.toDate().getMonth()+1).padStart(2,'0')}}.{{ticket.createdAt.toDate().getFullYear()}}
                             </td>
-                            <td class="ticket-title" data-title="Titel">{{ticket.title}}</td>
+                            <td class="ticket-title" data-title="Titel">
+                                <b-icon-paperclip v-if="ticket.filePath" style="color:#999; margin-left:-0.15em;"></b-icon-paperclip>
+                                {{ticket.title}}
+                            </td>
                             <td class="ticket-course" data-title="Kurs">{{ticket.courseInformation.course}}</td>
                         </tr>
                     </tbody>

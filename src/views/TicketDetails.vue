@@ -79,7 +79,8 @@
                             <!-- Vorschau, wenn es ein Bild ist -->
                             <a :href="document.fileUrl" target="_blank"><img :src="document.fileUrl" class="img-preview" /></a>
                             <!-- Download-Link -->
-                            <br><a :href="document.fileUrl" target="_blank">{{document.filePath.replace(/^.*[\\\/]/, '')}}</a>
+                            <br><b-icon-paperclip style="color:#999; margin-left:-0.15em;"></b-icon-paperclip> 
+                            <a :href="document.fileUrl" target="_blank">{{document.filePath.replace(/^.*[\\\/]/, '')}}</a>
                         </div>
                         <div v-else>Keine Datei vorhanden.</div>
                     </div>
