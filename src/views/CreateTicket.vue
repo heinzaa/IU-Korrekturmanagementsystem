@@ -207,8 +207,6 @@ export default {
         const category = ref(null);
         const priority = ref('Niedrig');
 
-       
-       
         let arrLearnApp = ref([]);
         const arrLearnAppDescription = ref('');
 
@@ -235,7 +233,6 @@ export default {
         let arrSonstiges = ref([]);
         const arrSonstigesDescription = ref('');
 
-
         const issueDescription = ref("");
         const file = ref(null);
         const fileError = ref(null);
@@ -245,39 +242,40 @@ export default {
             return val;
         };
         const handleSubmit = async () => {
+            isPending.value = true;
             if (file.value) {
-                isPending.value = true;
                 await uploadFile(file.value);
-                await addDoc({
-                    title: title.value,
-                    courseInformation: course.value,
-                    category: category.value,
-                    priority: priority.value,                    
-                    LearnApp_Fehler: [...arrLearnApp.value, arrLearnAppDescription.value],
-                    PDF_Skript_Fehler: [...arrSkriptPDF.value,arrSkriptPDFDescription.value],
-                    Druckskript_Fehler: [...arrSkriptDruck.value,arrSkriptDruckDescription.value], 
-                    Video_Fehler: [...arrVideo.value, arrVideoDescription.value],
-                    Audio_Fehler: [...arrAudio.value, arrAudioDescription.value],
-                    OnlineTest_Fehler: [...arrOnlineTest.value,arrOnlineTestDescription.value],
-                    Repetitorium_Fehler: [...arrRepetitorium.value,arrRepetitoriumDescription.value],
-                    Musterklausur_Fehler: [...arrMusterklausur.value,arrMusterklausurDescription.value],
-                    Sonstige_Fehler: [...arrSonstiges.value, arrSonstigesDescription.value],
-                    description: issueDescription.value,
-                    priority: priority.value,
-                    author: user.value.uid,
-                    authorName: user.value.displayName,
-                    authorMail: user.value.email,
-                    fileUrl: url.value,
-                    status: status.value,
-                    filePath: filePath.value,
-                    createdAt: timestamp(),
-                });
-                isPending.value = false;
-                if (!error.value) {
-                    console.log("ticket added");
-                    router.push({name: 'Dashboard'});
-                }
             }
+            await addDoc({
+                title: title.value,
+                courseInformation: course.value,
+                category: category.value,
+                priority: priority.value,                    
+                LearnApp_Fehler: [...arrLearnApp.value, arrLearnAppDescription.value],
+                PDF_Skript_Fehler: [...arrSkriptPDF.value,arrSkriptPDFDescription.value],
+                Druckskript_Fehler: [...arrSkriptDruck.value,arrSkriptDruckDescription.value], 
+                Video_Fehler: [...arrVideo.value, arrVideoDescription.value],
+                Audio_Fehler: [...arrAudio.value, arrAudioDescription.value],
+                OnlineTest_Fehler: [...arrOnlineTest.value,arrOnlineTestDescription.value],
+                Repetitorium_Fehler: [...arrRepetitorium.value,arrRepetitoriumDescription.value],
+                Musterklausur_Fehler: [...arrMusterklausur.value,arrMusterklausurDescription.value],
+                Sonstige_Fehler: [...arrSonstiges.value, arrSonstigesDescription.value],
+                description: issueDescription.value,
+                priority: priority.value,
+                author: user.value.uid,
+                authorName: user.value.displayName,
+                authorMail: user.value.email,
+                fileUrl: (url.value ? url.value : null),
+                filePath: (filePath.value ? filePath.value : null),
+                status: status.value,
+                createdAt: timestamp(),
+            });
+            isPending.value = false;
+            if (!error.value) {
+                console.log("ticket added");
+                router.push({name: 'Dashboard'});
+            }
+            
         };
         const types = ["image/png", "image/jpeg", "application/pdf", "video/mp4"];
         const handleChange = (e) => {
