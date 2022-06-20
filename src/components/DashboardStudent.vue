@@ -82,7 +82,16 @@ export default {
         };
 
         /* Filterung der Tickets durch Sichtbarkeit */
+        let lastFilterStatus = null;
         const filterTickets = (status) => {
+            // Filter bei nochmaliger gleicher Auswahl zurücksetzen auf ALLE
+            if(lastFilterStatus == status){
+                lastFilterStatus = status = null;
+            }
+
+            // immer letzten Status übernehmen
+            lastFilterStatus = status;
+            
             let filterItems = document.querySelectorAll('#status-panel > div');
             filterItems.forEach(function(item){
                 if(item.getAttribute('data-status') == status){
@@ -96,7 +105,7 @@ export default {
             let items = document.querySelectorAll('.table-tickets tbody tr');
             let hasVisibleItems = false;
             items.forEach(function(item){
-                if(item.getAttribute('data-status') == status){
+                if(item.getAttribute('data-status') == status || status == null){
                     item.style.display='';
                     hasVisibleItems = true;
                 } else {
