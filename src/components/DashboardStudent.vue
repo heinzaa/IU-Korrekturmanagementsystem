@@ -10,19 +10,19 @@
         </div>
         <div v-else>
             <div id="status-panel">
-                <div>
+                <div @click="filterTickets('Offen')" data-status="Offen">
                     <strong class="rounded-pill bg-danger">2</strong>
                     <span>Offen</span>
                 </div>
-                <div>
+                <div @click="filterTickets('In Arbeit')" data-status="In Arbeit">
                     <strong class="rounded-pill bg-warning">1</strong>
                     <span>In Arbeit</span>
                 </div>
-                <div>
+                <div @click="filterTickets('Erledigt')" data-status="Erledigt">
                     <strong class="rounded-pill bg-success">3</strong>
                     <span>Erledigt</span>
                 </div>
-                <div>
+                <div @click="filterTickets('Abgelehnt')" data-status="Abgelehnt">
                     <strong class="rounded-pill bg-info">1</strong>
                     <span>Abgelehnt</span>
                 </div>
@@ -54,6 +54,9 @@
                     </tbody>
                 </table>
             </div>
+            <div id="msgEmptyList" style="display:none;">
+                Zu Deinem Filter existieren keine Tickets.
+            </div>
         </div>
     </div>
 </template>
@@ -78,7 +81,33 @@ export default {
             router.push({ name: "TicketDetails", params: { id: ticketID } });
         };
 
-        return { error, documents, toTicketDetails };
+        /* Filterung der Tickets durch Sichtbarkeit */
+        const filterTickets = (status) => {
+            let filterItems = document.querySelectorAll('#status-panel > div');
+            filterItems.forEach(function(item){
+                if(item.getAttribute('data-status') == status){
+                    item.className='active';
+                } else {
+                    item.className='';
+                }
+            });
+
+            let msgEmptyList = document.getElementById('msgEmptyList');
+            let items = document.querySelectorAll('.table-tickets tbody tr');
+            let hasVisibleItems = false;
+            items.forEach(function(item){
+                if(item.getAttribute('data-status') == status){
+                    item.style.display='';
+                    hasVisibleItems = true;
+                } else {
+                    item.style.display='none';
+                }
+            });
+            
+            msgEmptyList.style.display = (hasVisibleItems ? 'none' : 'block');
+        }
+
+        return { error, documents, toTicketDetails, filterTickets };
     },
 };
 
