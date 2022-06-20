@@ -146,6 +146,10 @@ button {
     cursor: pointer;
 }
 
+.table-tickets .only-mobile {
+    display: none;
+}
+
 @media screen and (max-width: 767px) {
     #status-panel div {
         width: 47%;
@@ -189,6 +193,14 @@ button {
     .table-tickets tbody tr td.ticket-date {
         order: 2;
         font-size: 0.8em;
+    }
+
+    .table-tickets tbody tr td.ticket-priority {
+        display: none;
+    }
+
+    .table-tickets .only-mobile {
+        display: inline-block;
     }
 
     .table-tickets tbody tr td.ticket-title {
