@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="mb-4 col-md-6">
                         <label for="issueIssueType">Kategorie, Art der Meldung:</label>
-                        <select name="issueIssueType" v-model="category" class="form-select" id="issueIssueType">
+                        <select name="issueIssueType" v-model="category" class="form-select" id="issueIssueType" required>
                             <option value="" disabled>Kategorie auswählen</option>
                             <option v-for="item in categoryList" :value="item.categoryText" :key="item.id">
                             {{ item.categoryText }}
@@ -37,7 +37,7 @@
                     </div>
                     <div class="mb-4 col-md-6">
                         <label for="issueIssuePrio">Priorität:</label>
-                        <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio">
+                        <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio" required>
                             <option v-for="item in priorityList" :value="item.priorityTitle" :key="item.id">
                             {{ item.priorityTitle }}
                             </option>
