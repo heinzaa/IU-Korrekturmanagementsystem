@@ -12,41 +12,34 @@ const signup = async (email, password, displayName) => {
     error.value = null;
     isPending.value = true;
   
-
-    let regex_student = new RegExp('[a-z0-9]+@iubh-fernstudium.de')
-    let regex_tutor = new RegExp('[a-z0-9]+@iubh-tutor.de')
-
+    /* Diese E-Mail-Endungen überprüfen */
+    const validEmailDomains = ['iubh-fernstudium.de', 'iu-fernstudium.de', 'iubh.de', 'iu.org'];
+    const regexEmail = '[^@]+@(' + validEmailDomains.join('|') + ')';
+    let regex_iubh = new RegExp(regexEmail);
+ 
     const { user } = getUser();
-
-    try{           
-
-       
-        const response =   await projectAuth
-        .createUserWithEmailAndPassword(email, password);   
+ 
+    try {
+        const response = await projectAuth
+            .createUserWithEmailAndPassword(email, password);
 
         await response.user.sendEmailVerification({
             url: "http://localhost:8080/"
         });
-              
 
-      if(!response){
+        if (!response) {
             throw new Error('Could not Sign up!');
         }
-       
+
         await response.user.updateProfile({ displayName });
         error.value = null;
         isPending.value = false;
         return response
-    }catch(err){
-
+    } catch (err) {
         console.log(err.message);
-        error.value =  "Die Email Adresse existiert bereits oder muss noch bestätigt werden." // err.message;
+        error.value = "Die Email Adresse existiert bereits oder muss noch bestätigt werden." // err.message;
         isPending.value = false;
-
-
     }
-
-
 
 }
 
