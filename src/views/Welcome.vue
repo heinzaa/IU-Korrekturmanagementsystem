@@ -86,7 +86,7 @@ export default {
 
         const showLoginTutorForm = () => {
             showLogin.value = false;
-            showResetPassword.value = true;
+            showResetPassword.value = false;
             showVerificationPopUp.value = false;
             showSignUp.value = false;
             showLoginTutor.value = true;
