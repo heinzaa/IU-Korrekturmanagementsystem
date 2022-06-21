@@ -31,9 +31,11 @@
                     <li v-if="user" class="nav-item dropdown">
                         <!-- Mein Konto Menü -->
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;Mein&nbsp;Konto
+                            <b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;{{ user.displayName }}
+                            <span v-if="isTutor">(Tutor)</span>
+                            <span v-else>(Student)</span>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownAccount">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAccount">
                             <li><a class="dropdown-item" href="/createticket"><b-icon-plus-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-plus-circle>&nbsp;&nbsp;Ticket erstellen</a></li>
                             <li><a class="dropdown-item" href="/dashboard"><b-icon-bug style="font-size:1.4em; margin-top:-0.1em;"></b-icon-bug>&nbsp;&nbsp;Meine erstellten Tickets</a></li>
                             <li><a class="dropdown-item" href="/userdata"><b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;Mein&nbsp;Konto</a></li>
@@ -51,12 +53,14 @@ import useLogout from '../composables/useLogout';
 import getUser from '../composables/getUser';
 import { useRouter } from 'vue-router';
 import { ref } from "vue";
+import useIsTutor from '../composables/useIsTutor';
 
 export default {
     setup(props, context){
 
         
         const { user } = getUser();
+        const { isTutor } = useIsTutor();
         const { error, logout } = useLogout();
         const router = useRouter();
 
@@ -70,23 +74,10 @@ export default {
         }
 
         
-
-       
-        
-        return { error, logoutUser, user, userLoggedIn }
+        return { error, logoutUser, user, isTutor, userLoggedIn }
    }
 }
 </script>
 
-<style scoped>
-.btn-group-sm>.btn, .btn-sm {
-    padding: 0.5rem;
-    font-size: .875rem;
-    border-radius: 0.2rem;
-}
-.logout-svg{
-    height: 1rem;   
-    filter: invert(100%);
-    margin-right: 0.5rem;
-}
+<style>
 </style>

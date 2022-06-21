@@ -1,7 +1,7 @@
 <template>
     <div id="template">
-        
         <TemplateHeader />
+        
         <div class="container content-small">
             <h1>Neues Ticket erstellen</h1>
             <hr />
@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="mb-4 col-md-6">
                         <label for="issueIssueType">Kategorie, Art der Meldung:</label>
-                        <select name="issueIssueType" v-model="category" class="form-select" id="issueIssueType">
+                        <select name="issueIssueType" v-model="category" class="form-select" id="issueIssueType" required>
                             <option value="" disabled>Kategorie auswählen</option>
                             <option v-for="item in categoryList" :value="item.categoryText" :key="item.id">
                             {{ item.categoryText }}
@@ -37,7 +37,7 @@
                     </div>
                     <div class="mb-4 col-md-6">
                         <label for="issueIssuePrio">Priorität:</label>
-                        <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio">
+                        <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio" required>
                             <option v-for="item in priorityList" :value="item.priorityTitle" :key="item.id">
                             {{ item.priorityTitle }}
                             </option>
@@ -140,11 +140,10 @@
                 <div class="mt-4">
                     <button v-if="!isPending" class="btn btn-lg btn-primary" type="submit">Ticket einreichen</button>
                     <button v-else disabled class="btn btn-lg btn-primary" type="submit">Ticket wird erstellt...</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-lg btn-outline-secondary" onclick="if(confirm('Alle aktuellen Eingaben gehen verloren.\nMöchtest Du alle Eingaben verwerfen und zum Dashboard wechseln?')) location.href='/dashboard';">Abbrechen</button>
                 </div>
             </form>
-
-            <!--  AB HIER TICKET ANSICHT FÜR TUTOR -->
-          
         </div>
         
         <TemplateFooter />
@@ -198,6 +197,7 @@ export default {
         };
     },
     setup(props, context) {
+        const router = useRouter();
         const { filePath, url, uploadFile } = useStorage();
         const { error, addDoc } = useCollection("tickets");
         const { user } = getUser();
@@ -207,8 +207,6 @@ export default {
         const category = ref(null);
         const priority = ref('Niedrig');
 
-       
-       
         let arrLearnApp = ref([]);
         const arrLearnAppDescription = ref('');
 
@@ -235,7 +233,6 @@ export default {
         let arrSonstiges = ref([]);
         const arrSonstigesDescription = ref('');
 
-
         const issueDescription = ref("");
         const file = ref(null);
         const fileError = ref(null);
@@ -245,38 +242,40 @@ export default {
             return val;
         };
         const handleSubmit = async () => {
+            isPending.value = true;
             if (file.value) {
-                isPending.value = true;
                 await uploadFile(file.value);
-                await addDoc({
-                    title: title.value,
-                    courseInformation: course.value,
-                    category: category.value,
-                    priority: priority.value,                    
-                    LearnApp_Fehler: [...arrLearnApp.value, arrLearnAppDescription.value],
-                    PDF_Skript_Fehler: [...arrSkriptPDF.value,arrSkriptPDFDescription.value],
-                    Druckskript_Fehler: [...arrSkriptDruck.value,arrSkriptDruckDescription.value], 
-                    Video_Fehler: [...arrVideo.value, arrVideoDescription.value],
-                    Audio_Fehler: [...arrAudio.value, arrAudioDescription.value],
-                    OnlineTest_Fehler: [...arrOnlineTest.value,arrOnlineTestDescription.value],
-                    Repetitorium_Fehler: [...arrRepetitorium.value,arrRepetitoriumDescription.value],
-                    Musterklausur_Fehler: [...arrMusterklausur.value,arrMusterklausurDescription.value],
-                    Sonstige_Fehler: [...arrSonstiges.value, arrSonstigesDescription.value],
-                    description: issueDescription.value,
-                    priority: priority.value,
-                    author: user.value.uid,
-                    authorName: user.value.displayName,
-                    authorMail: user.value.email,
-                    fileUrl: url.value,
-                    status: status.value,
-                    filePath: filePath.value,
-                    createdAt: timestamp(),
-                });
-                isPending.value = false;
-                if (!error.value) {
-                    console.log("ticket added");
-                }
             }
+            await addDoc({
+                title: title.value,
+                courseInformation: course.value,
+                category: category.value,
+                priority: priority.value,                    
+                LearnApp_Fehler: [...arrLearnApp.value, arrLearnAppDescription.value],
+                PDF_Skript_Fehler: [...arrSkriptPDF.value,arrSkriptPDFDescription.value],
+                Druckskript_Fehler: [...arrSkriptDruck.value,arrSkriptDruckDescription.value], 
+                Video_Fehler: [...arrVideo.value, arrVideoDescription.value],
+                Audio_Fehler: [...arrAudio.value, arrAudioDescription.value],
+                OnlineTest_Fehler: [...arrOnlineTest.value,arrOnlineTestDescription.value],
+                Repetitorium_Fehler: [...arrRepetitorium.value,arrRepetitoriumDescription.value],
+                Musterklausur_Fehler: [...arrMusterklausur.value,arrMusterklausurDescription.value],
+                Sonstige_Fehler: [...arrSonstiges.value, arrSonstigesDescription.value],
+                description: issueDescription.value,
+                priority: priority.value,
+                author: user.value.uid,
+                authorName: user.value.displayName,
+                authorMail: user.value.email,
+                fileUrl: (url.value ? url.value : null),
+                filePath: (filePath.value ? filePath.value : null),
+                status: status.value,
+                createdAt: timestamp(),
+            });
+            isPending.value = false;
+            if (!error.value) {
+                console.log("ticket added");
+                router.push({name: 'Dashboard'});
+            }
+            
         };
         const types = ["image/png", "image/jpeg", "application/pdf", "video/mp4"];
         const handleChange = (e) => {
@@ -348,10 +347,6 @@ export default {
     #mediaList .form-group {
         margin-left:0;
     }
-}
-
-label.view {
-    color:#999;
 }
 
 </style>

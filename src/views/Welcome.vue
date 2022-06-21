@@ -21,7 +21,8 @@
             </div>
             <div v-else-if="showSignUp">
                 <h1>Registrierung</h1>
-                <p>Für die Registrierung eines neuen Kontos ist die Zugehörigkeit zur Hochschule erforderlich. Hierzu wird die E-Mail-Adresse der IU benötigt.</p>
+                <p>Für die Registrierung eines neuen Kontos ist die Zugehörigkeit zur Hochschule erforderlich. Hierzu wird die E-Mail-Adresse der IU benötigt.
+                    <br><small>(iubh-fernstudium.de, iu-fernstudium.de, iubh.de, iu.org)</small></p>
                 <SignUpForm @SignUp="enterVerificationPopUp" />
                 <p>Bereits registriert? ➜ <span @click="showLoginForm">Login</span></p>
             </div>
