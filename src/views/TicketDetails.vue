@@ -101,19 +101,17 @@
                     <hr>
                     <h3>Bearbeitung durch Tutor</h3>
 
-                    <p>@ToDo: Diese Bearbeitung nur dann zulassen, wenn Status = "Offen" oder "In Arbeit". Ansonsten nur anzeigen.</p>
-
-                    <div v-if="(document.status == 'Offen') ||  (document.status == 'In Arbeit')" class="mb-4">
+                    <div  class="mb-4">
                         <label for="feedbackComment">Tutor-Feedback:</label>
-                        <textarea class="form-control" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea>
-                    </div>
+                        <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea>
+                    </div>                    
                     <div class="mt-4">
                         Status ändern:
                     </div>
                     <div class="mt-1">
                         
-                        <button type="button"  class="btn btn-warning">In Arbeit</button> &nbsp; 
-                        <button type="button" class="btn btn-success">Erledigt</button> &nbsp; 
+                        <button type="button" @click="inProgressTicket" class="btn btn-warning">In Arbeit</button> &nbsp; 
+                        <button type="button" @click="closeTicket" class="btn btn-success">Erledigt</button> &nbsp; 
                        
                         <button type="button" @click="rejectTicket" class="btn btn-info" >Abgelehnt</button>
                        
@@ -135,22 +133,67 @@
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import getDocument from "../composables/getDocument";
-
+import useDocument from "../composables/useDocument";
+import { ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
+import { computed } from 'vue';
 export default {
     components: { TemplateHeader, TemplateFooter },
     props: ["id"],
 
     setup(props) {
        
-
+        const router = useRouter();
         const { error, document } = getDocument("tickets", props.id);
+        const { updateDoc } = useDocument("tickets", props.id)
 
-        const rejectTicket = (e) => {
 
+
+            const feedback = ref('');
+        if(document.feedback != null){
+            feedback.value = document.feedback;
+        }
+        console.log(feedback.value)
+
+        const rejectTicket = async(e) => {
         
-    }      
+            await updateDoc({
+                status: 'Abgelehnt',
+                feedback: feedback.value
+            });
+            router.push({name: 'Dashboard'});
+            
+         }      
+         const inProgressTicket = async(e) => {
+        
+            await updateDoc({
+                status: 'In Arbeit',
+               
+            });
+            router.push({name: 'Dashboard'});
 
-        return { error, document, rejectTicket };
+           
+         }      
+         const closeTicket = async(e) => {
+        
+            await updateDoc({
+                status: 'Erledigt',
+                feedback: feedback.value
+            })
+           router.push({name: 'Dashboard'});
+         }      
+
+          const hideTextarea = computed(() => {
+            if(document.value.status == 'In Arbeit' || document.value.status == 'Offen'){
+               return false;     
+            }
+            else{
+                return true;
+            }
+
+        })
+
+        return { error, document, rejectTicket, feedback ,inProgressTicket, closeTicket, hideTextarea};
     },
 };
 </script>
