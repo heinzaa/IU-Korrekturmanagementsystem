@@ -103,21 +103,20 @@
                     </div>
 
                     <hr>
-                    <h3>Bearbeitung durch Tutor</h3>
+                    <h3>Anmerkung des Tutors</h3>
 
                     <div  class="mb-4">
                         <label for="feedbackComment">Tutor-Feedback:</label>
-                        <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea>
+                        <p>{{document.feedback}} </p>
+                        <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea> 
                     </div>                    
                     <div class="mt-4">
                         Status ändern:
                     </div>
                     <div class="mt-1">
                         
-                        <button type="button" @click="inProgressTicket" class="btn btn-warning">In Arbeit</button> &nbsp; 
-                        <button type="button" @click="closeTicket" class="btn btn-success">Erledigt</button> &nbsp; 
+                        <button type="button" @click="inProgressTicket" class="btn btn-warning">Abschicken</button> &nbsp; 
                        
-                        <button type="button" @click="rejectTicket" class="btn btn-info" >Abgelehnt</button>
                        
                     </div>
                     <div class="mt-2">
@@ -151,7 +150,7 @@ export default {
         const { error, document } = getDocument("tickets", props.id);
         const { updateDoc } = useDocument("tickets", props.id)
 
-
+        const feedback = ref('')
 
         
         
@@ -159,33 +158,6 @@ export default {
         
         
 
-        const rejectTicket = async(e) => {
-        
-            await updateDoc({
-                status: 'Abgelehnt',
-                feedback: feedback.value
-            });
-            router.push({name: 'Dashboard'});
-            
-         }      
-         const inProgressTicket = async(e) => {
-        
-            await updateDoc({
-                status: 'In Arbeit',
-               
-            });
-            router.push({name: 'Dashboard'});
-
-           
-         }      
-         const closeTicket = async(e) => {
-        
-            await updateDoc({
-                status: 'Erledigt',
-                feedback: feedback.value
-            })
-           router.push({name: 'Dashboard'});
-         }      
 
           const hideTextarea = computed(() => {
             if(document.value.status == 'In Arbeit' || document.value.status == 'Offen'){               
@@ -197,7 +169,7 @@ export default {
 
         })
 
-        return { error, document, rejectTicket ,inProgressTicket, closeTicket, hideTextarea};
+        return { error, document, feedback, hideTextarea};
     },
 };
 </script>
