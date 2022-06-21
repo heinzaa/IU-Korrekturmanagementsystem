@@ -8,23 +8,23 @@
         <div v-else>
             <div id="status-panel">
                 <div @click="filterTickets('Offen')" data-status="Offen">
-                    <strong class="rounded-pill bg-danger">2</strong>
+                    <strong class="rounded-pill bg-danger">{{openTickets}}</strong>
                     <span>Offen</span>
                 </div>
                 <div @click="filterTickets('In Arbeit')" data-status="In Arbeit">
-                    <strong class="rounded-pill bg-warning">1</strong>
+                    <strong class="rounded-pill bg-warning">{{inProgressTickets}}</strong>
                     <span>In Arbeit</span>
                 </div>
                 <div @click="filterTickets('Erledigt')" data-status="Erledigt">
-                    <strong class="rounded-pill bg-success">3</strong>
+                    <strong class="rounded-pill bg-success">{{closedTickets}}</strong>
                     <span>Erledigt</span>
                 </div>
                 <div @click="filterTickets('Abgelehnt')" data-status="Abgelehnt">
-                    <strong class="rounded-pill bg-info">1</strong>
+                    <strong class="rounded-pill bg-info">{{rejectedTickets}}</strong>
                     <span>Abgelehnt</span>
                 </div>
             </div>
-            <small>@ToDo: folgende Liste muss noch auf den eingeloggten User/Tutor eingeschränkt werden.</small>
+            
             <div class="table-responsive">            
                 <table class="table table-hover table-tickets">
                     <thead>
@@ -77,12 +77,56 @@
 import getCollection from '../composables/getCollection' 
 import getUser from '../composables/getUser'
 import { useRouter } from 'vue-router';
+import {computed} from 'vue';
 export default {
     setup() {
         const { user } = getUser();
         const router = useRouter();
 
-        const { error, documents } = getCollection("tickets");
+        const { error, documents } = getCollection("tickets", [
+            "courseInformation.email", "==", user.value.email,
+        ]);
+        const openTickets = computed(() => {
+            if(documents.value){
+               let doc =  documents.value.filter(elements => elements.status == 'Offen');         
+            return doc.length;
+            }
+            else{
+                return 0;
+            }
+
+        })
+        const inProgressTickets = computed(() => {
+            if(documents.value){
+               let doc =  documents.value.filter(elements => elements.status == 'In Arbeit');         
+            return doc.length;
+            }
+            else{
+                return 0;
+            }
+
+        })
+         const closedTickets = computed(() => {
+            if(documents.value){
+               let doc =  documents.value.filter(elements => elements.status == 'Erledigt');         
+            return doc.length;
+            }
+            else{
+                return 0;
+            }
+
+        })
+
+         const rejectedTickets = computed(() => {
+            if(documents.value){
+               let doc =  documents.value.filter(elements => elements.status == 'Abgelehnt');         
+            return doc.length;
+            }
+            else{
+                return 0;
+            }
+
+        })
 
         console.log(documents);
 
@@ -125,7 +169,7 @@ export default {
             msgEmptyList.style.display = (hasVisibleItems ? 'none' : 'block');
         }
 
-        return { error, documents, toTicketDetails, filterTickets };
+        return { error, documents, toTicketDetails, filterTickets, openTickets, inProgressTickets, closedTickets, rejectedTickets };
     },
 };
 

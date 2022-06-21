@@ -10,20 +10,20 @@
         </div>
         <div v-else>
             <div id="status-panel">
-                <div @click="filterTickets('Offen')" data-status="Offen">
-                    <strong class="rounded-pill bg-danger">2</strong>
+                <div @click="filterTickets('Offen'); countingOpenTickets()" data-status="Offen">
+                    <strong class="rounded-pill bg-danger">{{OpenTickets}}</strong>
                     <span>Offen</span>
                 </div>
                 <div @click="filterTickets('In Arbeit')" data-status="In Arbeit">
-                    <strong class="rounded-pill bg-warning">1</strong>
+                    <strong class="rounded-pill bg-warning">{{inProgressTickets}}</strong>
                     <span>In Arbeit</span>
                 </div>
                 <div @click="filterTickets('Erledigt')" data-status="Erledigt">
-                    <strong class="rounded-pill bg-success">3</strong>
+                    <strong class="rounded-pill bg-success">{{closedTickets}}</strong>
                     <span>Erledigt</span>
                 </div>
                 <div @click="filterTickets('Abgelehnt')" data-status="Abgelehnt">
-                    <strong class="rounded-pill bg-info">1</strong>
+                    <strong class="rounded-pill bg-info">{{rejectedTickets}}</strong>
                     <span>Abgelehnt</span>
                 </div>
             </div>
@@ -66,20 +66,66 @@
 import getCollection from '../composables/getCollection' 
 import getUser from '../composables/getUser'
 import { useRouter } from 'vue-router';
+import { ref } from '@vue/reactivity'; 
+import { computed } from 'vue';
+
 export default {
     setup() {
         const { user } = getUser();
         const router = useRouter();
-
         const { error, documents } = getCollection("tickets", [
             "author", "==", user.value.uid,
         ]);
 
-        console.log(documents);
+       
+
+        const OpenTickets = computed(() => {
+            if(documents.value){
+               let doc =  documents.value.filter(elements => elements.status == 'Offen');         
+            return doc.length;
+            }
+            else{
+                return 0;
+            }
+
+        })
+        const inProgressTickets = computed(() => {
+            if(documents.value){
+               let doc =  documents.value.filter(elements => elements.status == 'In Arbeit');         
+            return doc.length;
+            }
+            else{
+                return 0;
+            }
+
+        })
+         const closedTickets = computed(() => {
+            if(documents.value){
+               let doc =  documents.value.filter(elements => elements.status == 'Erledigt');         
+            return doc.length;
+            }
+            else{
+                return 0;
+            }
+
+        })
+
+         const rejectedTickets = computed(() => {
+            if(documents.value){
+               let doc =  documents.value.filter(elements => elements.status == 'Abgelehnt');         
+            return doc.length;
+            }
+            else{
+                return 0;
+            }
+
+        })
+        
 
         const toTicketDetails = (ticketID) => {
             router.push({ name: "TicketDetails", params: { id: ticketID } });
         };
+
 
         /* Filterung der Tickets durch Sichtbarkeit */
         let lastFilterStatus = null;
@@ -116,7 +162,7 @@ export default {
             msgEmptyList.style.display = (hasVisibleItems ? 'none' : 'block');
         }
 
-        return { error, documents, toTicketDetails, filterTickets };
+        return { error, documents, toTicketDetails, filterTickets, OpenTickets, inProgressTickets, closedTickets, rejectedTickets };
     },
 };
 
