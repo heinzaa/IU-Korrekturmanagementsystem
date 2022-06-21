@@ -27,6 +27,10 @@
                             <label class="view">Priorität:</label>
                             <div>{{document.priority}}</div>
                         </div>
+                         <div class="mb-4 col-md-6">
+                            <label class="view">Status:</label>
+                            <div>{{document.status}}</div>
+                        </div>
                     </div>
                     <div class="mb-4">
                         <p><label class="view">Betroffenen Medien:</label></p>
@@ -149,11 +153,11 @@ export default {
 
 
 
-            const feedback = ref('');
-        if(document.feedback != null){
-            feedback.value = document.feedback;
-        }
-        console.log(feedback.value)
+        
+        
+       
+        
+        
 
         const rejectTicket = async(e) => {
         
@@ -184,7 +188,7 @@ export default {
          }      
 
           const hideTextarea = computed(() => {
-            if(document.value.status == 'In Arbeit' || document.value.status == 'Offen'){
+            if(document.value.status == 'In Arbeit' || document.value.status == 'Offen'){               
                return false;     
             }
             else{
@@ -193,7 +197,7 @@ export default {
 
         })
 
-        return { error, document, rejectTicket, feedback ,inProgressTicket, closeTicket, hideTextarea};
+        return { error, document, rejectTicket ,inProgressTicket, closeTicket, hideTextarea};
     },
 };
 </script>
