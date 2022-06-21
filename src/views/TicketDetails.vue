@@ -81,7 +81,8 @@
                         <label class="view">Dateien:</label>
                         <div v-if="document.filePath">
                             <!-- Vorschau, wenn es ein Bild ist -->
-                            <a :href="document.fileUrl" target="_blank"><img :src="document.fileUrl" class="img-preview" /></a>
+                            <a v-if="document.fileType == 'image/jpg' || document.fileType == 'image/jpeg' || document.fileType == 'image/png'" :href="document.fileUrl" target="_blank"><img :src="document.fileUrl" class="img-preview" /></a>
+                            <iframe v-if="document.fileType == 'application/pdf'" :src="document.fileUrl" style="width:300px; height:240px; border:0;"></iframe>
                             <!-- Download-Link -->
                             <br><b-icon-paperclip style="color:#999; margin-left:-0.15em;"></b-icon-paperclip> 
                             <a :href="document.fileUrl" target="_blank">{{document.filePath.replace(/^.*[\\\/]/, '')}}</a>
@@ -207,6 +208,6 @@ label.view {
     color:#999;
 }
 .img-preview {
-    max-width:200px; height:auto;
+    max-width:240px; height:auto;
 }
 </style>
