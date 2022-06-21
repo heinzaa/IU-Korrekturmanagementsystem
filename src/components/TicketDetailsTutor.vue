@@ -103,11 +103,12 @@
                     </div>
 
                     <hr>
-                    <h3>Bearbeitung durch Tutor</h3>
+                    <h3>Anmerkung des Tutors</h3>
 
                     <div  class="mb-4">
                         <label for="feedbackComment">Tutor-Feedback:</label>
-                        <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea>
+                        <p>{{document.feedback}} </p>
+                        <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea> 
                     </div>                    
                     <div class="mt-4">
                         Status ändern:
@@ -115,8 +116,7 @@
                     <div class="mt-1">
                         
                         <button type="button" @click="inProgressTicket" class="btn btn-warning">In Arbeit</button> &nbsp; 
-                        <button type="button" @click="closeTicket" class="btn btn-success">Erledigt</button> &nbsp; 
-                       
+                        <button type="button" @click="closeTicket" class="btn btn-success">Erledigt</button> &nbsp;                        
                         <button type="button" @click="rejectTicket" class="btn btn-info" >Abgelehnt</button>
                        
                     </div>
@@ -151,7 +151,7 @@ export default {
         const { error, document } = getDocument("tickets", props.id);
         const { updateDoc } = useDocument("tickets", props.id)
 
-
+        const feedback = ref('')
 
         
         
@@ -197,7 +197,7 @@ export default {
 
         })
 
-        return { error, document, rejectTicket ,inProgressTicket, closeTicket, hideTextarea};
+        return { error, document, rejectTicket ,inProgressTicket, closeTicket, feedback, hideTextarea};
     },
 };
 </script>
