@@ -132,11 +132,15 @@
                     <label for="issueDescription">Beschreibe deine Ticketmeldung:</label>
                     <textarea required class="form-control" v-model="issueDescription" name="issueDescription" id="issueDescription" style="min-height:200px; max-height:70vh;"></textarea>
                 </div>
+                
                 <div class="mb-4">
                     <label for="issueFile">Upload von Dateien (optional):</label>
                     <input type="file" class="form-control" @change="handleChange" name="issueFile" id="issueFile" accept="image/png, image/jpeg, .pdf, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .mp4">
+                    <div v-if="fileError" class="error ">{{fileError}}</div>
                     <div class="form-text">Erlaubte Dateiformate: Bilder (jpg, jpeg, png), PDF, MP4-Video und MS Word. <br>Dateigröße: max. 5 MB</div>
+                
                 </div>
+                
                 <div class="mt-4">
                     <button v-if="!isPending" class="btn btn-lg btn-primary" type="submit">Ticket einreichen</button>
                     <button v-else disabled class="btn btn-lg btn-primary" type="submit">Ticket wird erstellt...</button>
@@ -243,6 +247,8 @@ export default {
         };
         const handleSubmit = async () => {
             isPending.value = true;
+            debugger;
+            console.log(file.value)
             if (file.value) {
                 await uploadFile(file.value);
             }
@@ -281,12 +287,20 @@ export default {
         const handleChange = (e) => {
             const selected = e.target.files[0];
             console.log(selected);
-           
-            if (selected && types.includes(selected.type)) {
+            let fileSizePermitted = e.target.files[0].size < 6000000;
+            console.log(fileSizePermitted);
+            if (selected && types.includes(selected.type) && fileSizePermitted ) {
                 console.log("hallo Change");
                 file.value = selected;
                 fileError.value = null;
+                return;
             }
+            if(fileSizePermitted == false){
+                e.target.value = '';
+                fileError.value = "Dateigröße überschreitet die zulässigen 5 MB!"
+            }
+
+            
         };
         return {
             title,
