@@ -103,7 +103,7 @@
 
                     <p>@ToDo: Diese Bearbeitung nur dann zulassen, wenn Status = "Offen" oder "In Arbeit". Ansonsten nur anzeigen.</p>
 
-                    <div class="mb-4">
+                    <div v-if="(document.status == 'Offen') ||  (document.status == 'In Arbeit')" class="mb-4">
                         <label for="feedbackComment">Tutor-Feedback:</label>
                         <textarea class="form-control" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea>
                     </div>
@@ -111,9 +111,12 @@
                         Status ändern:
                     </div>
                     <div class="mt-1">
-                        <button type="button" class="btn btn-warning">In Arbeit</button> &nbsp; 
+                        
+                        <button type="button"  class="btn btn-warning">In Arbeit</button> &nbsp; 
                         <button type="button" class="btn btn-success">Erledigt</button> &nbsp; 
-                        <button type="button" class="btn btn-info">Abgelehnt</button>
+                       
+                        <button type="button" @click="rejectTicket" class="btn btn-info" >Abgelehnt</button>
+                       
                     </div>
                     <div class="mt-2">
                         <small>Hinweis: Bei Änderung des Status wird der Ersteller per E-Mail inkl. angegebenem Feedback informiert.
@@ -132,13 +135,22 @@
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import getDocument from "../composables/getDocument";
+
 export default {
     components: { TemplateHeader, TemplateFooter },
     props: ["id"],
 
     setup(props) {
+       
+
         const { error, document } = getDocument("tickets", props.id);
-        return { error, document };
+
+        const rejectTicket = (e) => {
+
+        
+    }      
+
+        return { error, document, rejectTicket };
     },
 };
 </script>
