@@ -24,7 +24,6 @@ const useStorage = () => {
         }
         catch(error){
             error.value = error.message;
-
         }
     }
 
