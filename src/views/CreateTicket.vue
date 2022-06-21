@@ -203,6 +203,7 @@ export default {
     setup(props, context) {
         const router = useRouter();
         const { filePath, url, uploadFile } = useStorage();
+        
         const { error, addDoc } = useCollection("tickets");
         const { user } = getUser();
         // Referenzen für die eingaben
@@ -210,6 +211,7 @@ export default {
         const course = ref(null);
         const category = ref(null);
         const priority = ref('Niedrig');
+        const fileType = ref(null);
 
         let arrLearnApp = ref([]);
         const arrLearnAppDescription = ref('');
@@ -247,8 +249,6 @@ export default {
         };
         const handleSubmit = async () => {
             isPending.value = true;
-            debugger;
-            console.log(file.value)
             if (file.value) {
                 await uploadFile(file.value);
             }
@@ -273,6 +273,7 @@ export default {
                 authorMail: user.value.email,
                 fileUrl: (url.value ? url.value : null),
                 filePath: (filePath.value ? filePath.value : null),
+                fileType: fileType.value,
                 status: status.value,
                 createdAt: timestamp(),
             });
@@ -286,6 +287,7 @@ export default {
         const types = ["image/png", "image/jpeg", "application/pdf", "video/mp4"];
         const handleChange = (e) => {
             const selected = e.target.files[0];
+            debugger;
             console.log(selected);
             let fileSizePermitted = e.target.files[0].size < 6000000;
             console.log(fileSizePermitted);
@@ -293,6 +295,8 @@ export default {
                 console.log("hallo Change");
                 file.value = selected;
                 fileError.value = null;
+                fileType.value = selected.type
+                console.log(selected);
                 return;
             }
             if(fileSizePermitted == false){
