@@ -207,6 +207,6 @@ label.view {
     color:#999;
 }
 .img-preview {
-    max-width:200px; height:auto;
+    max-width:240px; height:auto;
 }
 </style>
