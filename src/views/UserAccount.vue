@@ -25,15 +25,18 @@
                 <form>
                     <div class="error mb-2">{{error}}</div>
                     <div class="form-floating mb-3">
-                        <input type="password" required class="form-control" id="floatingPassword1" placeholder="Aktuelles Passwort" v-model="passwordOld">
+                        <input v-bind:type="[showPasswordOld ? 'text' : 'password']" required class="form-control" id="floatingPassword1" placeholder="Aktuelles Passwort" v-model="passwordOld">
+                        <b-icon-eye style="cursor:pointer" @click="showPasswordOld = !showPasswordOld"></b-icon-eye>
                         <label for="floatingPassword1">Aktuelles Passwort</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" required class="form-control" id="floatingPassword2" placeholder="Neues Passwort" v-model="passwordNew">
+                        <input v-bind:type="[showPasswordNew ? 'text' : 'password']" required class="form-control" id="floatingPassword2" placeholder="Neues Passwort" v-model="passwordNew">
+                        <b-icon-eye style="cursor:pointer" @click="showPasswordNew = !showPasswordNew"></b-icon-eye>
                         <label for="floatingPassword2">Neues Passwort</label>
                     </div>
                      <div class="form-floating mb-3">
-                        <input type="password" required class="form-control" id="floatingPassword2" placeholder="Neues Passwort" v-model="passwordNewControl">
+                        <input v-bind:type="[showPasswordNewControl ? 'text' : 'password']" required class="form-control" id="floatingPassword2" placeholder="Neues Passwort" v-model="passwordNewControl">
+                        <b-icon-eye style="cursor:pointer" class @click="showPasswordNewControl = !showPasswordNewControl"></b-icon-eye>
                         <label for="floatingPassword2">Passwort wiederholen</label>
                     </div>
                     <div>
@@ -58,7 +61,8 @@
                     <p>Mit der Löschung deines Benutzerkontos werden deine Kontodaten sowie eingereichte Tickets gelöscht. Der Vorgang kann nicht rückgängig gemacht werden.
                         Anschließend ist eine Neuregistrierung jederzeit wieder möglich.
                     </p>
-                    <button id="deleteUser" type="button" class="btn btn-danger" @click="deleteUserAccount">Löschung durchführen</button>
+                    <p class="error">{{deleteAccountErrorTutor}}</p>
+                    <button id="deleteUser" type="button" class="btn btn-danger" @click="deleteUser">Löschung durchführen</button>
                     <div class="mb-3"></div>
                     <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('buttonForConfirm').style.display='inline-block'; this.parentNode.style.display='none';">Abbrechen</button>
                 </div>
@@ -79,6 +83,7 @@ import { ref } from "@vue/reactivity";
 import useDeleteUser from "../composables/useDeleteUser";
 
 import useUpdatePassword from "../composables/useUpdatePassword";
+import tutor_course from "../assets/tutor_course.json";
 
 export default {
     components: {
@@ -101,6 +106,11 @@ export default {
         const passwordNewEqualsOld = ref(false);
         const passwordNewEqualsControl = ref(false);
         const isPending = ref("");
+        const showPasswordNewControl = ref(false);
+        const showPasswordNew = ref(false);
+        const showPasswordOld = ref(false);
+        const deleteAccountErrorTutor = ref('')
+
 
         const { deleteUserError, deleteUserHehe, isPendingDeleteUser } =
             useDeleteUser();
@@ -122,13 +132,26 @@ export default {
             isPending.value = false;
         };
 
-        const deleteUserAccount = async () => {
-            await deleteUserHehe();
-            router.push('/');
-        };
+        // Tutor kann seinen Account nicht selbst löschen 
+        const deleteUser = async () => {
+              let emailValid = tutor_course.find(item => item.email === user.value.email);
+
+              if(emailValid){
+                  deleteAccountErrorTutor.value = 'Tutoren können ihr Benutzerkonto nicht selbst löschen.'
+              }
+              else{
+                  await deleteUserHehe();
+                  router.push('/');
+              }
+        }
+        
+
+        
 
         return {
             user,
+            error,
+            deleteAccountErrorTutor,
             passwordOld,
             passwordNew,
             passwordNewControl,
@@ -136,8 +159,11 @@ export default {
             passwordNewEqualsControl,
             isPending,
             changePassword,
-            deleteUserAccount,
+            deleteUser,
             deleteUserError,
+            showPasswordNewControl,
+            showPasswordNew,
+            showPasswordOld
         };
     },
 };

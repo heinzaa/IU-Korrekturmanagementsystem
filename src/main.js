@@ -11,14 +11,16 @@ import './assets/main.css'
 let app;
 
 
+
 // fires every time firebase detects a change in authentication
 projectAuth.onAuthStateChanged(() => {
 
     if(!app){
-   app = createApp(App)
+    app = createApp(App)
     .use(router)
     .use(BootstrapIconsPlugin)
     .mount('#app')
+
     }
 
 })
