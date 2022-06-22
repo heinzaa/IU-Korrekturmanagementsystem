@@ -8,7 +8,7 @@
                 <p>&nbsp;</p>
                 <h2>Login</h2>
                 <LoginForm @login="enterDashboard" />
-                <p>Passwort <span @click="showResetPasswordForm">vergessen</span>?</p>
+                <p><span @click="showResetPasswordForm">Passwort vergessen?</span></p>
                 <p>Noch kein Konto? ➜ <span @click="showSignUpForm">Registrierung</span></p>
                 <p>Mitarbeiter <span @click="showLoginTutorForm">Login</span></p>
             </div>
