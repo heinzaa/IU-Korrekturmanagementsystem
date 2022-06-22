@@ -17,7 +17,6 @@ const deleteUserHehe = async () => {
     deleteUserError.value = null;
     isPending.value = true;
 
-    console.log("ich komme hier nicht rein")
 
     try {
        
