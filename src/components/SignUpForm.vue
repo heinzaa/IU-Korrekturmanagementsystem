@@ -11,11 +11,13 @@
                 <label for="floatingEmail">IU E-Mail-Adresse</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="password" required class="form-control" id="floatingPassword" placeholder="Passwort" v-model="password">
+                <input v-bind:type="[showPassword ? 'text' : 'password']" required class="form-control" id="floatingPassword" placeholder="Passwort" v-model="password">
+                <b-icon-eye style="cursor:pointer" @click="showPassword = !showPassword"></b-icon-eye>
                 <label for="floatingPassword">Passwort</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="password" required class="form-control" id="floatingPasswordControl" placeholder="Passwort" v-model="passwordControl">
+                <input v-bind:type="[showPasswordControl ? 'text' : 'password']" required class="form-control" id="floatingPasswordControl" placeholder="Passwort" v-model="passwordControl">
+                <b-icon-eye style="cursor:pointer" @click="showPasswordControl = !showPasswordControl"></b-icon-eye>
                 <label for="floatingPasswordControl">Passwort wiederholen</label>
                 <span v-if="isPasswordCorrect"> Passwörter stimmen nicht überein. </span>
             </div>
@@ -39,6 +41,8 @@ export default {
         const password = ref('');
         const passwordControl = ref('');
         const isPasswordCorrect = ref(false);
+        const showPassword = ref(false);
+        const showPasswordControl = ref(false);
 
             const handleSubmit = async() => {
 
@@ -60,7 +64,7 @@ export default {
         
         
         
-        return {displayName, email, password, passwordControl, handleSubmit, error, isPasswordCorrect}
+        return {displayName, email, password, passwordControl, handleSubmit, error, isPasswordCorrect, showPasswordControl, showPassword}
    }
 }
 </script>

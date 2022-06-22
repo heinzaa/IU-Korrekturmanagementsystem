@@ -8,7 +8,8 @@
                 <label for="floatingEmail">IU E-Mail-Adresse</label>
             </div>            
             <div class="form-floating mb-3">
-                <input type="password" required class="form-control" id="floatingPassword" placeholder="Passwort" v-model="password">
+                <input v-bind:type="[showPassword ? 'text' : 'password']" required class="form-control" id="floatingPassword" placeholder="Passwort" v-model="password">
+                <b-icon-eye style="cursor:pointer" @click="showPassword = !showPassword"></b-icon-eye>
                 <label for="floatingPassword">Passwort</label>
             </div>
             <button v-if="!isPending" class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
@@ -35,7 +36,7 @@ export default {
        const email = ref('');
        const password = ref('');
        const { error, login, isPending } = useLogin(); 
-
+       const showPassword = ref(false);
 
       
 
@@ -54,7 +55,7 @@ export default {
         }
         
         }
-       return { email, password, handleSubmit, error, isPending}
+       return { email, password, handleSubmit, error, showPassword, isPending}
    }
 }
 </script>
