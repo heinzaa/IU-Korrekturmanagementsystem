@@ -29,7 +29,7 @@
                 <table class="table table-hover table-tickets">
                     <thead>
                         <tr>
-                            <th scope="col" style="width:130px;">Datum</th>
+                            <th scope="col" style="width:130px;">Erstellungsdatum</th>
                             <th scope="col" style="width:130px;">Priorität</th>
                             <th scope="col">Titel</th>
                             <th scope="col">Kurs</th>
