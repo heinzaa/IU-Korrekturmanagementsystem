@@ -2,15 +2,15 @@
     <div class="form-signin">
         <form @submit.prevent="handleSubmit">
             <div class="error mb-2">{{error}}</div>
-            <!--<b-icon-eye></b-icon-eye>-->
             <div class="form-floating mb-2">
                 <input type="email" required class="form-control" id="floatingEmail" placeholder="mein.name@iubh-fernstudium.com" v-model="email">
                 <label for="floatingEmail">IU E-Mail-Adresse</label>
             </div>            
             <div class="form-floating mb-3">
                 <input v-bind:type="[showPassword ? 'text' : 'password']" required class="form-control input-group-append" id="floatingPassword" placeholder="Passwort" v-model="password">
-                <span class="input-group-text">
-                <b-icon-eye style="cursor:pointer" @click="showPassword = !showPassword"></b-icon-eye>
+                <span class="showPasswordIcon" @click="showPassword = !showPassword">
+                    <b-icon-eye v-if="!showPassword"></b-icon-eye>
+                    <b-icon-eye-slash v-if="showPassword"></b-icon-eye-slash>
                 </span>
                 <label for="floatingPassword">Passwort</label>
             </div>

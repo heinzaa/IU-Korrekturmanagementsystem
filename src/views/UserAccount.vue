@@ -7,7 +7,6 @@
             <p>Diese folgenden Kontodaten können lediglich eingesehen, jedoch nicht geändert werden.</p>
             <!-- Kontodaten -->
             <div class="form-signin">
-                <div class="error mb-2">{{error}}</div>
                 <div class="form-floating mb-2">
                     <input type="text" required class="form-control" id="floatingEmail" v-model="user.displayName" readonly>
                     <label for="floatingEmail">Vorname</label>
@@ -26,22 +25,31 @@
                     <div class="error mb-2">{{error}}</div>
                     <div class="form-floating mb-3">
                         <input v-bind:type="[showPasswordOld ? 'text' : 'password']" required class="form-control" id="floatingPassword1" placeholder="Aktuelles Passwort" v-model="passwordOld">
-                        <b-icon-eye style="cursor:pointer" @click="showPasswordOld = !showPasswordOld"></b-icon-eye>
+                        <span class="showPasswordIcon" @click="showPasswordOld = !showPasswordOld">
+                            <b-icon-eye v-if="!showPasswordOld"></b-icon-eye>
+                            <b-icon-eye-slash v-if="showPasswordOld"></b-icon-eye-slash>
+                        </span>
                         <label for="floatingPassword1">Aktuelles Passwort</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input v-bind:type="[showPasswordNew ? 'text' : 'password']" required class="form-control" id="floatingPassword2" placeholder="Neues Passwort" v-model="passwordNew">
-                        <b-icon-eye style="cursor:pointer" @click="showPasswordNew = !showPasswordNew"></b-icon-eye>
+                        <span class="showPasswordIcon" @click="showPasswordNew = !showPasswordNew">
+                            <b-icon-eye v-if="!showPasswordNew"></b-icon-eye>
+                            <b-icon-eye-slash v-if="showPasswordNew"></b-icon-eye-slash>
+                        </span>
                         <label for="floatingPassword2">Neues Passwort</label>
                     </div>
                      <div class="form-floating mb-3">
-                        <input v-bind:type="[showPasswordNewControl ? 'text' : 'password']" required class="form-control" id="floatingPassword2" placeholder="Neues Passwort" v-model="passwordNewControl">
-                        <b-icon-eye style="cursor:pointer" class @click="showPasswordNewControl = !showPasswordNewControl"></b-icon-eye>
-                        <label for="floatingPassword2">Passwort wiederholen</label>
+                        <input v-bind:type="[showPasswordNewControl ? 'text' : 'password']" required class="form-control" id="floatingPassword3" placeholder="Neues Passwort" v-model="passwordNewControl">
+                        <span class="showPasswordIcon" @click="showPasswordNewControl = !showPasswordNewControl">
+                            <b-icon-eye v-if="!showPasswordNewControl"></b-icon-eye>
+                            <b-icon-eye-slash v-if="showPasswordNewControl"></b-icon-eye-slash>
+                        </span>
+                        <label for="floatingPassword3">Passwort wiederholen</label>
                     </div>
                     <div>
-                    <p v-if="passwordNewEqualsOld"> Passwort Neu darf nicht das Alte sein </p>
-                    <p v-else-if="passwordNewEqualsControl"> Die neuen Passwörter stimmen nicht überein </p>
+                    <p v-if="passwordNewEqualsOld" class="error">Neues Passwort darf nicht das Alte sein.</p>
+                    <p v-else-if="passwordNewEqualsControl" class="error">Die neuen Passwörter stimmen nicht überein.</p>
                     </div>
                     <div>
                     <button v-if="!isPending" class="w-100 btn btn-primary" @click="changePassword" type="submit">Übernehmen</button>

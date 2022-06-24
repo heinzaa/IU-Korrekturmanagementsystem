@@ -12,12 +12,18 @@
             </div>
             <div class="form-floating mb-3">
                 <input v-bind:type="[showPassword ? 'text' : 'password']" required class="form-control" id="floatingPassword" placeholder="Passwort" v-model="password">
-                <b-icon-eye style="cursor:pointer" @click="showPassword = !showPassword"></b-icon-eye>
+                <span class="showPasswordIcon" @click="showPassword = !showPassword">
+                    <b-icon-eye v-if="!showPassword"></b-icon-eye>
+                    <b-icon-eye-slash v-if="showPassword"></b-icon-eye-slash>
+                </span>
                 <label for="floatingPassword">Passwort</label>
             </div>
             <div class="form-floating mb-3">
                 <input v-bind:type="[showPasswordControl ? 'text' : 'password']" required class="form-control" id="floatingPasswordControl" placeholder="Passwort" v-model="passwordControl">
-                <b-icon-eye style="cursor:pointer" @click="showPasswordControl = !showPasswordControl"></b-icon-eye>
+                <span class="showPasswordIcon" @click="showPasswordControl = !showPasswordControl">
+                    <b-icon-eye v-if="!showPasswordControl"></b-icon-eye>
+                    <b-icon-eye-slash v-if="showPasswordControl"></b-icon-eye-slash>
+                </span>
                 <label for="floatingPasswordControl">Passwort wiederholen</label>
                 <span v-if="isPasswordCorrect"> Passwörter stimmen nicht überein. </span>
             </div>

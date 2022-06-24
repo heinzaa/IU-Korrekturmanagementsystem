@@ -150,6 +150,15 @@ button {
     display: none;
 }
 
+.showPasswordIcon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1em 0.8em;
+    cursor: pointer;
+}
+
+
 @media screen and (max-width: 767px) {
     #status-panel div {
         width: 47%;
