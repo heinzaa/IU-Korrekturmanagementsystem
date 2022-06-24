@@ -1,7 +1,7 @@
 <template>
     <nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
         <div class="container">
-            <a v-if="userLoggedIn" id="logo" class="navbar-brand" href="/dashboard" title="Korrekturmanagementsystem"><img src="/kms-logo.svg" alt=""></a>
+            <a v-bind:href="[userLoggedIn ? '/dashboard' : '/']" id="logo" class="navbar-brand" title="Korrekturmanagementsystem"><img src="/kms-logo.svg" alt=""></a>
             <button
                 class="navbar-toggler"
                 type="button"
