@@ -16,29 +16,38 @@ const signup = async (email, password, displayName) => {
     const validEmailDomains = ['iubh-fernstudium.de', 'iu-fernstudium.de', 'iubh.de', 'iu.org'];
     const regexEmail = '[^@]+@(' + validEmailDomains.join('|') + ')';
     let regex_iubh = new RegExp(regexEmail);
- 
+   
+    console.log(passwordLength)
     const { user } = getUser();
- 
-    try {
-        const response = await projectAuth
-            .createUserWithEmailAndPassword(email, password);
 
-        await response.user.sendEmailVerification({
-            url: "http://localhost:8081/"
-        });
+    if(password.length < 8){
+        error.value = 'Passwort muss mind. 8 Stellen haben.'
+        return;
+    } 
+    else{       
+        try {          
+            
+            const response = await projectAuth
+                .createUserWithEmailAndPassword(email, password);
 
-        if (!response) {
-            throw new Error('Could not Sign up!');
+            await response.user.sendEmailVerification({
+                url: "http://localhost:8081/"
+                });
+        
+
+            if (!response) {
+                throw new Error('Could not Sign up!');
+            }
+
+            await response.user.updateProfile({ displayName });
+            error.value = null;
+            isPending.value = false;
+            return response
+        } catch (err) {
+            console.log(err.message);
+            error.value = "Die Email Adresse existiert bereits, wurder aber noch nicht bestätigt." // err.message;
+            isPending.value = false;
         }
-
-        await response.user.updateProfile({ displayName });
-        error.value = null;
-        isPending.value = false;
-        return response
-    } catch (err) {
-        console.log(err.message);
-        error.value = "Die Email Adresse existiert bereits, wurder aber noch nicht bestätigt werden." // err.message;
-        isPending.value = false;
     }
 
 }
