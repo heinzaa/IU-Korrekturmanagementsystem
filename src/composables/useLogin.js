@@ -16,9 +16,10 @@ const login = async (email, password) => {
 
 
         // prüfen ob User verified
-
+     
 
         const res = await projectAuth.signInWithEmailAndPassword(email, password);
+
 
         if (res.user.emailVerified) {
             error.value = null;
@@ -26,7 +27,8 @@ const login = async (email, password) => {
             return res;
         }
         else {
-            error.value = 'Du musst zuerst Deine E-Mail-Adresse verfizieren.'
+
+            error.value = 'Du musst zuerst Deine E-Mail-Adresse verifizieren.'
             isPending.value = false;
         }
     } catch (err) {

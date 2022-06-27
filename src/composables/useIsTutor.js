@@ -10,7 +10,7 @@ const userIsTutor = (to, from, next) => {
 
     // Falls eingeloggt
     if(user.value){
-        //debugger;
+        
 
         let oTutor = tutor_course.find(item => item.email == user.value.email);
 
