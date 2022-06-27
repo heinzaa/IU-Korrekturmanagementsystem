@@ -111,9 +111,9 @@
                         <p>{{document.feedback}} </p>
                         <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea> 
                     </div>                    
-                    <div class="mt-4">
+                    <div class="mt-4" v-if="showStatusInformation">
                         Status ändern:
-                    </div>
+                    
                     <div class="mt-1">
                         
                         <button type="button" @click="inProgressTicket" class="btn btn-warning">In Arbeit</button> &nbsp; 
@@ -125,7 +125,9 @@
                         <small>Hinweis: Bei Änderung des Status wird der Ersteller per E-Mail inkl. angegebenem Feedback informiert.
                         Bei Änderung des Status auf "Erledigt" oder "Abgelehnt" wird das Ticket zudem geschlossen uns ist nicht mehr editierbar.</small>
                     </div>
+                    
                     <hr>
+                    </div>
                 </form>
             </div>
 
@@ -142,6 +144,7 @@ import useDocument from "../composables/useDocument";
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 import { computed } from 'vue';
+import useIsTutor from '../composables/useIsTutor';
 export default {
     components: { TemplateHeader, TemplateFooter },
     props: ["id"],
@@ -150,12 +153,21 @@ export default {
        
         const router = useRouter();
         const { error, document } = getDocument("tickets", props.id);
-        const { updateDoc } = useDocument("tickets", props.id)
-
+        const { updateDoc } = useDocument("tickets", props.id);
+        const { isTutor } = useIsTutor();
+       
         const feedback = ref('')
 
         
-        
+        const showStatusInformation = computed(() =>{
+
+            if(isTutor){
+                return true;
+            }
+            else{
+                return false;
+            }
+        })
        
         
         
@@ -170,7 +182,7 @@ export default {
             
          }      
          const inProgressTicket = async(e) => {
-        
+             
             await updateDoc({
                 status: 'In Arbeit',
                
@@ -189,6 +201,10 @@ export default {
          }      
 
           const hideTextarea = computed(() => {
+            if(!isTutor){
+                return true;
+            }
+
             if(document.value.status == 'In Arbeit' || document.value.status == 'Offen'){               
                return false;     
             }
@@ -198,7 +214,7 @@ export default {
 
         })
 
-        return { error, document, rejectTicket ,inProgressTicket, closeTicket, feedback, hideTextarea};
+        return { error, document, rejectTicket ,inProgressTicket, closeTicket, feedback, hideTextarea, showStatusInformation};
     },
 };
 </script>
