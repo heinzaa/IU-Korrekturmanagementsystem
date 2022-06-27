@@ -2,14 +2,14 @@
     <div id="template">
         <TemplateHeader />
         
-        <div class="container content-small">
+    <div class="container content-small">
             <h1>Neues Ticket erstellen</h1>
             <hr />
             <p>Bitte fülle das Formular möglichst detailliert aus, damit der gefundene Fehler bzw. die vorgeschlagene Verbesserung effizient angenommen und umgesetzt werden kann.</p>
             <p style="font-size:0.8em;">Alle Formularfelder - außer als optional gekennzeichnete - sind Pflichtfelder.</p>
             <p>&nbsp;</p>
             
-            <form @submit.prevent="handleSubmit" action="">
+            <form @submit.prevent="handleSubmit">
                 <div class="error mb-4">{{error}}</div>
                 
                 <div class="mb-4">
@@ -148,7 +148,14 @@
                     <button type="button" class="btn btn-lg btn-outline-secondary" onclick="if(confirm('Alle aktuellen Eingaben gehen verloren.\nMöchtest Du alle Eingaben verwerfen und zum Dashboard wechseln?')) location.href='/dashboard';">Abbrechen</button>
                 </div>
             </form>
-        </div>
+        </div> 
+      <TicketModal @close="navToDashboard" @cancel="closeModal" :modalActive="modalActive">
+          <div class="modal-content">
+              <h1>Das Ticket wurde erfolgreich hochgeladen! </h1>
+              <p> Klicken Sie auf "Verstanden" um zum Dashboard zu gelangen. </p>
+          </div>
+      </TicketModal>
+    
         
         <TemplateFooter />
     </div>
@@ -166,12 +173,13 @@ import { timestamp } from "../firebase/config";
 import tutor_course from "../assets/tutor_course.json";
 import ticket_category from "../assets/ticket_category.json";
 import ticket_priority from "../assets/ticket_priority.json";
+import TicketModal from "@/components/Modals/TicketModal.vue" 
 
 export default {
     components: {
         TemplateHeader,
         TemplateFooter,
-       
+        TicketModal       
     },
     mounted() {
         document.querySelector("#mainmenu li a").classList.remove("active");
@@ -203,7 +211,8 @@ export default {
     setup(props, context) {
         const router = useRouter();
         const { filePath, url, uploadFile } = useStorage();
-        
+
+        const anyName = ref(null);
         const { error, addDoc } = useCollection("tickets");
         const { user } = getUser();
         // Referenzen für die eingaben
@@ -212,6 +221,8 @@ export default {
         const category = ref(null);
         const priority = ref('Niedrig');
         const fileType = ref(null);
+
+        const modalActive = ref(false);
 
         let arrLearnApp = ref([]);
         const arrLearnAppDescription = ref('');
@@ -247,7 +258,7 @@ export default {
         const getTutor = (val) => {
             return val;
         };
-        const handleSubmit = async () => {
+        const handleSubmit = async (event) => {
             isPending.value = true;
             if (file.value) {
                 await uploadFile(file.value);
@@ -279,15 +290,30 @@ export default {
             });
             isPending.value = false;
             if (!error.value) {
-                console.log("ticket added");
-                router.push({name: 'Dashboard'});
+                modalActive.value = !modalActive.value;
+                       
+               
             }
+           
             
-        };
+        };        
+
+         const closeModal = () => {
+           console.log("heyyy closeeee");
+           //re-render Page, damit die Form wieder zurückgestezt wird          
+           router.go();
+            
+       
+        }
+
+        const navToDashboard = () =>{
+             router.push({name: 'Dashboard'});
+        }
+
         const types = ["image/png", "image/jpeg", "application/pdf", "video/mp4"];
         const handleChange = (e) => {
             const selected = e.target.files[0];
-            debugger;
+          
             console.log(selected);
             let fileSizePermitted = e.target.files[0].size < 6000000;
             console.log(fileSizePermitted);
@@ -302,13 +328,16 @@ export default {
             if(fileSizePermitted == false){
                 e.target.value = '';
                 fileError.value = "Dateigröße überschreitet die zulässigen 5 MB!"
-            }
-
-            
+            }            
         };
+
+       
+
+       
         return {
             title,
             course,
+            modalActive,
             category,
             priority,           
             arrLearnApp,
@@ -329,11 +358,16 @@ export default {
             arrMusterklausurDescription,
             issueDescription,
             arrSonstiges,
+            arrSonstigesDescription,
             fileError,
             handleSubmit,
             handleChange,
             isPending,
             getTutor,
+            navToDashboard,
+            closeModal, 
+             
+            
         };
     },
 };
@@ -366,5 +400,12 @@ export default {
         margin-left:0;
     }
 }
+.modal-content{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 
 </style>
