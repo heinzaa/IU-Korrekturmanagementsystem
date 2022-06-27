@@ -24,7 +24,7 @@ const signup = async (email, password, displayName) => {
             .createUserWithEmailAndPassword(email, password);
 
         await response.user.sendEmailVerification({
-            url: "http://localhost:8080/"
+            url: "http://localhost:8081/"
         });
 
         if (!response) {
@@ -37,7 +37,7 @@ const signup = async (email, password, displayName) => {
         return response
     } catch (err) {
         console.log(err.message);
-        error.value = "Die Email Adresse existiert bereits oder muss noch bestätigt werden." // err.message;
+        error.value = "Die Email Adresse existiert bereits, wurder aber noch nicht bestätigt werden." // err.message;
         isPending.value = false;
     }
 
