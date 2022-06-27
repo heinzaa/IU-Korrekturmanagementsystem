@@ -47,7 +47,8 @@ const routes = [
   {
     path: '/',
     name: 'Welcome',
-    component: Welcome
+    component: Welcome,
+    
   },
   {
     path: '/dashboard',
@@ -58,32 +59,36 @@ const routes = [
   {
     path: '/imprint',
     name: 'Impressum',
-    component: PageImprint
+    component: PageImprint,
   },
   {
     path: '/privacy',
     name: 'Datenschutz',
-    component: PagePrivacy
+    component: PagePrivacy,
   },
   {
     path: '/userdata',
     name: 'Mein Konto',
-    component: UserAccount
+    component: UserAccount,
+    beforeEnter: requireAuth
   },
   {
     path: '/createticket',
-    name: 'Neues Ticket erstellen',
-    component: CreateTicket
+    name: 'CreateTicket',
+    component: CreateTicket,
+    beforeEnter: requireAuth
   },
   {
     path: '/tutorTickets',
     name: 'tutorTickets',
-    component: TutorTickets
+    component: TutorTickets,
+    beforeEnter: requireAuth
   },
   {
     path: '/tickets',
     name: 'Ticket',
     component: allTickets,
+    beforeEnter: requireAuth
   },
   {
     path: '/ticket/:id',
