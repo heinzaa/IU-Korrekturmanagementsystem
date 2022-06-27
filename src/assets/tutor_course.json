@@ -54,6 +54,24 @@
         "email": "r@nglr.de"
     },
     {
+        "id": 102,
+        "course": "Besserwisserkunde 2 mit Marc",
+        "tutor": "Michael Vorndran",
+        "email": "mivorndran1@gmail.com"
+    },
+    {
+        "id": 101,
+        "course": "Besserwisserkunde 2 mit Marc",
+        "tutor": "Johannes Schmack",
+        "email": "johannes.schmack1@iubh-fernstudium.de"
+    },
+    {
+        "id": 101,
+        "course": "Besserwisserkunde 2 mit Marc",
+        "tutor": "Anna Schulz",
+        "email": "annaschulz1@gmail.com"
+    },
+    {
         "id": 101,
         "course": "Besserwisserkunde 2 mit Marc",
         "tutor": "Marc Heintz",
