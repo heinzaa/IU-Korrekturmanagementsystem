@@ -7,6 +7,7 @@ import UserAccount from '../views/UserAccount.vue';
 import CreateTicket from '../views/CreateTicket.vue';
 import allTickets from '../views/allTickets.vue';
 import TicketDetails from '../views/TicketDetails.vue';
+import TutorTickets from '../views/TutorTickets.vue';
 
 import tutor_course from '../assets/tutor_course.json';
 
@@ -73,6 +74,11 @@ const routes = [
     path: '/createticket',
     name: 'Neues Ticket erstellen',
     component: CreateTicket
+  },
+  {
+    path: '/tutorTickets',
+    name: 'tutorTickets',
+    component: TutorTickets
   },
   {
     path: '/tickets',

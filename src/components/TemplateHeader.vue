@@ -37,7 +37,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAccount">
                             <li><a class="dropdown-item" href="/createticket"><b-icon-plus-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-plus-circle>&nbsp;&nbsp;Ticket erstellen</a></li>
-                            <li><a class="dropdown-item" href="/dashboard"><b-icon-bug style="font-size:1.4em; margin-top:-0.1em;"></b-icon-bug>&nbsp;&nbsp;Meine erstellten Tickets</a></li>
+                            <li style="cursor:pointer;"><a class="dropdown-item" @click="navToDashboard"><b-icon-bug style="font-size:1.4em; margin-top:-0.1em; cursor:pointer; "></b-icon-bug>&nbsp;&nbsp;Meine erstellten Tickets</a></li>
                             <li><a class="dropdown-item" href="/userdata"><b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;Mein&nbsp;Konto</a></li>
                             <li><a class="dropdown-item" href="#" @click="logoutUser"><b-icon-box-arrow-right style="font-size:1.4em; margin-top:-0.1em;"></b-icon-box-arrow-right>&nbsp;&nbsp;Logout</a></li>
                         </ul>
@@ -73,8 +73,17 @@ export default {
             router.push({ name: 'Welcome' })
         }
 
+        const navToDashboard = () =>{
+            if(isTutor){
+                router.push({ name: 'tutorTickets' })
+                
+            }else{
+                router.push({ name: 'Dashboard' })
+            }
+        }
+
         
-        return { error, logoutUser, user, isTutor, userLoggedIn }
+        return { error, logoutUser, user, isTutor, userLoggedIn, navToDashboard }
    }
 }
 </script>
