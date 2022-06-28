@@ -4,8 +4,8 @@
       <transition name="model-animation-inner">
         <div v-show="modalActive" class="modal-inner">
           <slot />
-          <button @click="close">Verstanden</button>
-          <button @click="cancel">Schließen</button>
+          <button @click="close" type="button" class="btn btn-primary mt-2 me-2"><b-icon-arrow-left-short style="font-size:1.4em; margin-top:-0.1em;"></b-icon-arrow-left-short> Zum Dashboard</button>
+          <button @click="cancel" type="button" class="btn btn-outline-secondary mt-2"><b-icon-plus-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-plus-circle> Weiteres Ticket erstellen</button>
         </div>
       </transition>
     </div>
@@ -35,50 +35,49 @@ export default {
 
 <style  scoped>
 
-.modal{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgb(255,255,255, 0.7);
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0, 0.6);
 }
 
-.modal-inner{
-  position: relative;
-  max-width: 640px;
-  width: 80%;
-  background-color: #fff;
-  padding: 64px 16px;
+.modal-inner {
+    position: relative;
+    max-width: 640px;
+    background-color: #fff;
+    padding: 20px;
+    margin: 0.75rem;
+    text-align:center;
 }
 
 .model-animation-enter-active,
-.model-animation-leave-active{
-
-  transition: opacity 3s cubic-bezier(.52, .02, .19, 1.02);
-
+.model-animation-leave-active {
+    transition: opacity 1s cubic-bezier(0.52, 0.02, 0.19, 1.02);
 }
 
-.model-animation-enter-from, .model-animation-leave-to{
-  opacity: 0;
+.model-animation-enter-from,
+.model-animation-leave-to {
+    opacity: 0;
 }
 
-.modal-animation-inner-enter-active{
-  transition: all 3s cubic-bezier(.52, .02, .19, 1.02) 0.15;
+.modal-animation-inner-enter-active {
+    transition: all 1s cubic-bezier(0.52, 0.02, 0.19, 1.02) 0.15;
 }
-.modal-animation-inner-leave-active{
-  transition: all 3s cubic-bezier(.52, .02, .19, 1.02);
+.modal-animation-inner-leave-active {
+    transition: all 1s cubic-bezier(0.52, 0.02, 0.19, 1.02);
 }
-.modal-animation-inner-enter-from{
-  opacity: 0;
-  transform: scale(0.8);
+.modal-animation-inner-enter-from {
+    opacity: 0;
+    transform: scale(0.8);
 }
-.modal-animation-inner-leave-to{  
-  transform: scale(0.8);
+.modal-animation-inner-leave-to {
+    transform: scale(0.8);
 }
-
 
 </style>

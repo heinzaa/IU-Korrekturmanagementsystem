@@ -149,13 +149,14 @@
                 </div>
             </form>
         </div> 
-      <TicketModal @close="navToDashboard" @cancel="closeModal" :modalActive="modalActive">
-          <div class="modal-content">
-              <h1>Das Ticket wurde erfolgreich hochgeladen! </h1>
-              <p> Klicken Sie auf "Verstanden" um zum Dashboard zu gelangen. </p>
-          </div>
-      </TicketModal>
-    
+        <TicketModal @close="navToDashboard" @cancel="closeModal" :modalActive="modalActive">
+            <div>
+                <b-icon-send-check style="font-size:3em; margin:15px; color:green;"></b-icon-send-check> 
+                <h2>Das Ticket wurde erfolgreich erstellt.</h2>
+                <p>Vielen Dank für deine Meldung. Mit deiner Unterstützung werden wir noch besser!
+                <br />Was möchtest du als nächstes tun?</p>
+            </div>
+        </TicketModal>
         
         <TemplateFooter />
     </div>
@@ -400,12 +401,4 @@ export default {
         margin-left:0;
     }
 }
-.modal-content{
-    display: flex;
-    flex-direction: column;
-}
-
-
-
-
 </style>
