@@ -106,28 +106,34 @@
                     <hr>
                     <h3>Anmerkung des Tutors</h3>
 
-                    <div  class="mb-4">
-                        <label for="feedbackComment">Tutor-Feedback:</label>
-                        <p>{{document.feedback}} </p>
-                        <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea> 
-                    </div>                    
-                    <div class="mt-4" v-if="showStatusInformation">
-                        Status ändern:
-                    
-                    <div class="mt-1">
-                        
-                        <button type="button" @click="inProgressTicket" class="btn btn-warning">In Arbeit</button> &nbsp; 
-                        <button type="button" @click="closeTicket" class="btn btn-success">Erledigt</button> &nbsp;                        
-                        <button type="button" @click="rejectTicket" class="btn btn-info" >Abgelehnt</button>
-                       
+                    <div class="mb-4">
+                        <div v-if="document.feedback">
+                            <label class="view" for="feedbackComment">Feedback am XX.XX.XXXX:</label>
+                            <div style="white-space:pre-wrap;">{{document.feedback}}</div>
+                        </div>
+                        <div v-else>
+                            <i>Kein Feedback vorhanden.</i>
+                        </div>
                     </div>
-                    <div class="mt-2">
-                        <small>Hinweis: Bei Änderung des Status wird der Ersteller per E-Mail inkl. angegebenem Feedback informiert.
-                        Bei Änderung des Status auf "Erledigt" oder "Abgelehnt" wird das Ticket zudem geschlossen uns ist nicht mehr editierbar.</small>
+                    <div v-if="showStatusInformation">
+                        <div>
+                            <label>Feedback Aktualisierung hier eintragen:</label>
+                            <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea>
+                        </div>
+                        <div class="mt-4">
+                            <label>Status ändern:</label>
+                            <div class="mt-1">
+                                <button type="button" @click="inProgressTicket" class="btn btn-warning">In Arbeit</button> &nbsp; 
+                                <button type="button" @click="closeTicket" class="btn btn-success">Erledigt</button> &nbsp;                        
+                                <button type="button" @click="rejectTicket" class="btn btn-info" >Abgelehnt</button>
+                            </div>
+                            <div class="mt-2">
+                                <small>Hinweis: Bei Änderung des Status wird der Ersteller per E-Mail inkl. angegebenem Feedback informiert.
+                                Bei Änderung des Status auf "Erledigt" oder "Abgelehnt" wird das Ticket zudem geschlossen uns ist nicht mehr editierbar.</small>
+                            </div>
+                        </div>
                     </div>
-                    
                     <hr>
-                    </div>
                 </form>
             </div>
 
