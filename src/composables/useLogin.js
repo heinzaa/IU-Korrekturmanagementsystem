@@ -1,6 +1,8 @@
 import { ref } from 'vue'
 import { projectAuth } from '../firebase/config'
 import getUser from '../composables/getUser'
+import useIsTutor from '../composables/useIsTutor';
+
 
 const error = ref(null);
 const isPending = ref(false);
@@ -8,6 +10,7 @@ const isPending = ref(false);
 const login = async (email, password) => {
 
     const { user } = getUser()
+    const { isTutor } = useIsTutor();
 
     error.value = null;
     isPending.value = true;
@@ -15,10 +18,17 @@ const login = async (email, password) => {
     try {
 
 
-        // prüfen ob User verified
-     
+        // prüfen ob User verified - aber nur falls es kein Tutor ist
+        if(isTutor){               
 
-        const res = await projectAuth.signInWithEmailAndPassword(email, password);
+            const res = await projectAuth.signInWithEmailAndPassword(email, password);
+            error.value = null;
+            isPending.value = false;
+            return res;
+
+
+        }
+
 
 
         if (res.user.emailVerified) {
