@@ -75,7 +75,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="view">Beschreibung:</label>
-                        <div>{{document.description}}</div>
+                        <div style="white-space:pre-wrap;">{{document.description}}</div>
                     </div>
                     <div class="mb-4">
                         <label class="view">Dateien:</label>
