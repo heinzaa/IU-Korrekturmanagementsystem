@@ -112,24 +112,32 @@ button {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: -10px;
-    margin-left: -10px;
+    bottom: -11px;
+    margin-left: -11px;
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 10px 10px 0 10px;
-    border-color: #152536 transparent transparent transparent;
+
 }
 
-#status-panel div:hover,
+#status-panel div:hover {
+    border: 2px #ccc solid;
+}
+
 #status-panel div.active {
     background: #152536;
     border: 2px #152536 solid;
     color: #fff;
 }
 
-#status-panel div:hover:after,
+#status-panel div:hover:after {
+    border-color: #ccc transparent transparent transparent;
+    display: block;
+}
+
 #status-panel div.active:after {
+    border-color: #152536 transparent transparent transparent;
     display: block;
 }
 
@@ -161,6 +169,7 @@ button {
 
 @media screen and (max-width: 767px) {
     #status-panel div {
+        padding: 12px 20px;
         width: 47%;
     }
 
