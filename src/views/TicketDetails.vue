@@ -33,8 +33,8 @@
                             <label class="view">Priorität:</label>
                             <div>
                               <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio" required>
-                                    <option value="document.priority" disabled>{{document.priority}}</option>
-                                    <option v-for="item in priorityList" :value="item.priorityTitle" :key="item.id">
+                                   <option value="" disabled>{{document.priority}}</option> 
+                                    <option v-for="item in priorityList" :value="item.priorityTitle" :key="item.id" >
                                     {{ item.priorityTitle }}
                                     </option>
                                 </select>  
@@ -213,6 +213,10 @@ export default {
         
 
         const rejectTicket = async(e) => {
+
+              if(!priority){
+                 priority.value == document.priority;
+             }
         
             await updateDoc({
                 status: 'Abgelehnt',
@@ -224,6 +228,10 @@ export default {
             
          }      
          const inProgressTicket = async(e) => {
+
+               if(!priority){
+                 priority.value == document.priority;
+             }
              
             await updateDoc({
                 status: 'In Arbeit',
@@ -234,6 +242,10 @@ export default {
             router.push({name: 'Dashboard'});           
          }      
          const closeTicket = async(e) => {
+
+             if(!priority){
+                 priority.value == document.priority;
+             }
         
             await updateDoc({
                 status: 'Erledigt',
