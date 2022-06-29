@@ -7,6 +7,7 @@
             <p>Diese folgenden Kontodaten können lediglich eingesehen, jedoch nicht geändert werden.</p>
             <!-- Kontodaten -->
             <div class="form-signin">
+                <h3 style="text-align:center;">Kontodaten</h3>
                 <div class="form-floating mb-2">
                     <input type="text" required class="form-control" id="floatingEmail" v-model="user.displayName" readonly>
                     <label for="floatingEmail">Vorname</label>
@@ -65,7 +66,7 @@
             <div style="text-align:center;">
                 <button id="buttonForConfirm" type="button" class="btn btn-outline-secondary" onclick="document.getElementById('confirmArea').style.display='block'; this.style.display='none';">Benutzerkonto löschen?</button>
                 <div id="confirmArea" style="display:none;">
-                    <h3>Konto wirklich löschen?</h3>
+                    <h3>Benutzerkonto wirklich löschen?</h3>
                     <p>Mit der Löschung deines Benutzerkontos werden deine Kontodaten gelöscht, deine Tickets stehen dir nicht mehr zur Verfügung. Der Vorgang kann nicht rückgängig gemacht werden.
                         Eine Neuregistrierung ist jederzeit wieder möglich.
                     </p>
