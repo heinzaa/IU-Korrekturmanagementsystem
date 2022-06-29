@@ -17,7 +17,7 @@ const signup = async (email, password, displayName) => {
     const regexEmail = '[^@]+@(' + validEmailDomains.join('|') + ')';
     let regex_iubh = new RegExp(regexEmail);
    
-    console.log(passwordLength)
+
     const { user } = getUser();
 
     if(password.length < 8){
