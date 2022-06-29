@@ -51,31 +51,36 @@
         "id": 100,
         "course": "Besserwisserkunde 1 mit Reini",
         "tutor": "Reinhard Nägler",
-        "email": "r@nglr.de"
+        "email": "r@nglr.de",
+        "tutorUid": ""
     },
     {
         "id": 101,
-        "course": "Besserwisserkunde 2 mit Marc",
+        "course": "Besserwisserkunde 2 mit Michael",
         "tutor": "Michael Vorndran",
-        "email": "mivorndran1@gmail.com"
+        "email": "mivorndran1@gmail.com",
+        "tutorUid": "favwCyABSUd2zwWLMLzQUMrRY2y1"
     },
     {
         "id": 102,
-        "course": "Besserwisserkunde 2 mit Marc",
+        "course": "Besserwisserkunde 2 mit Johannes",
         "tutor": "Johannes Schmack",
-        "email": "johannes.schmack1@iubh-fernstudium.de"
+        "email": "johannes.schmack1@iubh-fernstudium.de",
+        "tutorUid": "h4INV5qVbphw8bQaFEfFp47xAbE3"
     },
     {
         "id": 103,
-        "course": "Besserwisserkunde 2 mit Marc",
+        "course": "Besserwisserkunde 2 mit Anna",
         "tutor": "Anna Schulz",
-        "email": "annaschulz1@gmail.com"
+        "email": "annaschulz1@gmail.com",
+        "tutorUid": "vjEHpuwqumahidw1cR8vbFAgIqG3"
     },
     {
         "id": 104,
         "course": "Besserwisserkunde 2 mit Marc",
         "tutor": "Marc Heintz",
-        "email": "heintz.marc1@web.de"
+        "email": "heintz.marc1@web.de",
+        "tutorUid": "ysjiJcuTv2acyHSGpxgMnC0EhJm2"
     },
     {
         "id": 900,
