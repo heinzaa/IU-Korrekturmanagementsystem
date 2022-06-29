@@ -31,7 +31,7 @@
                             <label class="view">Priorität:</label>
                             <div>
                               <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio" required>
-                                    <option value="" disabled>{{document.priority}}</option>
+                                    <option value="document.priority" disabled>{{document.priority}}</option>
                                     <option v-for="item in priorityList" :value="item.priorityTitle" :key="item.id">
                                     {{ item.priorityTitle }}
                                     </option>
@@ -181,9 +181,7 @@ export default {
     props: ["id"],
 
     data() {
-        return {
-                      
-          
+        return {                   
             priorityList: ticket_priority,
         };
     },
@@ -229,7 +227,7 @@ export default {
                 status: 'In Arbeit',
                 feedback: feedback.value,
                 modifiedAt: timestamp(),
-                 priority: priority.value               
+                priority: priority.value               
             });
             router.push({name: 'Dashboard'});           
          }      
