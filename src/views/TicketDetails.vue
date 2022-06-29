@@ -213,7 +213,8 @@ export default {
             await updateDoc({
                 status: 'Abgelehnt',
                 feedback: feedback.value,
-                modifiedAt: timestamp()
+                modifiedAt: timestamp(),
+                 priority: priority.value
             });
             router.push({name: 'Dashboard'});
             
@@ -223,7 +224,8 @@ export default {
             await updateDoc({
                 status: 'In Arbeit',
                 feedback: feedback.value,
-                modifiedAt: timestamp()               
+                modifiedAt: timestamp(),
+                 priority: priority.value               
             });
             router.push({name: 'Dashboard'});           
          }      
@@ -232,7 +234,8 @@ export default {
             await updateDoc({
                 status: 'Erledigt',
                 feedback: feedback.value,
-                modifiedAt: timestamp()
+                modifiedAt: timestamp(),
+                priority: priority.value
             })
            router.push({name: 'Dashboard'});
          }      
@@ -241,7 +244,6 @@ export default {
             if(!isTutor){
                 return true;
             }
-
             if(document.value.status == 'In Arbeit' || document.value.status == 'Offen'){               
                return false;     
             }
