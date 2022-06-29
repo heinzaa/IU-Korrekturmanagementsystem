@@ -54,6 +54,7 @@ export default {
     padding: 20px;
     margin: 0.75rem;
     text-align:center;
+    border-radius: 10px;
 }
 
 .model-animation-enter-active,
