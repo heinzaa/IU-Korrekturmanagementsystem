@@ -212,9 +212,11 @@ export default {
 
         const rejectTicket = async(e) => {
 
-              if(!priority){
-                 priority.value == document.priority;
+              if(priority.value == ''){
+                 priority.value = document.value.priority;
              }
+
+            
         
             await updateDoc({
                 status: 'Abgelehnt',
@@ -227,9 +229,12 @@ export default {
          }      
          const inProgressTicket = async(e) => {
 
-               if(!priority){
-                 priority.value == document.priority;
-             }
+               if(priority.value == ''){
+                 priority.value = document.value.priority;
+                
+                }
+
+
              
             await updateDoc({
                 status: 'In Arbeit',
@@ -241,9 +246,10 @@ export default {
          }      
          const closeTicket = async(e) => {
 
-             if(!priority){
-                 priority.value == document.priority;
+             if(priority.value == ''){
+                 priority.value = document.value.priority;
              }
+            
         
             await updateDoc({
                 status: 'Erledigt',
