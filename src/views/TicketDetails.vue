@@ -29,17 +29,18 @@
                         </div>
                         <div class="mb-4 col-md-3">
                             <label class="view">Priorität:</label>
-                            <div>
+                            <div v-if="showStatusInformation">
                               <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio" required>
                                    <option value="" disabled>{{document.priority}}</option> 
                                     <option v-for="item in priorityList" :value="item.priorityTitle" :key="item.id" >
                                     {{ item.priorityTitle }}
                                     </option>
                                 </select>  
-
-                            <!--    <span v-if="document.priority == 'Niedrig'" class="text-black-50">Niedrig</span>
+                            </div>
+                            <div v-else>
+                               <span v-if="document.priority == 'Niedrig'" class="text-black-50">Niedrig</span>
                                 <span v-if="document.priority == 'Mittel' " class="">Mittel</span>
-                                <span v-if="document.priority == 'Hoch'"  class="text-danger">Hoch</span> -->
+                                <span v-if="document.priority == 'Hoch'"  class="text-danger">Hoch</span> 
                             </div>
                         </div>
                         <div class="mb-4 col-md-3">
