@@ -4,7 +4,9 @@
 
         <div class="container content-small">
             <h1>Ticketinformationen</h1>
-            <hr />
+            <p v-if="document.status == 'Erledigt' || document.status == 'Abgelehnt'">Ticket geschlossen am {{String(document.modifiedAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.modifiedAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.modifiedAt.toDate().getFullYear()}}
+                                - {{String(document.modifiedAt.toDate().getHours()).padStart(2,'0')}}:{{String(document.modifiedAt.toDate().getMinutes()).padStart(2,'0')}} Uhr</p>
+           <hr />
 
             <div v-if="error" class="error" style="margin:1em 0; text-align:center;"> {{ error }} </div>
 
@@ -26,9 +28,16 @@
                         <div class="mb-4 col-md-3">
                             <label class="view">Priorität:</label>
                             <div>
-                                <span v-if="document.priority == 'Niedrig'" class="text-black-50">Niedrig</span>
+                              <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio" required>
+                                    <option value="" disabled>{{document.priority}}</option>
+                                    <option v-for="item in priorityList" :value="item.priorityTitle" :key="item.id">
+                                    {{ item.priorityTitle }}
+                                    </option>
+                                </select>  
+
+                            <!--    <span v-if="document.priority == 'Niedrig'" class="text-black-50">Niedrig</span>
                                 <span v-if="document.priority == 'Mittel' " class="">Mittel</span>
-                                <span v-if="document.priority == 'Hoch'"  class="text-danger">Hoch</span>
+                                <span v-if="document.priority == 'Hoch'"  class="text-danger">Hoch</span> -->
                             </div>
                         </div>
                         <div class="mb-4 col-md-3">
@@ -105,7 +114,7 @@
                             <div>
                                 {{String(document.createdAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.createdAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.createdAt.toDate().getFullYear()}}
                                 - {{String(document.createdAt.toDate().getHours()).padStart(2,'0')}}:{{String(document.createdAt.toDate().getMinutes()).padStart(2,'0')}} Uhr
-                            </div>
+                         </div>
                         </div>
                         <div class="mb-4 col-md-6">
                             <label class="view">Autor:</label>
@@ -117,9 +126,9 @@
                     <h3>Anmerkung des Tutors</h3>
 
                     <div class="mb-4">
-                        <div v-if="document.feedback">
-                            <label class="view" for="feedbackComment">Feedback am {{String(document.modifiedAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.modifiedAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.modifiedAt.toDate().getFullYear()}}
+                        <label class="view" for="feedbackComment">Statusänderung am {{String(document.modifiedAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.modifiedAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.modifiedAt.toDate().getFullYear()}}
                                 - {{String(document.modifiedAt.toDate().getHours()).padStart(2,'0')}}:{{String(document.modifiedAt.toDate().getMinutes()).padStart(2,'0')}} Uhr</label>
+                        <div v-if="document.feedback">                            
                             <div style="white-space:pre-wrap;">{{document.feedback}}</div>
                         </div>
                         <div v-else>
@@ -155,6 +164,7 @@
 <script>
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
+import ticket_priority from "../assets/ticket_priority.json";
 import getDocument from "../composables/getDocument";
 import useDocument from "../composables/useDocument";
 import { ref } from "@vue/reactivity";
@@ -166,12 +176,21 @@ export default {
     components: { TemplateHeader, TemplateFooter },
     props: ["id"],
 
+    data() {
+        return {
+                      
+          
+            priorityList: ticket_priority,
+        };
+    },
+
     setup(props) {
        
         const router = useRouter();
         const { error, document } = getDocument("tickets", props.id);
         const { updateDoc } = useDocument("tickets", props.id);
         const { isTutor } = useIsTutor();
+        const priority = ref('')
        
         const feedback = ref('')
 
@@ -232,7 +251,7 @@ export default {
 
         })
 
-        return { error, document, rejectTicket ,inProgressTicket, closeTicket, feedback, hideTextarea, showStatusInformation};
+        return { error, document, rejectTicket ,inProgressTicket, closeTicket, feedback, hideTextarea, showStatusInformation, priority};
     },
 };
 </script>
