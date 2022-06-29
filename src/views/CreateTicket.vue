@@ -52,7 +52,7 @@
                             <label class="form-check-label" for="mediaApp">Learn App/IU Reader</label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrLearnAppDescription" id="AppPosition" type="text" placeholder="Position eingeben (Seite, Kapitel)" maxlength="40">
+                            <input class="form-control" v-model="arrLearnAppDescription" id="AppPosition" type="text" placeholder="Position eingeben (Seite, Kapitel)" maxlength="100">
                         </div>
                     </div>
                     <div class="media-input">
@@ -61,7 +61,7 @@
                             <label class="form-check-label" for="mediaPdf">Skript <span class="form-text">(PDF)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrSkriptPDFDescription" type="text" placeholder="Position eingeben (Seite, Kapitel, Version)" maxlength="40">
+                            <input class="form-control" v-model="arrSkriptPDFDescription" type="text" placeholder="Position eingeben (Seite, Kapitel, Version)" maxlength="100">
                         </div>
                     </div>
                     <div class="media-input">
@@ -70,7 +70,7 @@
                             <label class="form-check-label" for="mediaPrint">Skript <span class="form-text">(Druck)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrSkriptDruckDescription" type="text" placeholder="Position eingeben (Seite, Kapitel, Version)" maxlength="40">
+                            <input class="form-control" v-model="arrSkriptDruckDescription" type="text" placeholder="Position eingeben (Seite, Kapitel, Version)" maxlength="100">
                         </div>
                     </div>
                     <div class="media-input">
@@ -79,7 +79,7 @@
                             <label class="form-check-label" for="mediaVideo">Video <span class="form-text">(Vodcast, Tutorium)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrVideoDescription" type="text" placeholder="Position eingeben (Zeit in Minuten, Dateiname)" maxlength="40">
+                            <input class="form-control" v-model="arrVideoDescription" type="text" placeholder="Position eingeben (Zeit in Minuten, Dateiname)" maxlength="100">
                         </div>
                     </div>
                     <div class="media-input">
@@ -88,7 +88,7 @@
                             <label class="form-check-label" for="mediaAudio">Audio <span class="form-text">(Podcast)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrAudioDescription" type="text" placeholder="Position eingeben (Zeit in Minuten, Dateiname)" maxlength="40">
+                            <input class="form-control" v-model="arrAudioDescription" type="text" placeholder="Position eingeben (Zeit in Minuten, Dateiname)" maxlength="100">
                         </div>
                     </div>
                     <div class="media-input">
@@ -97,7 +97,7 @@
                             <label class="form-check-label" for="mediaTest">Online-Test <span class="form-text">(MyCampus)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrOnlineTestDescription" type="text" placeholder="Position eingeben (Kapitel, Frage-Nr.)" maxlength="40">
+                            <input class="form-control" v-model="arrOnlineTestDescription" type="text" placeholder="Position eingeben (Kapitel, Frage-Nr.)" maxlength="100">
                         </div>
                     </div>
                     <div class="media-input">
@@ -106,7 +106,7 @@
                             <label class="form-check-label" for="mediaRepetitorium">Repetitorium</label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrRepetitoriumDescription" type="text" placeholder="Position eingeben (Frage-Nr., Seite)" maxlength="40">
+                            <input class="form-control" v-model="arrRepetitoriumDescription" type="text" placeholder="Position eingeben (Frage-Nr., Seite)" maxlength="100">
                         </div>
                     </div>
                     <div class="media-input">
@@ -115,7 +115,7 @@
                             <label class="form-check-label" for="mediaMusterklausur">Musterklausur</label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" v-model="arrMusterklausurDescription" type="text" placeholder="Position eingeben (Klausur-Nr., Frage-Nr., Seite)" maxlength="40">
+                            <input class="form-control" v-model="arrMusterklausurDescription" type="text" placeholder="Position eingeben (Klausur-Nr., Frage-Nr., Seite)" maxlength="100">
                         </div>
                     </div>
                     <div class="media-input">
@@ -124,7 +124,7 @@
                             <label class="form-check-label" for="mediaSonstiges">Sonstiges <span class="form-text">(bitte u. ausführen)</span></label>
                         </div>
                         <div class="form-group">
-                            <input class="form-control"  v-model="arrSonstigesDescription" type="text" placeholder="Medium und Position eingeben" maxlength="40">
+                            <input class="form-control"  v-model="arrSonstigesDescription" type="text" placeholder="Medium und Position eingeben" maxlength="100">
                         </div>
                     </div>
                 </div>
