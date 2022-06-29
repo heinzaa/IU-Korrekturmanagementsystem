@@ -130,7 +130,7 @@
                             </div>
                             <div class="mt-2">
                                 <small>Hinweis: Bei Änderung des Status wird der Ersteller per E-Mail inkl. angegebenem Feedback informiert.
-                                Bei Änderung des Status auf "Erledigt" oder "Abgelehnt" wird das Ticket zudem geschlossen uns ist nicht mehr editierbar.</small>
+                                Bei Änderung des Status auf "Erledigt" oder "Abgelehnt" wird das Ticket zudem geschlossen und ist nicht mehr editierbar, solange</small>
                             </div>
                         </div>
                     </div>
