@@ -91,7 +91,7 @@
                     </div>
                     <div class="row">
                         <div class="mb-4 col-md-6">
-                            <label class="view">Erstellung:</label>
+                            <label class="view">Erstellt am:</label>
                             <div>
                                 {{String(document.createdAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.createdAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.createdAt.toDate().getFullYear()}}
                                 - {{String(document.createdAt.toDate().getHours()).padStart(2,'0')}}:{{String(document.createdAt.toDate().getMinutes()).padStart(2,'0')}} Uhr
@@ -108,7 +108,8 @@
 
                     <div class="mb-4">
                         <div v-if="document.feedback">
-                            <label class="view" for="feedbackComment">Feedback am XX.XX.XXXX:</label>
+                            <label class="view" for="feedbackComment">Feedback am {{String(document.modifiedAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.modifiedAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.modifiedAt.toDate().getFullYear()}}
+                                - {{String(document.modifiedAt.toDate().getHours()).padStart(2,'0')}}:{{String(document.modifiedAt.toDate().getMinutes()).padStart(2,'0')}} Uhr</label>
                             <div style="white-space:pre-wrap;">{{document.feedback}}</div>
                         </div>
                         <div v-else>
@@ -150,6 +151,7 @@ import useDocument from "../composables/useDocument";
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 import { computed } from 'vue';
+import { timestamp } from "../firebase/config";
 import useIsTutor from '../composables/useIsTutor';
 export default {
     components: { TemplateHeader, TemplateFooter },
@@ -182,7 +184,8 @@ export default {
         
             await updateDoc({
                 status: 'Abgelehnt',
-                feedback: feedback.value
+                feedback: feedback.value,
+                modifiedAt: timestamp()
             });
             router.push({name: 'Dashboard'});
             
@@ -191,17 +194,17 @@ export default {
              
             await updateDoc({
                 status: 'In Arbeit',
-               
+                feedback: feedback.value,
+                modifiedAt: timestamp()               
             });
-            router.push({name: 'Dashboard'});
-
-           
+            router.push({name: 'Dashboard'});           
          }      
          const closeTicket = async(e) => {
         
             await updateDoc({
                 status: 'Erledigt',
-                feedback: feedback.value
+                feedback: feedback.value,
+                modifiedAt: timestamp()
             })
            router.push({name: 'Dashboard'});
          }      
