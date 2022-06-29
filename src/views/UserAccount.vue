@@ -66,8 +66,8 @@
                 <button id="buttonForConfirm" type="button" class="btn btn-outline-secondary" onclick="document.getElementById('confirmArea').style.display='block'; this.style.display='none';">Benutzerkonto löschen?</button>
                 <div id="confirmArea" style="display:none;">
                     <h3>Konto wirklich löschen?</h3>
-                    <p>Mit der Löschung deines Benutzerkontos werden deine Kontodaten sowie eingereichte Tickets gelöscht. Der Vorgang kann nicht rückgängig gemacht werden.
-                        Anschließend ist eine Neuregistrierung jederzeit wieder möglich.
+                    <p>Mit der Löschung deines Benutzerkontos werden deine Kontodaten gelöscht, deine Tickets stehen dir nicht mehr zur Verfügung. Der Vorgang kann nicht rückgängig gemacht werden.
+                        Eine Neuregistrierung ist jederzeit wieder möglich.
                     </p>
                     <p class="error">{{deleteAccountErrorTutor}}</p>
                     <button id="deleteUser" type="button" class="btn btn-danger" @click="deleteUser">Löschung durchführen</button>
