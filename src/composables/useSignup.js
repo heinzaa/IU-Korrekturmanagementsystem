@@ -31,7 +31,7 @@ const signup = async (email, password, displayName) => {
                 .createUserWithEmailAndPassword(email, password);
 
             await response.user.sendEmailVerification({
-                url: "http://localhost:8081/"
+                url: "https://korrekturmanagement.de"
                 });
         
 
