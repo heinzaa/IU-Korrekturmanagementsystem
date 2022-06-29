@@ -256,9 +256,7 @@ export default {
         const fileError = ref(null);
         const isPending = ref(false);
         const status = ref("Offen");
-        const getTutor = (val) => {
-            return val;
-        };
+        
         const handleSubmit = async (event) => {
             isPending.value = true;
             if (file.value) {
@@ -286,7 +284,7 @@ export default {
                 fileUrl: (url.value ? url.value : null),
                 filePath: (filePath.value ? filePath.value : null),
                 fileType: fileType.value,
-                status: status.value,
+                status: status.value,                
                 createdAt: timestamp(),
             });
             isPending.value = false;
@@ -364,7 +362,6 @@ export default {
             handleSubmit,
             handleChange,
             isPending,
-            getTutor,
             navToDashboard,
             closeModal, 
              
