@@ -23,13 +23,23 @@
                             <label class="view">Kategorie, Art der Meldung:</label>
                             <div>{{document.category}}</div>
                         </div>
-                        <div class="mb-4 col-md-6">
+                        <div class="mb-4 col-md-3">
                             <label class="view">Priorität:</label>
-                            <div>{{document.priority}}</div>
+                            <div>
+                                <span v-if="document.priority == 'Niedrig'" class="text-black-50">Niedrig</span>
+                                <span v-if="document.priority == 'Mittel' " class="">Mittel</span>
+                                <span v-if="document.priority == 'Hoch'"  class="text-danger">Hoch</span>
+                            </div>
                         </div>
-                         <div class="mb-4 col-md-6">
+                        <div class="mb-4 col-md-3">
                             <label class="view">Status:</label>
-                            <div>{{document.status}}</div>
+                            <div>
+                                <strong v-if="document.status == 'Erledigt'" class="ticket-status rounded-pill bg-success" title="Erledigt"></strong>
+                                <strong v-if="document.status == 'Offen'" class="ticket-status rounded-pill bg-danger" title="Offen"></strong>
+                                <strong v-if="document.status == 'Abgelehnt'" class="ticket-status rounded-pill bg-info" title="Abgelehnt"></strong>
+                                <strong v-if="document.status == 'In Arbeit'" class="ticket-status rounded-pill bg-warning" title="In Arbeit"></strong>
+                                {{document.status}}
+                            </div>
                         </div>
                     </div>
                     <div class="mb-4">
@@ -118,19 +128,18 @@
                     </div>
                     <div v-if="showStatusInformation">
                         <div>
-                            <label>Feedback Aktualisierung hier eintragen:</label>
+                            <label class="view">Feedback Aktualisierung hier eintragen:</label>
                             <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea>
                         </div>
                         <div class="mt-4">
-                            <label>Status ändern:</label>
+                            <label class="view">Status ändern:</label>
                             <div class="mt-1">
                                 <button type="button" @click="inProgressTicket" class="btn btn-warning">In Arbeit</button> &nbsp; 
                                 <button type="button" @click="closeTicket" class="btn btn-success">Erledigt</button> &nbsp;                        
                                 <button type="button" @click="rejectTicket" class="btn btn-info" >Abgelehnt</button>
                             </div>
                             <div class="mt-2">
-                                <small>Hinweis: Bei Änderung des Status wird der Ersteller per E-Mail inkl. angegebenem Feedback informiert.
-                                Bei Änderung des Status auf "Erledigt" oder "Abgelehnt" wird das Ticket zudem geschlossen und ist nicht mehr editierbar, solange</small>
+                                <small>Hinweis: Bei Änderung des Status auf "Erledigt" oder "Abgelehnt" wird das Ticket geschlossen.</small>
                             </div>
                         </div>
                     </div>
@@ -230,7 +239,7 @@ export default {
 
 <style>
 label.view {
-    color:#999;
+    font-weight:bold;
 }
 .img-preview {
     max-width:240px; height:auto;

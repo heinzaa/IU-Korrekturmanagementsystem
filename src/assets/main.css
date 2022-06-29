@@ -141,7 +141,8 @@ button {
     display: block;
 }
 
-.table-tickets .ticket-status {
+/* wird auch in Details angezeigt */
+.ticket-status {
     display: inline-block;
     width: 1em;
     height: 1em;

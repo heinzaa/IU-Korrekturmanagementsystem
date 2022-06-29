@@ -13,11 +13,11 @@
                 <div class="error mb-4">{{error}}</div>
                 
                 <div class="mb-4">
-                    <label for="issueTitle">Titel (Überschrift):</label>
+                    <label for="issueTitle" class="view">Titel (Überschrift):</label>
                     <input type="text" class="form-control" v-model="title"  name="issueTitle" id="issueTitle" maxlength="80" required>
                 </div>
                 <div class="mb-4">
-                    <label for="issueCourse">Kurs:</label>
+                    <label for="issueCourse" class="view">Kurs:</label>
                     <select name="issueCourse" v-model="course" class="form-select" id="issueCourse" required>
                         <option  value="" disabled>Kurs auswählen</option>
                         <option v-for="item in courseList" :value="item" :key="item.id">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="row">
                     <div class="mb-4 col-md-6">
-                        <label for="issueIssueType">Kategorie, Art der Meldung:</label>
+                        <label for="issueIssueType" class="view">Kategorie, Art der Meldung:</label>
                         <select name="issueIssueType" v-model="category" class="form-select" id="issueIssueType" required>
                             <option value="" disabled>Kategorie auswählen</option>
                             <option v-for="item in categoryList" :value="item.categoryText" :key="item.id">
@@ -36,7 +36,7 @@
                         </select>
                     </div>
                     <div class="mb-4 col-md-6">
-                        <label for="issueIssuePrio">Priorität:</label>
+                        <label for="issueIssuePrio" class="view">Priorität:</label>
                         <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio" required>
                             <option v-for="item in priorityList" :value="item.priorityTitle" :key="item.id">
                             {{ item.priorityTitle }}
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="mb-4" id="mediaList">
-                    <p><label>Betroffenen Medien:</label></p>
+                    <p><label class="view">Betroffenen Medien:</label></p>
                     <div class="media-input">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="media[]" v-model="arrLearnApp" id="mediaApp" value="Learn App/IU Reader">
@@ -129,16 +129,15 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label for="issueDescription">Beschreibe deine Ticketmeldung:</label>
+                    <label for="issueDescription" class="view">Beschreibe deine Ticketmeldung:</label>
                     <textarea required class="form-control" v-model="issueDescription" name="issueDescription" id="issueDescription" style="min-height:200px; max-height:70vh;"></textarea>
                 </div>
                 
                 <div class="mb-4">
-                    <label for="issueFile">Upload von Dateien (optional):</label>
+                    <label for="issueFile" class="view">Upload von Dateien (optional):</label>
                     <input type="file" class="form-control" @change="handleChange" name="issueFile" id="issueFile" accept="image/png, image/jpeg, .pdf, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .mp4">
                     <div v-if="fileError" class="error ">{{fileError}}</div>
                     <div class="form-text">Erlaubte Dateiformate: Bilder (jpg, jpeg, png), PDF, MP4-Video und MS Word. <br>Dateigröße: max. 5 MB</div>
-                
                 </div>
                 
                 <div class="mt-4">
@@ -372,6 +371,10 @@ export default {
 </script>
 
 <style>
+label.view {
+    font-weight:bold;
+}
+
 #mediaList .media-input {
     margin-bottom:5px;
 }
