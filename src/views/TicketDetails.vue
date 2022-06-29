@@ -4,9 +4,13 @@
 
         <div class="container content-small">
             <h1>Ticketinformationen</h1>
-            <p v-if="document.status == 'Erledigt' || document.status == 'Abgelehnt'">Ticket geschlossen am {{String(document.modifiedAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.modifiedAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.modifiedAt.toDate().getFullYear()}}
-                                - {{String(document.modifiedAt.toDate().getHours()).padStart(2,'0')}}:{{String(document.modifiedAt.toDate().getMinutes()).padStart(2,'0')}} Uhr</p>
-           <hr />
+            <div v-if="document.modifiedAt">
+                <p v-if="document.status == 'Erledigt' || document.status == 'Abgelehnt'">
+                    Ticket geschlossen am {{String(document.modifiedAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.modifiedAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.modifiedAt.toDate().getFullYear()}}
+                    - {{String(document.modifiedAt.toDate().getHours()).padStart(2,'0')}}:{{String(document.modifiedAt.toDate().getMinutes()).padStart(2,'0')}} Uhr
+                </p>
+            </div>
+            <hr />
 
             <div v-if="error" class="error" style="margin:1em 0; text-align:center;"> {{ error }} </div>
 
@@ -126,8 +130,10 @@
                     <h3>Anmerkung des Tutors</h3>
 
                     <div class="mb-4">
-                        <label class="view" for="feedbackComment">Statusänderung am {{String(document.modifiedAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.modifiedAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.modifiedAt.toDate().getFullYear()}}
-                                - {{String(document.modifiedAt.toDate().getHours()).padStart(2,'0')}}:{{String(document.modifiedAt.toDate().getMinutes()).padStart(2,'0')}} Uhr</label>
+                        <label v-if="document.modifiedAt" class="view" for="feedbackComment">
+                            Statusänderung am {{String(document.modifiedAt.toDate().getDate()).padStart(2,'0')}}.{{String(document.modifiedAt.toDate().getMonth()+1).padStart(2,'0')}}.{{document.modifiedAt.toDate().getFullYear()}}
+                            - {{String(document.modifiedAt.toDate().getHours()).padStart(2,'0')}}:{{String(document.modifiedAt.toDate().getMinutes()).padStart(2,'0')}} Uhr
+                        </label>
                         <div v-if="document.feedback">                            
                             <div style="white-space:pre-wrap;">{{document.feedback}}</div>
                         </div>
