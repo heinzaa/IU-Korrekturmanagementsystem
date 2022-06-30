@@ -29,21 +29,18 @@ const login = async (email, password) => {
 
         }
 
-
-
         if (res.user.emailVerified) {
             error.value = null;
             isPending.value = false;
             return res;
         }
         else {
-
             error.value = 'Du musst zuerst Deine E-Mail-Adresse verifizieren.'
             isPending.value = false;
         }
     } catch (err) {
         console.log(err.value);
-        error.value = 'Ungültige Anmeldedaten!';
+        error.value = 'Ungültige Anmeldedaten oder bereits angemeldet!';
         isPending.value = false;
     }
 
