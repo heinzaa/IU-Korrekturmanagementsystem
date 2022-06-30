@@ -17,7 +17,7 @@ import { projectAuth } from '../firebase/config';
 const requireAuth = (to, from, next) => {
   
   let user = projectAuth.currentUser;
-  if (!user) {
+  if (!user || !user.emailVerified) {
     next({ name: 'Welcome' })
   }
   else {
