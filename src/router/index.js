@@ -18,6 +18,7 @@ const requireAuth = (to, from, next) => {
   
   let user = projectAuth.currentUser;
   if (!user || !user.emailVerified) {
+    window.alert("Um auf die gewünschte Seite navigieren zu können, müssen Sie angemeldet sein und ihre Email verifiziert haben.")
     next({ name: 'Welcome' })
   }
   else {
