@@ -7,6 +7,7 @@
                 <p>Die Nutzung des Korrekturmanagementsystems ist ausschließlich für private Zwecke und berechtigte Personen der IU gestattet.</p>
                 <p>&nbsp;</p>
                 <h2>Login</h2>
+                <p class="error">{{emailNotVerified}}</p>
                 <LoginForm @login="enterDashboard" />
                 <p><span @click="showResetPasswordForm">Passwort vergessen?</span></p>
                 <p>Noch kein Konto? ➜ <span @click="showSignUpForm">Registrierung</span></p>
@@ -41,16 +42,36 @@ import SignUpForm from "../components/SignUpForm.vue";
 import LoginForm from "../components/LoginForm.vue";
 import VerficationPopUp from "../components/VerificationPopUp.vue"
 import ResetPasswordForm from "../components/ResetPasswordForm.vue";
+import { projectAuth } from '../firebase/config';
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 export default {
     components: { TemplateHeader, TemplateFooter, SignUpForm, LoginForm, ResetPasswordForm, VerficationPopUp },
+    
+     data() {
+        return {
+            emailNotVerified: ''
+        };
+    },
+    beforeRouteLeave(to, from, next) {
+  
+            let user = projectAuth.currentUser;
+                if (!user || !user.emailVerified) {
+                this.emailNotVerified= "Um zum Dashboard zu gelangen, müssen Sie ihre Email verifizieren!"
+                next({ name: 'Welcome' })
+            }
+            else {
+                next();
+            }
+
+    },
+    
     setup() {
         const showLogin = ref(true);
         const showResetPassword = ref(false);
         const showSignUp = ref(false);
         const showVerificationPopUp = ref(false);
-        
+       
 
         
         const router = useRouter();
