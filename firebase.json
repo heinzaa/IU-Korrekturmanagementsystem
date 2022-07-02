@@ -13,12 +13,12 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites":[
-			{
-				"source":"**",
-				"destination":"/index.html"
-			}
-		]
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   },
   "storage": {
     "rules": "storage.rules"
@@ -45,5 +45,8 @@
   },
   "remoteconfig": {
     "template": "remoteconfig.template.json"
+  },
+  "functions": {
+    "source": "functions"
   }
 }
