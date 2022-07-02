@@ -63,13 +63,12 @@ export default {
         const { isTutor } = useIsTutor();
         const { error, logout } = useLogout();
         const router = useRouter();
-
-        const userLoggedIn = ref(user);
+        const userLoggedIn = ref(user.value);
         
         
         const logoutUser = async () => {
             await logout();
-            console.log('user logged out');
+            
             router.push({ name: 'Welcome' })
         }
 
