@@ -15,10 +15,12 @@ const userIsTutor = (to, from, next) => {
         let oTutor = tutor_course.find(item => item.email == user.value.email);
 
         if(oTutor == null){
-            isTutor = false;
+            isTutor.value = false;
+            
         }
         else{
-            isTutor = true;
+            isTutor.value = true;
+            
         }
 
     }
