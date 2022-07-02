@@ -151,7 +151,7 @@
         <TicketModal @close="navToDashboard" @cancel="closeModal" :modalActive="modalActive">
             <div>
                 <b-icon-send-check style="font-size:3em; margin:15px; color:green;"></b-icon-send-check> 
-                <h2>Das Ticket wurde erfolgreich erstellt.</h2>
+                <h2>Dein Ticket wurde erfolgreich erstellt und eine Benachrichtigung an den Tutor gesendet.</h2>
                 <p>Vielen Dank für deine Meldung. Mit deiner Unterstützung werden wir noch besser!
                 <br />Was möchtest du als nächstes tun?</p>
             </div>
@@ -169,6 +169,7 @@ import { useRouter } from "vue-router";
 import getUser from "../composables/getUser";
 import useStorage from "../composables/useStorage";
 import useCollection from "../composables/useCollection";
+import useMail from "../composables/useMail";
 import { timestamp } from "../firebase/config";
 import tutor_course from "../assets/tutor_course.json";
 import ticket_category from "../assets/ticket_category.json";
@@ -215,6 +216,7 @@ export default {
         const anyName = ref(null);
         const { error, addDoc } = useCollection("tickets");
         const { user } = getUser();
+        const { addMail } = useMail();
         // Referenzen für die eingaben
         const title = ref(null);
         const course = ref(null);
@@ -286,6 +288,7 @@ export default {
                 status: status.value,                
                 createdAt: timestamp(),
             });
+            await addMail('Eingereicht', course.value.email, issueDescription.value, course.value.course, course.value.tutor, title.value )
             isPending.value = false;
             if (!error.value) {
                 modalActive.value = !modalActive.value;

@@ -177,6 +177,7 @@ import { useRouter } from "vue-router";
 import { computed } from 'vue';
 import { timestamp } from "../firebase/config";
 import useIsTutor from '../composables/useIsTutor';
+import useMail from '../composables/useMail';
 export default {
     components: { TemplateHeader, TemplateFooter },
     props: ["id"],
@@ -193,6 +194,8 @@ export default {
         const { error, document } = getDocument("tickets", props.id);
         const { updateDoc } = useDocument("tickets", props.id);
         const { isTutor } = useIsTutor();
+        const { addMail } = useMail();
+
         const priority = ref('')
        
         const feedback = ref('')
@@ -225,6 +228,8 @@ export default {
                 modifiedAt: timestamp(),
                  priority: priority.value
             });
+            await addMail('Abgelehnt', document.value.authorMail, document.value.description, document.value.courseInformation.course, document.value.authorName, document.value.title);
+
             router.push({name: 'Dashboard'});
             
          }      
@@ -243,6 +248,7 @@ export default {
                 modifiedAt: timestamp(),
                 priority: priority.value               
             });
+            await addMail('In Arbeit', document.value.authorMail, document.value.description, document.value.courseInformation.course, document.value.authorName, document.value.title);
             router.push({name: 'Dashboard'});           
          }      
          const closeTicket = async(e) => {
@@ -258,6 +264,7 @@ export default {
                 modifiedAt: timestamp(),
                 priority: priority.value
             })
+            await addMail('Erledigt', document.value.authorMail, document.value.description, document.value.courseInformation.course, document.value.authorName, document.value.title);
            router.push({name: 'Dashboard'});
          }      
 
