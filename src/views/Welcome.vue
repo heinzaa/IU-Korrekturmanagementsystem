@@ -1,6 +1,7 @@
 <template>
     <div id="template">
         <TemplateHeader />
+       <!-- <button @click="sendEmailVerification"> Verifizierungslink erneut senden</button> -->
         <div class="welcome container content-small content-center">
             <div v-if="showLogin">
                 <h1>Korrektur&shy;management&shy;system</h1>
@@ -42,9 +43,11 @@ import SignUpForm from "../components/SignUpForm.vue";
 import LoginForm from "../components/LoginForm.vue";
 import VerficationPopUp from "../components/VerificationPopUp.vue"
 import ResetPasswordForm from "../components/ResetPasswordForm.vue";
+import useResendVerificationMail from '../composables/useResendVerificationMail'
 import { projectAuth } from '../firebase/config';
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
+import tutor_course from '../assets/tutor_course.json';
 export default {
     components: { TemplateHeader, TemplateFooter, SignUpForm, LoginForm, ResetPasswordForm, VerficationPopUp },
     
@@ -54,10 +57,17 @@ export default {
         };
     },
     beforeRouteLeave(to, from, next) {
-  
             let user = projectAuth.currentUser;
+<<<<<<< HEAD
+            let isTutor = tutor_course.find(item => item.email == user.email);
+
+            
+                if (!user || !user.emailVerified && !isTutor)  {
+                this.emailNotVerified= "Um zum Dashboard zu gelangen, müssen Sie ihre Email verifizieren!"
+=======
                 if (!user || !user.emailVerified) {
                 this.emailNotVerified= "Um zum Dashboard zu gelangen, musst Du Deine E-Mail verifizieren!"
+>>>>>>> a48ebd33de288e3ef97c1c7eb3c90163f8247f72
                 next({ name: 'Welcome' })
             }
             else {
@@ -71,8 +81,12 @@ export default {
         const showResetPassword = ref(false);
         const showSignUp = ref(false);
         const showVerificationPopUp = ref(false);
-       
 
+        const { error, resendVerificationMail } = useResendVerificationMail();
+       
+      /* const sendEmailVerification = () =>{
+            resendVerificationMail();
+        } */
         
         const router = useRouter();
 
@@ -125,6 +139,7 @@ export default {
             showResetPassword,
             showSignUp,
             showLoginForm,
+            //sendEmailVerification,
             showResetPasswordForm,
             showSignUpForm,
             showVerificationPopUp,

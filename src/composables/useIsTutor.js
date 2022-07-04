@@ -11,7 +11,7 @@ const userIsTutor = (to, from, next) => {
     // Falls eingeloggt
     if(user.value){
         
-
+        
         let oTutor = tutor_course.find(item => item.email == user.value.email);
 
         if(oTutor == null){

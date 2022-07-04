@@ -81,6 +81,7 @@ import getCollection from '../composables/getCollection'
 import getUser from '../composables/getUser'
 import { useRouter } from 'vue-router';
 import {computed} from 'vue';
+import { ref } from "@vue/reactivity";
 export default {
     setup() {
         const { user } = getUser();
@@ -92,7 +93,7 @@ export default {
 
         const searchQuery = ref("");
 
-        const searchedTickets = computed(() => {
+       const searchedTickets = computed(() => {
       return documents.value.filter((document) => {
         return (
           document.title
@@ -101,6 +102,9 @@ export default {
         );
       });
 });
+
+     
+
         const openTickets = computed(() => {
             if(documents.value){
                let doc =  documents.value.filter(elements => elements.status == 'Offen');         

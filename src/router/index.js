@@ -14,11 +14,13 @@ import tutor_course from '../assets/tutor_course.json';
 import { projectAuth } from '../firebase/config';
 
 
+
 const requireAuth = (to, from, next) => {
   
   let user = projectAuth.currentUser;
-  if (!user || !user.emailVerified) {
-    window.alert("Um auf die gewünschte Seite navigieren zu können, musst Du mit Deinem verifizierten Account eingeloggt sein.")
+  let isTutor = tutor_course.find(item => item.email == user.email);
+  if (!user || !user.emailVerified && !isTutor) {
+    window.alert("Um auf die gewünschte Seite navigieren zu können, müssen Sie angemeldet sein und ihre Email verifiziert haben.")
     next({ name: 'Welcome' })
   }
   else {

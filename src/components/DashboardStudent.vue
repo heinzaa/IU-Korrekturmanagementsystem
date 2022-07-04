@@ -1,11 +1,14 @@
 <template>
     <div id="dashboard-tutor">
         <h1>Meine erstellten Tickets</h1>
-        <div>
+        <div class="searchbar">
+            <div class="end">
             <a href="/createticket" class="btn btn-primary"><b-icon-plus-circle style="margin-top:-0.1em;"></b-icon-plus-circle>&nbsp; Ticket erstellen</a>
-            <input type="text" placeholder="Suche nach Titel..." v-model="searchQuery" />
+            <input type="text" class="" placeholder="Suche nach Titel..." v-model="searchQuery">
+            </div>
             
         </div>
+        
         
         <div v-if="!documents" style="margin:1em 0; text-align:center;">
             Es existieren noch keine erstellten Tickets.
@@ -182,5 +185,9 @@ export default {
 </script>
 
 <style>
+.searchbar .end{
+    display: flex;
+    justify-content: space-between; 
+}
 
 </style>
