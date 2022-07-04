@@ -1,13 +1,10 @@
 <template>
-    <div id="dashboard-tutor">
+    <div>
         <h1>Tutor Dashboard</h1>
-        <div>
-            <input type="text" placeholder="Suche nach Titel..." v-model="searchQuery" />
-        </div>
+
         <div v-if="!documents" style="margin:1em 0; text-align:center;">
             Es existieren noch keine erstellten Tickets.
         </div>
-        
         <div v-else>
             <div id="status-panel">
                 <div @click="filterTickets('Offen')" data-status="Offen">
@@ -27,7 +24,11 @@
                     <span>Abgelehnt</span>
                 </div>
             </div>
-            
+            <div class="searchbar">
+                <input class="form-control" v-model="searchQuery" type="text" placeholder="Schnellfilter für Titel..." />
+                <span class="showSearchIcon"><b-icon-search></b-icon-search></span>
+            </div>
+
             <div class="table-responsive">            
                 <table class="table table-hover table-tickets">
                     <thead>
@@ -80,8 +81,9 @@
 import getCollection from '../composables/getCollection' 
 import getUser from '../composables/getUser'
 import { useRouter } from 'vue-router';
-import {computed} from 'vue';
-import { ref } from "@vue/reactivity";
+import { computed } from 'vue';
+import { ref } from '@vue/reactivity';
+
 export default {
     setup() {
         const { user } = getUser();
@@ -93,17 +95,15 @@ export default {
 
         const searchQuery = ref("");
 
-       const searchedTickets = computed(() => {
-      return documents.value.filter((document) => {
-        return (
-          document.title
-            .toLowerCase()
-            .indexOf(searchQuery.value.toLowerCase()) != -1
-        );
-      });
-});
-
-     
+        const searchedTickets = computed(() => {
+            return documents.value.filter((document) => {
+                return (
+                document.title
+                    .toLowerCase()
+                    .indexOf(searchQuery.value.toLowerCase()) != -1
+                );
+            });
+        });
 
         const openTickets = computed(() => {
             if(documents.value){
@@ -114,7 +114,8 @@ export default {
                 return 0;
             }
 
-        })
+        });
+
         const inProgressTickets = computed(() => {
             if(documents.value){
                let doc =  documents.value.filter(elements => elements.status == 'In Arbeit');         
@@ -124,8 +125,9 @@ export default {
                 return 0;
             }
 
-        })
-         const closedTickets = computed(() => {
+        });
+
+        const closedTickets = computed(() => {
             if(documents.value){
                let doc =  documents.value.filter(elements => elements.status == 'Erledigt');         
             return doc.length;
@@ -134,9 +136,9 @@ export default {
                 return 0;
             }
 
-        })
+        });
 
-         const rejectedTickets = computed(() => {
+        const rejectedTickets = computed(() => {
             if(documents.value){
                let doc =  documents.value.filter(elements => elements.status == 'Abgelehnt');         
             return doc.length;
@@ -145,8 +147,7 @@ export default {
                 return 0;
             }
 
-        })
-
+        });
         
 
         const toTicketDetails = (ticketID) => {

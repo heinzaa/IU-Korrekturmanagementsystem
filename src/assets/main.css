@@ -167,6 +167,23 @@ button {
     cursor: pointer;
 }
 
+.showSearchIcon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0.36em 0.8em;
+    cursor: pointer;
+}
+
+.searchbar {
+    position: relative;
+    margin: 1em 0;
+    max-width: 200px;
+}
+.searchbar input {
+    
+}
+
 
 @media screen and (max-width: 767px) {
     #status-panel div {
