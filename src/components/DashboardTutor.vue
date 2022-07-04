@@ -1,10 +1,13 @@
 <template>
     <div id="dashboard-tutor">
         <h1>Tutor Dashboard</h1>
-        
+        <div>
+            <input type="text" placeholder="Search..." v-model="searchQuery" />
+        </div>
         <div v-if="!documents" style="margin:1em 0; text-align:center;">
             Es existieren noch keine erstellten Tickets.
         </div>
+        
         <div v-else>
             <div id="status-panel">
                 <div @click="filterTickets('Offen')" data-status="Offen">
@@ -36,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="ticket in documents" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer" :data-status="ticket.status">
+                        <tr v-for="ticket in searchedTickets" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer" :data-status="ticket.status">
                             <td class="ticket-date" data-title="Datum">
                                 <strong v-if="ticket.status == 'Erledigt'" class="ticket-status rounded-pill bg-success" title="Erledigt"></strong>
                                 <strong v-if="ticket.status == 'Offen'" class="ticket-status rounded-pill bg-danger" title="Offen"></strong>
@@ -86,6 +89,18 @@ export default {
         const { error, documents } = getCollection("tickets", [
             "courseInformation.email", "==", user.value.email,
         ]);
+
+        const searchQuery = ref("");
+
+        const searchedTickets = computed(() => {
+      return documents.value.filter((document) => {
+        return (
+          document.title
+            .toLowerCase()
+            .indexOf(searchQuery.value.toLowerCase()) != -1
+        );
+      });
+});
         const openTickets = computed(() => {
             if(documents.value){
                let doc =  documents.value.filter(elements => elements.status == 'Offen');         
@@ -128,7 +143,7 @@ export default {
 
         })
 
-        console.log(documents);
+        
 
         const toTicketDetails = (ticketID) => {
             router.push({ name: "TicketDetails", params: { id: ticketID } });
@@ -169,7 +184,7 @@ export default {
             msgEmptyList.style.display = (hasVisibleItems ? 'none' : 'block');
         }
 
-        return { error, documents, toTicketDetails, filterTickets, openTickets, inProgressTickets, closedTickets, rejectedTickets };
+        return { searchQuery, searchedTickets, error, documents, toTicketDetails, filterTickets, openTickets, inProgressTickets, closedTickets, rejectedTickets };
     },
 };
 

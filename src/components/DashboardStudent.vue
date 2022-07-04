@@ -3,6 +3,8 @@
         <h1>Meine erstellten Tickets</h1>
         <div>
             <a href="/createticket" class="btn btn-primary"><b-icon-plus-circle style="margin-top:-0.1em;"></b-icon-plus-circle>&nbsp; Ticket erstellen</a>
+            <input type="text" placeholder="Search..." v-model="searchQuery" />
+            
         </div>
         
         <div v-if="!documents" style="margin:1em 0; text-align:center;">
@@ -37,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="ticket in documents" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer" :data-status="ticket.status">
+                        <tr v-for="ticket in searchedTickets" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer" :data-status="ticket.status">
                             <td class="ticket-date" data-title="Datum">
                                 <strong v-if="ticket.status == 'Erledigt'" class="ticket-status rounded-pill bg-success" title="Erledigt"></strong>
                                 <strong v-if="ticket.status == 'Offen'" class="ticket-status rounded-pill bg-danger" title="Offen"></strong>
@@ -77,6 +79,17 @@ export default {
             "author", "==", user.value.uid,
         ]);
 
+        const searchQuery = ref("");
+
+        const searchedTickets = computed(() => {
+      return documents.value.filter((document) => {
+        return (
+          document.title
+            .toLowerCase()
+            .indexOf(searchQuery.value.toLowerCase()) != -1
+        );
+      });
+});
        
 
         const OpenTickets = computed(() => {
@@ -162,7 +175,7 @@ export default {
             msgEmptyList.style.display = (hasVisibleItems ? 'none' : 'block');
         }
 
-        return { error, documents, toTicketDetails, filterTickets, OpenTickets, inProgressTickets, closedTickets, rejectedTickets };
+        return { searchQuery, searchedTickets, error, documents, toTicketDetails, filterTickets, OpenTickets, inProgressTickets, closedTickets, rejectedTickets };
     },
 };
 
