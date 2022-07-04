@@ -15,8 +15,8 @@
             </div>
             <div v-else-if="showResetPassword">
                 <h1>Passwort zurücksetzen</h1>
-                <p>Bitte gib die E-Mail-Adresse zu deinem Profil ein.
-                    Wir senden dir dann einen Link, mit dem du ein neues Kennwort festlegen kannst.</p>
+                <p>Bitte gib die E-Mail-Adresse zu Deinem Profil ein.
+                    Wir senden dir dann einen Link, mit dem Du ein neues Kennwort festlegen kannst.</p>
                 <ResetPasswordForm />
                 <p>Bereits registriert? ➜ <span @click="showLoginForm">Login</span></p>
             </div>
@@ -57,7 +57,7 @@ export default {
   
             let user = projectAuth.currentUser;
                 if (!user || !user.emailVerified) {
-                this.emailNotVerified= "Um zum Dashboard zu gelangen, müssen Sie ihre Email verifizieren!"
+                this.emailNotVerified= "Um zum Dashboard zu gelangen, musst Du Deine E-Mail verifizieren!"
                 next({ name: 'Welcome' })
             }
             else {

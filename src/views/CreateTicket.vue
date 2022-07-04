@@ -129,7 +129,7 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label for="issueDescription" class="view">Beschreibe deine Ticketmeldung:</label>
+                    <label for="issueDescription" class="view">Beschreibe Deine Ticketmeldung:</label>
                     <textarea required class="form-control" v-model="issueDescription" name="issueDescription" id="issueDescription" style="min-height:200px; max-height:70vh;"></textarea>
                 </div>
                 
@@ -152,8 +152,8 @@
             <div>
                 <b-icon-send-check style="font-size:3em; margin:15px; color:green;"></b-icon-send-check> 
                 <h2>Dein Ticket wurde erfolgreich erstellt und eine Benachrichtigung an den Tutor gesendet.</h2>
-                <p>Vielen Dank für deine Meldung. Mit deiner Unterstützung werden wir noch besser!
-                <br />Was möchtest du als nächstes tun?</p>
+                <p>Vielen Dank für Deine Meldung. Mit Deiner Unterstützung werden wir noch besser!
+                <br />Was möchtest Du als nächstes tun?</p>
             </div>
         </TicketModal>
         

@@ -47,9 +47,9 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
             await projectFirestore.collection('mail').add({
                 to: toMail,
                 message: {
-                  subject: `Antwort auf dein Ticket ${title} für das Fach ${course}`,
-                  html: `Hallo ${name}, dein Ticketstatus wurde von deinem Tutor auf ${status} mit dem Feedback: ${feedback} gesetzt. 
-                        Du kannst dein Ticket unter folgender URL abrufen : ${URL}.
+                  subject: `Antwort auf Dein Ticket ${title} für das Fach ${course}`,
+                  html: `Hallo ${name}, Dein Ticketstatus wurde von Deinem Tutor auf ${status} mit dem Feedback: ${feedback} gesetzt. 
+                        Du kannst Dein Ticket unter folgender URL abrufen : ${URL}.
                         Mit freundlichen Grüßen,
                         Dein Team vom Korrekturmanagementsystem.`,
                 }
@@ -60,9 +60,9 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
             await projectFirestore.collection('mail').add({
                 to: toMail,
                 message: {
-                    subject: `Antwort auf dein Ticket ${title} für das Fach ${course}`,
-                    html: `Hallo ${name}, dein Ticketstatus wurde von deinem Tutor auf ${status} mit dem Feedback: ${feedback} gesetzt. 
-                          Du kannst dein Ticket unter folgender URL abrufen : ${URL}.
+                    subject: `Antwort auf Dein Ticket ${title} für das Fach ${course}`,
+                    html: `Hallo ${name}, Dein Ticketstatus wurde von Deinem Tutor auf ${status} mit dem Feedback: ${feedback} gesetzt. 
+                          Du kannst Dein Ticket unter folgender URL abrufen : ${URL}.
                           Mit freundlichen Grüßen,
                           Dein Team vom Korrekturmanagementsystem.`,
                   }
