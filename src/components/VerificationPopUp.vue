@@ -7,7 +7,7 @@
             <p>
                 Du musst Deine E-Mail-Adresse verfizieren, um Deine
                 Registrierung abzuschließen. Dazu haben wir eine E-Mail mit
-                Verfizierungslink an Deine E-Mail-Adresse {{ email }} gesendet.
+                Verifizierungslink an Deine E-Mail-Adresse {{ email }} gesendet.
                 Bitte bestätigen Sie diese. Es könnte sein, dass die E-Mail in deinem Spam-Ordner landet.
             </p>
             <button type="button" @click="toLogin" class="btn btn-primary">
