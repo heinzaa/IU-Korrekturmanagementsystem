@@ -3,7 +3,7 @@
         <h1>Meine erstellten Tickets</h1>
         <div>
             <a href="/createticket" class="btn btn-primary"><b-icon-plus-circle style="margin-top:-0.1em;"></b-icon-plus-circle>&nbsp; Ticket erstellen</a>
-            <input type="text" placeholder="Search..." v-model="searchQuery" />
+            <input type="text" placeholder="Suche nach Titel..." v-model="searchQuery" />
             
         </div>
         

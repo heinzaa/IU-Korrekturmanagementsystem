@@ -2,7 +2,7 @@
     <div id="dashboard-tutor">
         <h1>Tutor Dashboard</h1>
         <div>
-            <input type="text" placeholder="Search..." v-model="searchQuery" />
+            <input type="text" placeholder="Suche nach Titel..." v-model="searchQuery" />
         </div>
         <div v-if="!documents" style="margin:1em 0; text-align:center;">
             Es existieren noch keine erstellten Tickets.
