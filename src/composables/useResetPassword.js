@@ -8,7 +8,7 @@ const resetPassword = async (email) => {
     error.value = null;
 
     try{
-        const response = await projectAuth.sendPasswordResetEmail(email, { url:"http://localhost:8081" })
+        const response = await projectAuth.sendPasswordResetEmail(email, { url:"https://korrekturmanagement.de" })
         console.log(response);
         return response;
     }catch(err){
