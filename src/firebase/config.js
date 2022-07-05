@@ -6,6 +6,8 @@ import firebase from "firebase/app";
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/storage'
+import  'firebase/performance'
+import 'firebase/analytics'
 
 
 
@@ -36,6 +38,7 @@ const projectAuth = firebase.auth()
 const projectFirestore = firebase.firestore()
 const projectStorage = firebase.storage()
 const timestamp = firebase.firestore.FieldValue.serverTimestamp
+const projectPerformance = firebase.performance();
+const analytics = firebase.analytics();
 
-
-export { projectAuth, projectFirestore, projectStorage, timestamp }
+export { projectAuth, projectFirestore, projectStorage, timestamp, projectPerformance, analytics }

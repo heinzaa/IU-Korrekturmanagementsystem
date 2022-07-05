@@ -28,6 +28,21 @@ const requireAuth = (to, from, next) => {
   }
 }
 
+const requireStatus = (to, from, next) => {
+  debugger;
+  let user = projectAuth.currentUser;
+  let isTutor = tutor_course.find(item => item.email == user.email);
+  if (!user || !user.emailVerified && !isTutor) {
+    window.alert("Um auf die gewünschte Seite navigieren zu können, müssen Sie angemeldet sein und ihre Email verifiziert haben.")
+    next({ name: 'Welcome' })
+  }
+  else {
+    next();
+  }
+
+}
+
+
 const userIsTutor = (to,from, next) => {
   let user = projectAuth.currentUser;
   let isTutorLoggedIn = tutor_course.find(item => item.email == user.email);
@@ -91,7 +106,7 @@ const routes = [
     path: '/tickets',
     name: 'Ticket',
     component: allTickets,
-    beforeEnter: requireAuth
+    beforeEnter: requireStatus
   },
   {
     path: '/ticket/:id',

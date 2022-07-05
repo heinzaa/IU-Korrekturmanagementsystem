@@ -178,6 +178,7 @@ import { computed } from 'vue';
 import { timestamp } from "../firebase/config";
 import useIsTutor from '../composables/useIsTutor';
 import useMail from '../composables/useMail';
+
 export default {
     components: { TemplateHeader, TemplateFooter },
     props: ["id"],
@@ -218,9 +219,7 @@ export default {
 
               if(priority.value == ''){
                  priority.value = document.value.priority;
-             }
-
-            
+             }           
         
             await updateDoc({
                 status: 'Abgelehnt',
