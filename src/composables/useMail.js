@@ -7,9 +7,6 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
     const isPending = ref(null);
 
     const URL = 'https://korrekturmanagement.de'
-    
-
-
 
     const addMail = async (status, toMail, feedback, course, name, title) => {
         error.value = null;
@@ -22,14 +19,14 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
                 message: {
                   subject: `KorrekturManagementSystem | Neues Ticket zu Kurs ${course}`,
                   html: `Hallo ${name},
-                        <br><br>es wurde ein neues Ticket im Kurs erstellt.
-                        <br><br>Titel: ${title}
-                        <br>Kurs: ${course}
-                        <br>Status: Offen
-                        <br><br>Du kannst dies unter folgender URL abrufen: ${URL},
+                        <br><br>es wurde ein neues Ticket erstellt mit folgenden Angaben...
+                        <br>
+                        <br><b>Titel:</b> ${title}
+                        <br><b>Kurs:</b> ${course}
+                        <br><b>Status:</b> Offen
                         <br><br>Mit freundlichen Grüßen,
                         <br><br>Dein Team vom Korrekturmanagementsystem
-                        <br><br>${URL} `,
+                        <br><br><a href="${URL}">${URL}</a> `,
                 }
               }).then(() => console.log('Queued email for delivery!'));
             isPending.value = true;
@@ -41,14 +38,15 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
                 message: {
                   subject: `KorrekturManagementSystem | Dein Ticket ist IN ARBEIT`,
                   html: `Hallo ${name}, 
-                        <br><br>Dein Ticketstatus wurde vom zuständigen Tutor aktualisiert.
-                        <br><br>Titel: ${title}
-                        <br>Kurs: ${course}
-                        <br>Status: ${status}
-                        <br>Feedback: <i>${feedback}</i>
+                        <br><br>Dein Ticketstatus wurde vom zuständigen Tutor wie folgt aktualisiert...
+                        <br>
+                        <br><b>Titel:</b> ${title}
+                        <br><b>Kurs:</b> ${course}
+                        <br><b>Status:</b> ${status}
+                        <br><b>Feedback:</b> <i>${feedback}</i>
                         <br><br>Mit freundlichen Grüßen,
                         <br><br>Dein Team vom Korrekturmanagementsystem
-                        <br><br>${URL} `,
+                        <br><br><a href="${URL}">${URL}</a> `,
                 }
               }).then(() => console.log('Queued email for delivery!'));
             isPending.value = true;
@@ -59,14 +57,15 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
                 message: {
                   subject: `KorrekturManagementSystem | Dein Ticket wurde ABGELEHNT`,
                   html: `Hallo ${name}, 
-                        <br><br>Dein Ticketstatus wurde vom zuständigen Tutor aktualisiert.
-                        <br><br>Titel: ${title}
-                        <br>Kurs: ${course}
-                        <br>Status: ${status}
-                        <br>Feedback: <i>${feedback}</i>
+                        <br><br>Dein Ticketstatus wurde vom zuständigen Tutor wie folgt aktualisiert...
+                        <br>
+                        <br><b>Titel:</b> ${title}
+                        <br><b>Kurs:</b> ${course}
+                        <br><b>Status:</b> ${status}
+                        <br><b>Feedback:</b> <i>${feedback}</i>
                         <br><br>Mit freundlichen Grüßen,
                         <br><br>Dein Team vom Korrekturmanagementsystem
-                        <br><br>${URL} `,
+                        <br><br><a href="${URL}">${URL}</a> `,
                 }
               }).then(() => console.log('Queued email for delivery!'));
             isPending.value = true;
@@ -77,14 +76,15 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
                 message: {
                   subject: `KorrekturManagementSystem | Dein Ticket wurde ERLEDIGT`,
                   html: `Hallo ${name}, 
-                        <br><br>Dein Ticketstatus wurde vom zuständigen Tutor aktualisiert.
-                        <br><br>Titel: ${title}
-                        <br>Kurs: ${course}
-                        <br>Status: ${status}
-                        <br>Feedback: <i>${feedback}</i>
+                        <br><br>Dein Ticketstatus wurde vom zuständigen Tutor wie folgt aktualisiert...
+                        <br>
+                        <br><b>Titel:</b> ${title}
+                        <br><b>Kurs:</b> ${course}
+                        <br><b>Status:</b> ${status}
+                        <br><b>Feedback:</b> <i>${feedback}</i>
                         <br><br>Mit freundlichen Grüßen,
                         <br><br>Dein Team vom Korrekturmanagementsystem
-                        <br><br>${URL} `,
+                        <br><br><a href="${URL}">${URL}</a> `,
                   }
               }).then(() => console.log('Queued email for delivery!'));
             isPending.value = true;
