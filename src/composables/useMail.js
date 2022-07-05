@@ -20,12 +20,16 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
             await projectFirestore.collection('mail').add({
                 to: toMail,
                 message: {
-                  subject: `Neues Ticket ${course} mit dem Betreff ${title}`,
+                  subject: `KorrekturManagementSystem | Neues Ticket zu Kurs ${course}`,
                   html: `Hallo ${name},
-                         es wurde ein neues Ticket für dich erstellt. 
-                         Du kannst dies unter folgender URL abrufen : ${URL},
-                         Mit freundlichen Grüßen,
-                         Dein Team vom Korrekturmanagementsystem.`,
+                        <br><br>es wurde ein neues Ticket im Kurs erstellt.
+                        <br><br>Titel: ${title}
+                        <br>Kurs: ${course}
+                        <br>Status: Offen
+                        <br><br>Du kannst dies unter folgender URL abrufen: ${URL},
+                        <br><br>Mit freundlichen Grüßen,
+                        <br><br>Dein Team vom Korrekturmanagementsystem
+                        <br><br>${URL} `,
                 }
               }).then(() => console.log('Queued email for delivery!'));
             isPending.value = true;
@@ -35,11 +39,16 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
             await projectFirestore.collection('mail').add({
                 to: toMail,
                 message: {
-                  subject: `Antwort auf dein Ticket ${title} für das Fach ${course}`,                  
-                  html: `Hallo ${name}, Dein Ticketstatus wurde von deinem Tutor auf ${status} mit dem Feedback: ${feedback} gesetzt. 
-                  Du kannst Dein Ticket unter folgender URL abrufen : ${URL}.
-                  Mit freundlichen Grüßen,
-                  Dein Team vom Korrekturmanagementsystem.`,
+                  subject: `KorrekturManagementSystem | Dein Ticket ist IN ARBEIT`,
+                  html: `Hallo ${name}, 
+                        <br><br>Dein Ticketstatus wurde vom zuständigen Tutor aktualisiert.
+                        <br><br>Titel: ${title}
+                        <br>Kurs: ${course}
+                        <br>Status: ${status}
+                        <br>Feedback: <i>${feedback}</i>
+                        <br><br>Mit freundlichen Grüßen,
+                        <br><br>Dein Team vom Korrekturmanagementsystem
+                        <br><br>${URL} `,
                 }
               }).then(() => console.log('Queued email for delivery!'));
             isPending.value = true;
@@ -48,11 +57,16 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
             await projectFirestore.collection('mail').add({
                 to: toMail,
                 message: {
-                  subject: `Antwort auf dein Ticket ${title} für das Fach ${course}`,
-                  html: `Hallo ${name}, Dein Ticketstatus wurde von deinem Tutor auf ${status} mit dem Feedback: ${feedback} gesetzt. 
-                        Du kannst Dein Ticket unter folgender URL abrufen : ${URL}.
-                        Mit freundlichen Grüßen,
-                        Dein Team vom Korrekturmanagementsystem.`,
+                  subject: `KorrekturManagementSystem | Dein Ticket wurde ABGELEHNT`,
+                  html: `Hallo ${name}, 
+                        <br><br>Dein Ticketstatus wurde vom zuständigen Tutor aktualisiert.
+                        <br><br>Titel: ${title}
+                        <br>Kurs: ${course}
+                        <br>Status: ${status}
+                        <br>Feedback: <i>${feedback}</i>
+                        <br><br>Mit freundlichen Grüßen,
+                        <br><br>Dein Team vom Korrekturmanagementsystem
+                        <br><br>${URL} `,
                 }
               }).then(() => console.log('Queued email for delivery!'));
             isPending.value = true;
@@ -61,11 +75,16 @@ const useMail = (status, toMail, feedback, course, tutorName, title ) => {
             await projectFirestore.collection('mail').add({
                 to: toMail,
                 message: {
-                    subject: `Antwort auf Dein Ticket ${title} für das Fach ${course}`,
-                    html: `Hallo ${name}, Dein Ticketstatus wurde von deinem Tutor auf ${status} mit dem Feedback: ${feedback} gesetzt. 
-                          Du kannst Dein Ticket unter folgender URL abrufen : ${URL}.
-                          Mit freundlichen Grüßen,
-                          Dein Team vom Korrekturmanagementsystem.`,
+                  subject: `KorrekturManagementSystem | Dein Ticket wurde ERLEDIGT`,
+                  html: `Hallo ${name}, 
+                        <br><br>Dein Ticketstatus wurde vom zuständigen Tutor aktualisiert.
+                        <br><br>Titel: ${title}
+                        <br>Kurs: ${course}
+                        <br>Status: ${status}
+                        <br>Feedback: <i>${feedback}</i>
+                        <br><br>Mit freundlichen Grüßen,
+                        <br><br>Dein Team vom Korrekturmanagementsystem
+                        <br><br>${URL} `,
                   }
               }).then(() => console.log('Queued email for delivery!'));
             isPending.value = true;
