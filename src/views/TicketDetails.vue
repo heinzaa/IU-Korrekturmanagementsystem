@@ -227,7 +227,7 @@ export default {
                 modifiedAt: timestamp(),
                  priority: priority.value
             });
-            await addMail('Abgelehnt', document.value.authorMail, document.value.description, document.value.courseInformation.course, document.value.authorName, document.value.title);
+            await addMail('Abgelehnt', document.value.authorMail, document.value.feedback, document.value.courseInformation.course, document.value.authorName, document.value.title);
 
             router.push({name: 'Dashboard'});
             
@@ -247,7 +247,7 @@ export default {
                 modifiedAt: timestamp(),
                 priority: priority.value               
             });
-            await addMail('In Arbeit', document.value.authorMail, document.value.description, document.value.courseInformation.course, document.value.authorName, document.value.title);
+            await addMail('In Arbeit', document.value.authorMail, document.value.feedback, document.value.courseInformation.course, document.value.authorName, document.value.title);
             router.push({name: 'Dashboard'});           
          }      
          const closeTicket = async(e) => {
@@ -263,7 +263,7 @@ export default {
                 modifiedAt: timestamp(),
                 priority: priority.value
             })
-            await addMail('Erledigt', document.value.authorMail, document.value.description, document.value.courseInformation.course, document.value.authorName, document.value.title);
+            await addMail('Erledigt', document.value.authorMail, document.value.feedback, document.value.courseInformation.course, document.value.authorName, document.value.title);
            router.push({name: 'Dashboard'});
          }      
 
