@@ -203,8 +203,8 @@ export default {
 
         
         const showStatusInformation = computed(() =>{
-
-            if(isTutor){
+            debugger;
+            if(isTutor.value){
                 return true;
             }
             else{
