@@ -1,4 +1,3 @@
-import { def } from '@vue/shared';
 import { ref } from 'vue';
 import { projectFirestore } from '../firebase/config';
 
@@ -17,7 +16,7 @@ const useCollection = (collection) => {
         }
         catch(err)
         {
-            console.log(err.message);
+           
             error.value = "could not send the message";
             isPending.value = false;
         }
