@@ -1,11 +1,11 @@
 import { ref } from 'vue'
 import { projectAuth } from '../firebase/config'
-import { useRouter } from 'vue-router';
-import getUser from '../composables/getUser';
+
+
 const error = ref(null)
-const email = ref(null);
+
 const isPending = ref(false);
-const router = useRouter();
+
 
 const signup = async (email, password, displayName) => {
 
@@ -16,10 +16,10 @@ const signup = async (email, password, displayName) => {
     const validEmailDomains = ['iubh-fernstudium.de', 'iu-fernstudium.de', 'iubh.de', 'iu.org'];
     const regexEmail = '[^@]+@(' + validEmailDomains.join('|') + ')';
     let regex_iubh = new RegExp(regexEmail);
-    debugger;
+ 
     console.log(regex_iubh + "true:" + regex_iubh != email)
 
-    const { user } = getUser();
+    
     if(!regex_iubh.test(email)){
         error.value = "Die Email-Domaine muss aus einer der folgenden Domainen sein: iubh-fernstudium.de, iu-fernstudium.de, iubh.de, iu.org.";
         return;

@@ -30,9 +30,9 @@
                         <div class="mb-4 col-md-3">
                             <label class="view">Priorität:</label>
                             <div v-if="showStatusInformation">
-                              <select name="issueIssuePrio" v-model="priority" class="form-select" id="issueIssuePrio" required>
+                              <select id="issueIssuePrio" v-model="priority" name="issueIssuePrio" class="form-select" required>
                                    <option value="" disabled>{{document.priority}}</option> 
-                                    <option v-for="item in priorityList" :value="item.priorityTitle" :key="item.id" >
+                                    <option v-for="item in priorityList" :key="item.id" :value="item.priorityTitle" >
                                     {{ item.priorityTitle }}
                                     </option>
                                 </select>  
@@ -143,14 +143,14 @@
                     <div v-if="showStatusInformation">
                         <div>
                             <label class="view">Feedback Aktualisierung hier eintragen:</label>
-                            <textarea :disabled="hideTextarea" class="form-control" v-model="feedback" name="feedbackComment" id="feedbackComment" style="min-height:100px;"></textarea>
+                            <textarea id="feedbackComment" v-model="feedback" :disabled="hideTextarea" class="form-control" name="feedbackComment" style="min-height:100px;"></textarea>
                         </div>
                         <div class="mt-4">
                             <label class="view">Status ändern:</label>
                             <div class="mt-1">
-                                <button type="button" @click="inProgressTicket" class="btn btn-warning">In Arbeit</button> &nbsp; 
-                                <button type="button" @click="closeTicket" class="btn btn-success">Erledigt</button> &nbsp;                        
-                                <button type="button" @click="rejectTicket" class="btn btn-info" >Abgelehnt</button>
+                                <button type="button" class="btn btn-warning" @click="inProgressTicket">In Arbeit</button> &nbsp; 
+                                <button type="button" class="btn btn-success" @click="closeTicket">Erledigt</button> &nbsp;                        
+                                <button type="button" class="btn btn-info" @click="rejectTicket" >Abgelehnt</button>
                             </div>
                             <div class="mt-2">
                                 <small>Hinweis: Bei Änderung des Status auf "Erledigt" oder "Abgelehnt" wird das Ticket geschlossen.</small>
@@ -172,7 +172,7 @@ import TemplateFooter from "../components/TemplateFooter.vue";
 import ticket_priority from "../assets/ticket_priority.json";
 import getDocument from "../composables/getDocument";
 import useDocument from "../composables/useDocument";
-import { ref } from "@vue/reactivity";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { computed } from 'vue';
 import { timestamp } from "../firebase/config";
@@ -182,12 +182,6 @@ import useMail from '../composables/useMail';
 export default {
     components: { TemplateHeader, TemplateFooter },
     props: ["id"],
-
-    data() {
-        return {                   
-            priorityList: ticket_priority,
-        };
-    },
 
     setup(props) {
        
@@ -203,7 +197,7 @@ export default {
 
         
         const showStatusInformation = computed(() =>{
-            debugger;
+            
             if(isTutor.value){
                 return true;
             }
@@ -215,7 +209,7 @@ export default {
         
         
 
-        const rejectTicket = async(e) => {
+        const rejectTicket = async() => {
 
               if(priority.value == ''){
                  priority.value = document.value.priority;
@@ -232,7 +226,7 @@ export default {
             router.push({name: 'Dashboard'});
             
          }      
-         const inProgressTicket = async(e) => {
+         const inProgressTicket = async() => {
 
                if(priority.value == ''){
                  priority.value = document.value.priority;
@@ -250,7 +244,7 @@ export default {
             await addMail('In Arbeit', document.value.authorMail, document.value.feedback, document.value.courseInformation.course, document.value.authorName, document.value.title);
             router.push({name: 'Dashboard'});           
          }      
-         const closeTicket = async(e) => {
+         const closeTicket = async() => {
 
              if(priority.value == ''){
                  priority.value = document.value.priority;
@@ -281,6 +275,12 @@ export default {
         })
 
         return { error, document, rejectTicket ,inProgressTicket, closeTicket, feedback, hideTextarea, showStatusInformation, priority};
+    },
+
+    data() {
+        return {                   
+            priorityList: ticket_priority,
+        };
     },
 };
 </script>

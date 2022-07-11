@@ -7,25 +7,25 @@
         </div>
         <div v-else>
             <div id="status-panel">
-                <div @click="filterTickets('Offen')" data-status="Offen">
+                <div data-status="Offen" @click="filterTickets('Offen')">
                     <strong class="rounded-pill bg-danger">{{openTickets}}</strong>
                     <span>Offen</span>
                 </div>
-                <div @click="filterTickets('In Arbeit')" data-status="In Arbeit">
+                <div data-status="In Arbeit" @click="filterTickets('In Arbeit')">
                     <strong class="rounded-pill bg-warning">{{inProgressTickets}}</strong>
                     <span>In Arbeit</span>
                 </div>
-                <div @click="filterTickets('Erledigt')" data-status="Erledigt">
+                <div data-status="Erledigt" @click="filterTickets('Erledigt')">
                     <strong class="rounded-pill bg-success">{{closedTickets}}</strong>
                     <span>Erledigt</span>
                 </div>
-                <div @click="filterTickets('Abgelehnt')" data-status="Abgelehnt">
+                <div data-status="Abgelehnt" @click="filterTickets('Abgelehnt')">
                     <strong class="rounded-pill bg-info">{{rejectedTickets}}</strong>
                     <span>Abgelehnt</span>
                 </div>
             </div>
             <div class="searchbar">
-                <input class="form-control" v-model="searchQuery" type="text" placeholder="Schnellfilter für Titel..." />
+                <input v-model="searchQuery" class="form-control" type="text" placeholder="Schnellfilter für Titel..." />
                 <span class="showSearchIcon"><b-icon-search></b-icon-search></span>
             </div>
 
@@ -40,7 +40,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="ticket in searchedTickets" :key="ticket.id" @click="toTicketDetails(ticket.id)" class="cursor-pointer" :data-status="ticket.status">
+                        <tr v-for="ticket in searchedTickets" :key="ticket.id" class="cursor-pointer" :data-status="ticket.status" @click="toTicketDetails(ticket.id)">
                             <td class="ticket-date" data-title="Datum">
                                 <strong v-if="ticket.status == 'Erledigt'" class="ticket-status rounded-pill bg-success" title="Erledigt"></strong>
                                 <strong v-if="ticket.status == 'Offen'" class="ticket-status rounded-pill bg-danger" title="Offen"></strong>
@@ -82,7 +82,7 @@ import getCollection from '../composables/getCollection'
 import getUser from '../composables/getUser'
 import { useRouter } from 'vue-router';
 import { computed } from 'vue';
-import { ref } from '@vue/reactivity';
+import { ref } from 'vue';
 
 export default {
     setup() {

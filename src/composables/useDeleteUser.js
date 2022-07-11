@@ -1,14 +1,12 @@
 import { ref } from 'vue'
 import { projectAuth } from '../firebase/config'
-import { useRouter } from 'vue-router';
-import getUser from '../composables/getUser'
 import 'firebase/auth'
 
 
 
 const deleteUserError = ref(null);
 const isPending = ref(false);
-const router = useRouter();
+
 
 const deleteUserHehe = async () => {
 
@@ -24,7 +22,7 @@ const deleteUserHehe = async () => {
        
        
     } catch (err) {
-        console.log(err.value);
+      
         deleteUserError.value = "Konto konnte nicht gelöscht werden!";
         isPending.value = false;
     }

@@ -29,7 +29,6 @@ const requireAuth = (to, from, next) => {
 }
 
 const requireStatus = (to, from, next) => {
-  debugger;
   let user = projectAuth.currentUser;
   let isTutor = tutor_course.find(item => item.email == user.email);
   if (!user || !user.emailVerified && !isTutor) {
@@ -43,16 +42,16 @@ const requireStatus = (to, from, next) => {
 }
 
 
-const userIsTutor = (to,from, next) => {
-  let user = projectAuth.currentUser;
-  let isTutorLoggedIn = tutor_course.find(item => item.email == user.email);
-  if(isTutorLoggedIn != null){
-    next();
-  }
-  else{
-    next(from.path)
-  }
-}
+// const userIsTutor = (to,from, next) => {
+//   let user = projectAuth.currentUser;
+//   let isTutorLoggedIn = tutor_course.find(item => item.email == user.email);
+//   if(isTutorLoggedIn != null){
+//     next();
+//   }
+//   else{
+//     next(from.path)
+//   }
+// }
 
  
 

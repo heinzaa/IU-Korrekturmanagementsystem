@@ -3,7 +3,7 @@
         <form @submit.prevent="handleSubmit">
             <div class="error mb-2">{{error}}</div>
             <div class="form-floating mb-2">
-                <input type="email" required class="form-control" id="floatingEmail" placeholder="mein.name@iubh-fernstudium.com" v-model="email">
+                <input id="floatingEmail" v-model="email" type="email" required class="form-control" placeholder="mein.name@iubh-fernstudium.com">
                 <label for="floatingEmail">Meine IU E-Mail-Adresse</label>
             </div>
             <button id="reset-password" class="w-100 btn btn-lg btn-primary" type="submit">Passwort erneuern</button>

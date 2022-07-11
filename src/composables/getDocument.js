@@ -19,8 +19,7 @@ const getDocument = (collection, id) => {
             error.value = "Ticket existiert nicht";
         }        
         
-    }, err => {
-        console.log(err.message);
+    }, () => {
         error.value = "Daten konnten nicht geladen werden";
     })
 

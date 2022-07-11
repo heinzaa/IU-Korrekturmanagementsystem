@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { projectFirestore } from '../firebase/config';
 
-const useMail = (status, toMail, feedback, course, tutorName, title ) => {
+const useMail = () => {
     const error = ref(null);
     const isPending = ref(null);
 

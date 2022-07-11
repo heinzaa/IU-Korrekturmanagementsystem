@@ -7,12 +7,18 @@
     },
     {
         "id": 2,
+        "course": "IT-Projektmanagement",
+        "tutor": "Prof. Dr. Tobias Brückmann",
+        "email": "tobias.brückmann@iubh-fernstudium.de"
+    },
+    {
+        "id": 3,
         "course": "Betriebswirtschaftslehre",
         "tutor": "Prof. Dr. Michael Broens",
         "email": "michael.broens@iubh-fernstudium.de"
     },
     {
-        "id": 3,
+        "id": 82,
         "course": "Requirements Engineering",
         "tutor": "Prof. Dr. Tobias Brückmann",
         "email": "tobias.brückmann@iubh-fernstudium.de"

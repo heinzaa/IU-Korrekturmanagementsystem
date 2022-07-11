@@ -3,11 +3,11 @@
         <form @submit.prevent="handleSubmit">
             <div class="error mb-2">{{error}}</div>
             <div class="form-floating mb-2">
-                <input type="email" required class="form-control" id="floatingEmail" placeholder="mein.name@iubh-fernstudium.com" v-model="email">
+                <input id="floatingEmail" v-model="email" type="email" required class="form-control" placeholder="mein.name@iubh-fernstudium.com">
                 <label for="floatingEmail">IU E-Mail-Adresse</label>
             </div>            
             <div class="form-floating mb-3">
-                <input v-bind:type="[showPassword ? 'text' : 'password']" required class="form-control input-group-append" id="floatingPassword" placeholder="Passwort" v-model="password">
+                <input id="floatingPassword" v-model="password" :type="[showPassword ? 'text' : 'password']" required class="form-control input-group-append" placeholder="Passwort">
                 <span class="showPasswordIcon" @click="showPassword = !showPassword">
                     <b-icon-eye v-if="!showPassword"></b-icon-eye>
                     <b-icon-eye-slash v-if="showPassword"></b-icon-eye-slash>

@@ -4,8 +4,8 @@
       <transition name="model-animation-inner">
         <div v-show="modalActive" class="modal-inner">
           <slot />
-          <button @click="close" type="button" class="btn btn-primary mt-2 me-2"><b-icon-arrow-left-short style="font-size:1.4em; margin-top:-0.1em;"></b-icon-arrow-left-short> Zum Dashboard</button>
-          <button @click="cancel" type="button" class="btn btn-outline-secondary mt-2"><b-icon-plus-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-plus-circle> Weiteres Ticket erstellen</button>
+          <button type="button" class="btn btn-primary mt-2 me-2" @click="close"><b-icon-arrow-left-short style="font-size:1.4em; margin-top:-0.1em;"></b-icon-arrow-left-short> Zum Dashboard</button>
+          <button type="button" class="btn btn-outline-secondary mt-2" @click="cancel"><b-icon-plus-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-plus-circle> Weiteres Ticket erstellen</button>
         </div>
       </transition>
     </div>

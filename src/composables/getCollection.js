@@ -22,8 +22,7 @@ const getCollection = (collection, query) => {
 
         documents.value = results;
         error.value = null;
-    }, err => {
-        console.log(err.message);
+    }, () => {
         documents.value = null;
         error.value = "Daten konnten nicht geladen werden";
     })

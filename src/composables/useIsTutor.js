@@ -3,7 +3,7 @@ import tutor_course from '../assets/tutor_course.json';
 import getUser from './getUser.js';
 import { ref } from 'vue';
 
-const userIsTutor = (to, from, next) => {
+const userIsTutor = () => {
 
     const { user } = getUser();
     let isTutor = ref(false);

@@ -3,15 +3,15 @@
         <form @submit.prevent="handleSubmit">
             <div class="error mb-2">{{error}}</div>
             <div class="form-floating mb-2">
-                <input type="text" required class="form-control" id="floatingVorname" placeholder="Max" v-model="displayName">
+                <input id="floatingVorname" v-model="displayName" type="text" required class="form-control" placeholder="Max">
                 <label for="floatingVorname">Vorname</label>
             </div>
             <div class="form-floating mb-2">
-                <input type="email" required class="form-control" id="floatingEmail" placeholder="mein.name@iubh-fernstudium.de" v-model="email">
+                <input id="floatingEmail" v-model="email" type="email" required class="form-control" placeholder="mein.name@iubh-fernstudium.de">
                 <label for="floatingEmail">IU E-Mail-Adresse</label>
             </div>
             <div class="form-floating mb-3">
-                <input v-bind:type="[showPassword ? 'text' : 'password']" required class="form-control" id="floatingPassword" placeholder="Passwort" v-model="password">
+                <input id="floatingPassword" v-model="password" :type="[showPassword ? 'text' : 'password']" required class="form-control" placeholder="Passwort">
                 <span class="showPasswordIcon" @click="showPassword = !showPassword">
                     <b-icon-eye v-if="!showPassword"></b-icon-eye>
                     <b-icon-eye-slash v-if="showPassword"></b-icon-eye-slash>
@@ -19,7 +19,7 @@
                 <label for="floatingPassword">Passwort</label>
             </div>
             <div class="form-floating mb-3">
-                <input v-bind:type="[showPasswordControl ? 'text' : 'password']" required class="form-control" id="floatingPasswordControl" placeholder="Passwort" v-model="passwordControl">
+                <input id="floatingPasswordControl" v-model="passwordControl" :type="[showPasswordControl ? 'text' : 'password']" required class="form-control" placeholder="Passwort">
                 <span class="showPasswordIcon" @click="showPasswordControl = !showPasswordControl">
                     <b-icon-eye v-if="!showPasswordControl"></b-icon-eye>
                     <b-icon-eye-slash v-if="showPasswordControl"></b-icon-eye-slash>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { ref } from 'vue'
 import useSignup from '../composables/useSignup'
 export default {
 

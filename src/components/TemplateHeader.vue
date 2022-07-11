@@ -1,7 +1,7 @@
 <template>
     <nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
         <div class="container">
-            <a v-bind:href="[userLoggedIn ? '/dashboard' : '/']" id="logo" class="navbar-brand" title="Korrekturmanagementsystem"><img src="/kms-logo.svg" alt="Logo Korrekturmanagementsystem" width="154" height="36" /></a>
+            <a id="logo" :href="[userLoggedIn ? '/dashboard' : '/']" class="navbar-brand" title="Korrekturmanagementsystem"><img src="/kms-logo.svg" alt="Logo Korrekturmanagementsystem" width="154" height="36" /></a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -14,7 +14,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse navbar-right" id="mainmenu">
+            <div id="mainmenu" class="collapse navbar-collapse navbar-right">
                 <ul class="navbar-nav ms-auto">
                     <li v-if="!user" class="nav-item" @click="toHome">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -30,7 +30,7 @@
                     </li>
                     <li v-if="user" class="nav-item dropdown">
                         <!-- Mein Konto Menü -->
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a id="navbarDropdownAccount" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <b-icon-person-circle style="font-size:1.4em; margin-top:-0.1em;"></b-icon-person-circle>&nbsp;&nbsp;{{ user.displayName }}
                             <span v-if="isTutor">(Tutor)</span>
                             <span v-else>(Student)</span>
@@ -56,7 +56,7 @@ import { ref } from "vue";
 import useIsTutor from '../composables/useIsTutor';
 
 export default {
-    setup(props, context){
+    setup(){
 
         
         const { user } = getUser();

@@ -14,7 +14,7 @@
           </div>
       </div>
         <div>Kommentarfeld
-           <textarea required disabled class="form-control" name="issueDescription" id="issueDescription" style="min-height:200px; max-height:70vh;"></textarea>
+           <textarea id="issueDescription" required disabled class="form-control" name="issueDescription" style="min-height:200px; max-height:70vh;"></textarea>
         </div>
         </div>
         
@@ -27,14 +27,14 @@ import getCollection from '../composables/getCollection'
 
 
 export default {
-    name: 'allTickets',
+    name: 'AllTickets',
     
     setup(){
         const {error, documents} = getCollection(
             'tickets',
            );
 
-           console.log(documents)
+           //console.log(documents)
 
         return {error, documents}
     }

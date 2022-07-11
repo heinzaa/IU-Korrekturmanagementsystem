@@ -61,19 +61,19 @@
 <script>
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
-import { useRouter } from "vue-router";
+
 export default {
     components: {
         TemplateHeader,
         TemplateFooter
     },
-    mounted(){
-        document.querySelector('#mainmenu li a').classList.remove('active');
-        document.getElementById('navLinkPrivacy').classList.add('active');
-    },
     setup() {
     
         return {};
+    },
+    mounted(){
+        document.querySelector('#mainmenu li a').classList.remove('active');
+        document.getElementById('navLinkPrivacy').classList.add('active');
     },
 };
 </script>

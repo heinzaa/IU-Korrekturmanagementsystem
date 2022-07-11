@@ -43,20 +43,14 @@ import SignUpForm from "../components/SignUpForm.vue";
 import LoginForm from "../components/LoginForm.vue";
 import VerficationPopUp from "../components/VerificationPopUp.vue"
 import ResetPasswordForm from "../components/ResetPasswordForm.vue";
-import useResendVerificationMail from '../composables/useResendVerificationMail'
 import { projectAuth } from '../firebase/config';
-import { ref } from "@vue/reactivity";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import tutor_course from '../assets/tutor_course.json';
 export default {
     components: { TemplateHeader, TemplateFooter, SignUpForm, LoginForm, ResetPasswordForm, VerficationPopUp },
-    
-     data() {
-        return {
-            emailNotVerified: ''
-        };
-    },
     beforeRouteLeave(to, from, next) {
+            
             let user = projectAuth.currentUser;
             let isTutor = tutor_course.find(item => item.email == user.email);
 
@@ -77,11 +71,9 @@ export default {
         const showSignUp = ref(false);
         const showVerificationPopUp = ref(false);
 
-        const { error, resendVerificationMail } = useResendVerificationMail();
+        
        
-      /* const sendEmailVerification = () =>{
-            resendVerificationMail();
-        } */
+      
         
         const router = useRouter();
 
@@ -134,13 +126,18 @@ export default {
             showResetPassword,
             showSignUp,
             showLoginForm,
-            //sendEmailVerification,
             showResetPasswordForm,
             showSignUpForm,
             showVerificationPopUp,
             enterVerificationPopUp,
             enterDashboard,            
             showLoginTutorForm
+        };
+    },
+    
+     data() {
+        return {
+            emailNotVerified: ''
         };
     },
 };

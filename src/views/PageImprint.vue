@@ -23,23 +23,22 @@
 <script>
 import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
-import { useRouter } from "vue-router";
 export default {
     components: {
         TemplateHeader,
         TemplateFooter
     },
-    mounted(){
-        document.querySelector('#mainmenu li a').classList.remove('active');
-        document.getElementById('navLinkImprint').classList.add('active');
-    },
     setup() {
     
         const checkRoute = async () => {
-            console.log(location);
+            
         }
 
         return { checkRoute };
+    },
+    mounted(){
+        document.querySelector('#mainmenu li a').classList.remove('active');
+        document.getElementById('navLinkImprint').classList.add('active');
     },
 };
 

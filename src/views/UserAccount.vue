@@ -9,11 +9,11 @@
             <div class="form-signin">
                 <h3 style="text-align:center;">Kontodaten</h3>
                 <div class="form-floating mb-2">
-                    <input type="text" required class="form-control" id="floatingEmail" v-model="user.displayName" readonly>
+                    <input id="floatingEmail" v-model="user.displayName" type="text" required class="form-control" readonly>
                     <label for="floatingEmail">Vorname</label>
                 </div>
                 <div class="form-floating mb-2">
-                    <input type="email" required class="form-control" id="floatingEmail" v-model="user.email" readonly>
+                    <input id="floatingEmail" v-model="user.email" type="email" required class="form-control" readonly>
                     <label for="floatingEmail">IU E-Mail-Adresse</label>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <form>
                     <div class="error mb-2">{{error}}</div>
                     <div class="form-floating mb-3">
-                        <input v-bind:type="[showPasswordOld ? 'text' : 'password']" required class="form-control" id="floatingPassword1" placeholder="Aktuelles Passwort" v-model="passwordOld">
+                        <input id="floatingPassword1" v-model="passwordOld" :type="[showPasswordOld ? 'text' : 'password']" required class="form-control" placeholder="Aktuelles Passwort">
                         <span class="showPasswordIcon" @click="showPasswordOld = !showPasswordOld">
                             <b-icon-eye v-if="!showPasswordOld"></b-icon-eye>
                             <b-icon-eye-slash v-if="showPasswordOld"></b-icon-eye-slash>
@@ -33,7 +33,7 @@
                         <label for="floatingPassword1">Aktuelles Passwort</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input v-bind:type="[showPasswordNew ? 'text' : 'password']" required class="form-control" id="floatingPassword2" placeholder="Neues Passwort" v-model="passwordNew">
+                        <input id="floatingPassword2" v-model="passwordNew" :type="[showPasswordNew ? 'text' : 'password']" required class="form-control" placeholder="Neues Passwort">
                         <span class="showPasswordIcon" @click="showPasswordNew = !showPasswordNew">
                             <b-icon-eye v-if="!showPasswordNew"></b-icon-eye>
                             <b-icon-eye-slash v-if="showPasswordNew"></b-icon-eye-slash>
@@ -41,7 +41,7 @@
                         <label for="floatingPassword2">Neues Passwort</label>
                     </div>
                      <div class="form-floating mb-3">
-                        <input v-bind:type="[showPasswordNewControl ? 'text' : 'password']" required class="form-control" id="floatingPassword3" placeholder="Neues Passwort" v-model="passwordNewControl">
+                        <input id="floatingPassword3" v-model="passwordNewControl" :type="[showPasswordNewControl ? 'text' : 'password']" required class="form-control" placeholder="Neues Passwort">
                         <span class="showPasswordIcon" @click="showPasswordNewControl = !showPasswordNewControl">
                             <b-icon-eye v-if="!showPasswordNewControl"></b-icon-eye>
                             <b-icon-eye-slash v-if="showPasswordNewControl"></b-icon-eye-slash>
@@ -53,8 +53,8 @@
                     <p v-else-if="passwordNewEqualsControl" class="error">Die neuen Passwörter stimmen nicht überein.</p>
                     </div>
                     <div>
-                    <button v-if="!isPending" class="w-100 btn btn-primary" @click="changePassword" type="submit">Übernehmen</button>
-                    <button v-else class="w-100 btn btn-primary" disabled @click="changePassword" type="submit">Password update...</button>
+                    <button v-if="!isPending" class="w-100 btn btn-primary" type="submit" @click="changePassword">Übernehmen</button>
+                    <button v-else class="w-100 btn btn-primary" disabled type="submit" @click="changePassword">Password update...</button>
                     </div>
                 </form>
             </div>
@@ -88,7 +88,7 @@ import TemplateHeader from "../components/TemplateHeader.vue";
 import TemplateFooter from "../components/TemplateFooter.vue";
 import { useRouter } from "vue-router";
 import getUser from "../composables/getUser";
-import { ref } from "@vue/reactivity";
+import { ref } from "vue";
 import useDeleteUser from "../composables/useDeleteUser";
 
 import useUpdatePassword from "../composables/useUpdatePassword";
@@ -98,12 +98,6 @@ export default {
     components: {
         TemplateHeader,
         TemplateFooter,
-    },
-    mounted() {
-        document.querySelector("#mainmenu li a").classList.remove("active");
-        document
-            .getElementById("navbarDropdownAccount")
-            .classList.add("active");
     },
     setup() {
         const router = useRouter();
@@ -121,7 +115,7 @@ export default {
         const deleteAccountErrorTutor = ref('')
 
 
-        const { deleteUserError, deleteUserHehe, isPendingDeleteUser } =
+        const { deleteUserError, deleteUserHehe } =
             useDeleteUser();
 
         const changePassword = async () => {
@@ -174,6 +168,12 @@ export default {
             showPasswordNew,
             showPasswordOld
         };
+    },
+    mounted() {
+        document.querySelector("#mainmenu li a").classList.remove("active");
+        document
+            .getElementById("navbarDropdownAccount")
+            .classList.add("active");
     },
 };
 </script>
