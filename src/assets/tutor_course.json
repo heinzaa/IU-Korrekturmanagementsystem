@@ -3,102 +3,63 @@
         "id": 1,
         "course": "Einführung in die Wirtschaftsinformatik",
         "tutor": "Prof. Dr. Maik Günther ",
-        "email": "maik.günther@iubh-fernstudium.de"
+        "email": "marc.heintz@iubh-fernstudium.de",
+        "tutorUid": "8mjaWkIwIkN5ZjDjXOqZN4haHNY2"
     },
     {
         "id": 2,
         "course": "IT-Projektmanagement",
         "tutor": "Prof. Dr. Tobias Brückmann",
-        "email": "tobias.brückmann@iubh-fernstudium.de"
+        "email": "marc.heintz@iubh-fernstudium.de",
+        "tutorUid": "8mjaWkIwIkN5ZjDjXOqZN4haHNY2"
     },
     {
         "id": 3,
         "course": "Betriebswirtschaftslehre",
         "tutor": "Prof. Dr. Michael Broens",
-        "email": "michael.broens@iubh-fernstudium.de"
-    },
-    {
-        "id": 82,
-        "course": "Requirements Engineering",
-        "tutor": "Prof. Dr. Tobias Brückmann",
-        "email": "tobias.brückmann@iubh-fernstudium.de"
+        "email": "marc.heintz@iubh-fernstudium.de",
+        "tutorUid": "8mjaWkIwIkN5ZjDjXOqZN4haHNY2"
     },
     {
         "id": 4,
-        "course": "IT-Recht",
-        "tutor": "Sven Jakobs",
-        "email": "sven.jakobs@iubh-fernstudium.de"
+        "course": "Requirements Engineering",
+        "tutor": "Prof. Dr. Tobias Brückmann",
+        "email": "tobias.brueckmann@iu.org",
+        "tutorUid": "RCwxnSfduAXTmnJBGVKL8mHsVEz1"
     },
     {
         "id": 5,
-        "course": "Programmierung von Web-Anwendungsoberflächen",
-        "tutor": "Prof. Dr. Marian Benner-Wickner",
-        "email": "marian.benner-wickner@iubh-fernstudium.de"
+        "course": "IT-Recht",
+        "tutor": "Sven Jakobs",
+        "email": "marc.heintz@iubh-fernstudium.de",
+        "tutorUid": "8mjaWkIwIkN5ZjDjXOqZN4haHNY2"
     },
     {
         "id": 6,
-        "course": "Programmierung von industriellen Informationssystemen mit Java EE",
+        "course": "Programmierung von Web-Anwendungsoberflächen",
         "tutor": "Prof. Dr. Marian Benner-Wickner",
-        "email": "marian.benner-wickner@iubh-fernstudium.de"
+        "email": "marc.heintz@iubh-fernstudium.de",
+        "tutorUid": "8mjaWkIwIkN5ZjDjXOqZN4haHNY2"
     },
     {
         "id": 7,
-        "course": "IT-Projektmanagement",
-        "tutor": "Prof. Dr. Tobias Brückmann",
-        "email": "tobias.brückmann@iubh-fernstudium.de"
+        "course": "Programmierung von industriellen Informationssystemen mit Java EE",
+        "tutor": "Prof. Dr. Marian Benner-Wickner",
+        "email": "marc.heintz@iubh-fernstudium.de",
+        "tutorUid": "8mjaWkIwIkN5ZjDjXOqZN4haHNY2"
     },
     {
         "id": 8,
-        "course": "Projekt Software Engineering",
+        "course": "IT-Projektmanagement",
         "tutor": "Prof. Dr. Tobias Brückmann",
-        "email": "tobias.brückmann@iubh-fernstudium.de"
+        "email": "tobias.brueckmann@iu.org",
+        "tutorUid": "RCwxnSfduAXTmnJBGVKL8mHsVEz1"
     },
     {
-        "id": 100,
-        "course": "Besserwisserkunde 1 mit Reini",
-        "tutor": "Reinhard Nägler",
-        "email": "r@nglr.de",
-        "tutorUid": "SWBbagTf7jgeUzIquUptGdh1bIZ2"        
-    },
-    {
-        "id": 101,
-        "course": "Besserwisserkunde 2 mit Michael",
-        "tutor": "Michael Vorndran",
-        "email": "mivorndran1@gmail.com",
-        "tutorUid": "favwCyABSUd2zwWLMLzQUMrRY2y1"        
-    },
-    {
-        "id": 102,
-        "course": "Besserwisserkunde 2 mit Johannes",
-        "tutor": "Johannes Schmack",
-        "email": "johannes.schmack1@iubh-fernstudium.de",
-        "tutorUid": "h4INV5qVbphw8bQaFEfFp47xAbE3"
-    },
-    {
-        "id": 103,
-        "course": "Besserwisserkunde 2 mit Anna",
-        "tutor": "Anna Schulz",
-        "email": "annaschulz1@gmail.com",
-        "tutorUid": "vjEHpuwqumahidw1cR8vbFAgIqG3"
-    },
-    {
-        "id": 104,
-        "course": "Besserwisserkunde 2 mit Marc",
-        "tutor": "Marc Heintz",
-        "email": "heintz.marc1@web.de",
-        "tutorUid": "ysjiJcuTv2acyHSGpxgMnC0EhJm2"
-    },{
-
-    "id": 105,
-    "course": "Coding with Marc",
-    "tutor": "Marc Heintz",
-    "email": "marc.heintz@iubh-fernstudium.de",
-    "tutorUid": "8mjaWkIwIkN5ZjDjXOqZN4haHNY2"
-    },
-    {
-        "id": 900,
-        "course": "Projekt Software Engineering (Achtung! Echte Tutor-E-Mail)",
+        "id": 9,
+        "course": "Projekt Software Engineering",
         "tutor": "Tobias Brückmann",
-        "email": "tobias.brueckmann@iu.org"
+        "email": "tobias.brueckmann@iu.org",
+        "tutorUid": "RCwxnSfduAXTmnJBGVKL8mHsVEz1"
     }
 ]
