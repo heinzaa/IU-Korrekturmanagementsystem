@@ -19,6 +19,7 @@
 
 <script>
 export default {
+    emits: ['toLoginComponent'],
     setup(props, context) {
         const toLogin = () => {
             context.emit("toLoginComponent");

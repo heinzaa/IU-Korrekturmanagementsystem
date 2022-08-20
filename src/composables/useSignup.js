@@ -9,21 +9,23 @@ const isPending = ref(false);
 
 const signup = async (email, password, displayName) => {
 
+
+    
     error.value = null;
     isPending.value = true;
   
     /* Diese E-Mail-Endungen überprüfen */
-    const validEmailDomains = ['iubh-fernstudium.de', 'iu-fernstudium.de', 'iubh.de', 'iu.org'];
-    const regexEmail = '[^@]+@(' + validEmailDomains.join('|') + ')';
-    let regex_iubh = new RegExp(regexEmail);
+    //const validEmailDomains = ['iubh-fernstudium.de', 'iu-fernstudium.de', 'iubh.de', 'iu.org'];
+    //const regexEmail = '[^@]+@(' + validEmailDomains.join('|') + ')';
+    //let regex_iubh = new RegExp(regexEmail);
  
-    console.log(regex_iubh + "true:" + regex_iubh != email)
+  
 
     
-    if(!regex_iubh.test(email)){
+    /*if(!regex_iubh.test(email)){
         error.value = "Die Email-Domaine muss aus einer der folgenden Domainen sein: iubh-fernstudium.de, iu-fernstudium.de, iubh.de, iu.org.";
         return;
-    }
+    } */
 
     if(password.length < 8){
         error.value = 'Passwort muss mind. 8 Stellen haben.'
