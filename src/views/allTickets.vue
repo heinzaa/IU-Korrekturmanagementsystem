@@ -24,8 +24,6 @@
 
 <script>
 import getCollection from '../composables/getCollection'
-
-
 export default {
     name: 'AllTickets',
     
@@ -33,14 +31,11 @@ export default {
         const {error, documents} = getCollection(
             'tickets',
            );
-
            //console.log(documents)
-
         return {error, documents}
     }
 }
 </script>
 
 <style>
-
 </style>
