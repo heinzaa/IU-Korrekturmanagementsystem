@@ -106,7 +106,7 @@ const routes = [
     name: 'Ticket',
     component: allTickets,
     beforeEnter: requireStatus
-  },
+  }, 
   {
     path: '/ticket/:id',
     name: 'TicketDetails',

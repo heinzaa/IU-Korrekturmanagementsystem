@@ -10,10 +10,8 @@ const updatePassword = async (newPassword) => {
 
     try{
         const response = await projectAuth.currentUser.updatePassword(newPassword)
-        console.log(response);
         return response;
     }catch(err){
-        console.log(err.value)
         error.value = 'Update fehlgeschlagen, es muss mind. 8 Stellen haben.'
     }
 }
