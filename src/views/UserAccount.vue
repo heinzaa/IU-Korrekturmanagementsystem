@@ -22,7 +22,7 @@
             <!-- Passwort Formular -->
             <div class="form-signin">
                 <h3 style="text-align:center;">Passwort ändern</h3>
-                <form>
+                <form  @submit.prevent="changePassword">
                     <div class="error mb-2">{{error}}</div>
                     <div class="form-floating mb-3">
                         <input id="floatingPassword1" v-model="passwordOld" :type="[showPasswordOld ? 'text' : 'password']" required class="form-control" placeholder="Aktuelles Passwort">
@@ -53,8 +53,8 @@
                     <p v-else-if="passwordNewEqualsControl" class="error">Die neuen Passwörter stimmen nicht überein.</p>
                     </div>
                     <div>
-                    <button v-if="!isPending" class="w-100 btn btn-primary" type="submit" @click="changePassword">Übernehmen</button>
-                    <button v-else class="w-100 btn btn-primary" disabled type="submit" @click="changePassword">Password update...</button>
+                    <button v-if="!isPending" class="w-100 btn btn-primary" type="submit" >Übernehmen</button>
+                    <button v-else class="w-100 btn btn-primary" disabled type="submit" >Password update...</button>
                     </div>
                 </form>
             </div>
@@ -119,18 +119,33 @@ export default {
             useDeleteUser();
 
         const changePassword = async () => {
+            passwordNewEqualsOld.value = false;
+            passwordNewEqualsControl.value = false;
             isPending.value = true;
+            
 
             if (passwordOld.value == passwordNew.value) {
+                
                 passwordNewEqualsOld.value = true;
                 passwordNewEqualsControl.value = false;
+                
             }
             if (passwordNew.value != passwordNewControl.value) {
+                
                 passwordNewEqualsControl.value = true;
                 passwordNewEqualsOld.value = false;
+                
             }
 
-            await updatePassword(passwordNew.value);
+            if(passwordNew.value == passwordNewControl.value && passwordNewControl.value != passwordOld.value){
+                await updatePassword(passwordNew.value);
+
+                passwordOld.value = '';
+                passwordNew.value ='';
+                passwordNewControl.value = '';
+            }
+
+
 
             isPending.value = false;
         };
